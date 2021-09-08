@@ -1,0 +1,68 @@
+.NavBar {
+  background-color: #131921;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.NavBar_Logo {
+  width: 100px;
+  object-fit: contain;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 18px;
+}
+
+.NavBarSearch {
+  display: flex;
+  flex: 1;
+}
+
+.SearchInput {
+  height: 12px;
+  padding: 10px;
+  border: none;
+  width: 100%;
+}
+
+.SearchIcon {
+  padding: 5px;
+  height: 22px !important;
+  background-color: #cd9042
+}
+
+.NavBarHeader {
+  color: white;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.NavBarOption {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.NavBarOptionOne {
+  font-size: 10px;
+}
+
+.NavBarOptionTwo {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.NavBarOptionBasket {
+  display: flex;
+  align-items: center;
+}
+
+.NavBarBasketCount {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
