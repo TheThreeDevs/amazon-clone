@@ -8,6 +8,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/login">
+            <NavBar />
             <h1>Login Page</h1>
           </Route>
           <Route path="/basket">

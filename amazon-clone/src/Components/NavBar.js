@@ -23,12 +23,13 @@ function NavBar() {
         </div>
 
         {/* Div Container containing two links and the basket , STILL HAVE TO WRAP THESE INTO LINKS */}
-
         <div className="NavBarHeader">
+          <Link to="/login" className="NavBarLink">
           <div className="NavBarOption">
             <span className="NavBarOptionOne">Hello,</span>
             <span className="NavBarOptionTwo">Sign In</span>
           </div>
+          </Link>
 
           <div className="NavBarOption">
             <span className="NavBarOptionOne">Returns</span>
@@ -36,10 +37,13 @@ function NavBar() {
           </div>
 
           {/* Basket and the number of items in the cart */}
+          <Link to="/basket" className="NavBarLink">
           <div className="NavBarOptionBasket">
             <ShoppingBasketIcon />
             <span className="NavBarOptionTwo NavBarBasketCount">0</span>
           </div>
+
+          </Link>
 
         </div>
 
