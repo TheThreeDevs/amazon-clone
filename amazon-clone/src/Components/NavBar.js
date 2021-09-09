@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './NavBar.css';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
@@ -9,11 +9,13 @@ function NavBar() {
   return (
     <nav className="NavBar">
       {/* Logo to the left */}
+      <Link to="/">
         <img
         className="NavBar_Logo"
         src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
         alt="logo"
         />
+      </Link>
        {/* Search Bar and button */}
         <div className="NavBarSearch">
           <input  type="text" className="SearchInput"/>
