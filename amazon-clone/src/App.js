@@ -1,5 +1,6 @@
-// import './App.css';
-import NavBar from './Components/NavBar'
+import './App.css';
+import NavBar from './Components/NavBar';
+import Login from './Components/Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -8,8 +9,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/login">
-            <NavBar />
-            <h1>Login Page</h1>
+            <Login />
           </Route>
           <Route path="/basket">
             <NavBar />
