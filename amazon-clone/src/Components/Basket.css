@@ -1,0 +1,57 @@
+.BasketContainer {
+  display: flex;
+  height: 200px;
+  width: 1100px;
+  background-color: white;
+  margin-top: 30px;
+  margin-left: 20px;
+  flex-direction: column;
+}
+
+.Basket {
+  display: flex;
+  font-size: 25px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.BasketButtons {
+  display: flex;
+  margin-top: 40px;
+  margin-left: 20px;
+}
+
+.BasketButtons > button {
+  display: flex;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.ButtonOne {
+  background-color: #ffd500;
+  height: 35px;
+  width: 160px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 2px solid #e7e7e7;
+}
+
+.ButtonTwo {
+  background-color: white;
+  height: 35px;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 2px solid #e7e7e7;
+
+}
+
+.BasketP > p {
+  display: flex;
+  font-size: 12px;
+  flex-wrap: wrap;
+  margin-right: 450px;
+  margin-left: 20px;
+}

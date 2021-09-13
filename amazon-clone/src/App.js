@@ -1,6 +1,7 @@
 import './App.css';
 import NavBar from './Components/NavBar';
 import Login from './Components/Login';
+import Basket from './Components/Basket';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
           </Route>
           <Route path="/basket">
             <NavBar />
-            <h1>Basket </h1>
+            <Basket />
           </Route>
           <Route path="/">
             <NavBar />
