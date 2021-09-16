@@ -45,7 +45,6 @@ class App extends React.Component {
             </Route>
             <Route path="/">
               <NavBar />
-              <h1>Home</h1>
               <Carousel />
             </Route>
           </Switch>
