@@ -1,8 +1,9 @@
 import './Carousel.css';
 import React, { useState } from 'react';
-import FirstImg from './amazonImg.jpg';
-import SecondImg from './amazonImg2.jpg';
-import ThirdImg from './amazonImg3.jpg';
+
+import FirstImg from './Images/amazonImg.jpg';
+import SecondImg from './Images/amazonImg2.jpg';
+import ThirdImg from './Images/amazonImg3.jpg';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
