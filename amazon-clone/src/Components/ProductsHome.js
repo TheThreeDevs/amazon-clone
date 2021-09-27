@@ -13,10 +13,19 @@ function ProductsHome () {
           <a href='amazon.com'>Take a look</a>
         </div>
         <div className='productsCard'>
-          Jewelry
+          <h2>Jewelry</h2>
+          <div className='productsImgTwo'/>
+          <a href='amazon.com'>Take a look</a>
         </div>
         <div className='productsCard'>
-          Electronics
+          <h2>Electronics</h2>
+          <div className='productsImgThree'/>
+          <a href='amazon.com'>Shop now</a>
+        </div>
+        <div className='productsCard'>
+          <h2>Women's Clothing</h2>
+          <div className='productsImgFour'/>
+          <a href='amazon.com'>Shop now</a>
         </div>
       </div>
     </div>

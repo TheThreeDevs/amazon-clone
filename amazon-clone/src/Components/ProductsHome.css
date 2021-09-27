@@ -52,7 +52,40 @@
   height: 300px;
   width: 250px;
   margin-left: 25px;
-  background-image: url(mensclothing.jpeg);
+  background-image: url(./Images/mensclothing.jpeg);
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+.productsImgTwo {
+  display: flex;
+  justify-content: center;
+  height: 300px;
+  width: 250px;
+  margin-left: 25px;
+  background-image: url(./Images/Jewelry.jpeg);
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+.productsImgThree {
+  display: flex;
+  justify-content: center;
+  height: 300px;
+  width: 250px;
+  margin-left: 25px;
+  background-image: url(./Images/Electronics.jpg);
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+.productsImgFour {
+  display: flex;
+  justify-content: center;
+  height: 300px;
+  width: 250px;
+  margin-left: 25px;
+  background-image: url(./Images/WomenClothing.jpg);
   background-size: cover;
   margin-bottom: 10px;
 }
