@@ -30,6 +30,13 @@ class App extends React.Component {
       .catch(err => {
         console.log('This is the error that occurred', err)
       })
+    axios.get('/home')
+    .then((res) => {
+      console.log('Here is the front-end requesting from server: ', res.data);
+    })
+    .catch((err) => {
+      console.log('Found this error: ', err);
+    })
   }
 
   render() {
