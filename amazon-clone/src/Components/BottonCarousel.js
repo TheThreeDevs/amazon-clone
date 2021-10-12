@@ -16,7 +16,7 @@ function BottomCarousel () {
 
   const [option, setOption ] = useState(true);
 
-
+  //conditional rendering for the carousel
 
   if (option) {
     var products =  <div className='center'>

@@ -56,6 +56,7 @@
   background-image: url(./Images/mensclothing.jpeg);
   background-size: cover;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .productsImgTwo {
@@ -67,6 +68,7 @@
   background-image: url(./Images/Jewelry.jpeg);
   background-size: cover;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .productsImgThree {
@@ -78,6 +80,7 @@
   background-image: url(./Images/Electronics.jpg);
   background-size: cover;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .productsImgFour {
@@ -89,4 +92,5 @@
   background-image: url(./Images/WomenClothing.jpg);
   background-size: cover;
   margin-bottom: 10px;
+  cursor: pointer;
 }
