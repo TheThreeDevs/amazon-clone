@@ -5,6 +5,7 @@ import Login from './Components/Login';
 import Basket from './Components/Basket';
 import Carousel from './Components/Carousel';
 import ProductsHome from './Components/ProductsHome';
+import BottomCarousel from './Components/BottonCarousel';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 
@@ -55,6 +56,7 @@ class App extends React.Component {
               <NavBar />
               <Carousel />
               <ProductsHome />
+              <BottomCarousel />
             </Route>
           </Switch>
         </div>
