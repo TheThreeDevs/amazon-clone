@@ -1,16 +1,28 @@
 import './ProductsHome.css';
 import { useLocation } from 'react-router-dom';
+import SingleProduct from './SingleProduct'
+// import {useState} from 'react';
 
-function ProductsList () {
+function ProductsList ({data}) {
 
+  //to get the state from the Link
   const location = useLocation();
   const {category} = location.state;
 
-  console.log(category, 'this is the cat');
+  //here is the products for the specific category
+  // const [products, setProducts] = useState([]);
 
+  var products = data.filter(product => product.category === category);
+  console.log(products);
+
+  console.log(products);
 
   return (
-    <h1>These are the products that we have for sale</h1>
+    <div>
+      {products.map((product, i) => {
+        return <SingleProduct  key={i} image={product.image} title={product.title} rating={product.rating} price={product.price} description={product.description} />
+      })}
+    </div>
   )
 }
 

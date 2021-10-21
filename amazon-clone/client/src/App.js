@@ -54,7 +54,7 @@ class App extends React.Component {
               <Basket />
             </Route>
             <Route  path="/products">
-              <ProductsList />
+              <ProductsList data={this.state.data}/>
             </Route>
             <Route path="/">
               <NavBar />
