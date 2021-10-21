@@ -1,9 +1,16 @@
 import './ProductsHome.css';
+import { useLocation } from 'react-router-dom';
 
 function ProductsList () {
 
+  const location = useLocation();
+  const {category} = location.state;
+
+  console.log(category, 'this is the cat');
+
+
   return (
-    <div>The list of products</div>
+    <h1>These are the products that we have for sale</h1>
   )
 }
 

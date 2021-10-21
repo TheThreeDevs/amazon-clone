@@ -6,6 +6,7 @@ import Basket from './Components/Basket';
 import Carousel from './Components/Carousel';
 import ProductsHome from './Components/ProductsHome';
 import BottomCarousel from './Components/BottomCarousel';
+import ProductsList from './Components/ProductsList';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 
@@ -52,12 +53,16 @@ class App extends React.Component {
               <NavBar />
               <Basket />
             </Route>
+            <Route  path="/products">
+              <ProductsList />
+            </Route>
             <Route path="/">
               <NavBar />
               <Carousel />
               <ProductsHome />
               <BottomCarousel />
             </Route>
+
           </Switch>
         </div>
       </Router>
