@@ -15,6 +15,8 @@ function Carousel () {
   const [currImg, setCurrImg] = useState(0);
 
   //have setCurrImg set to an interval where it increases the position
+  //Need to clean logic up so that state is not changed after changing components
+  //clearInterval(); 
   setInterval(() => {
     if(currImg < 2) {
       setCurrImg(currImg + 1);
