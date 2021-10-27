@@ -47,7 +47,6 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App">
-<<<<<<< HEAD
           <AuthProvider>
             <Switch>
               <Route path="/login">
@@ -67,23 +66,6 @@ class App extends React.Component {
               </Route>
             </Switch>
           </AuthProvider>
-=======
-          <Switch>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/basket">
-              <NavBar />
-              <Basket />
-            </Route>
-            <Route path="/">
-              <NavBar />
-              <Carousel />
-              <ProductsHome />
-              <BottomCarousel />
-            </Route>
-          </Switch>
->>>>>>> master
         </div>
       </Router>
     );
