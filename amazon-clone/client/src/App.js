@@ -1,14 +1,15 @@
 import "./App.css";
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ProductsHome from "./Components/ProductsHome";
+import ForgotPassword from "./Components/ForgotPassword";
 import { AuthProvider } from "./contexts/AuthContext";
 import NavBar from "./Components/NavBar";
 import Login from "./Components/Login";
 import Basket from "./Components/Basket";
 import Carousel from "./Components/Carousel";
-import ProductsHome from "./Components/ProductsHome";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import axios from "axios";
 import SignUp from "./Components/SignUp";
+import axios from "axios";
 
 class App extends React.Component {
   constructor(props) {
@@ -58,6 +59,9 @@ class App extends React.Component {
               </Route>
               <Route path="/signup">
                 <SignUp />
+              </Route>
+              <Route path="/forgot-password">
+                <ForgotPassword />
               </Route>
               <Route path="/">
                 <NavBar />

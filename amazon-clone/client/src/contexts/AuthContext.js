@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "../firebase";
 import { updateProfile, signInWithEmailAndPassword } from "firebase/auth";
+import { database } from "../firebase";
 //create a context "state"
 const AuthContext = React.createContext();
 //function that returns the context
@@ -16,10 +17,25 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-      console.log("Current user: ", user);
-      setLoading(false);
-    });
+      console.log("current user", user);
+      if (user) {
+        setCurrentUser(user);
+        setLoading(false);
+        console.log("Firestore connecting...");
+        let userUid = user.uid;
+        database.collection("users").where("uid", "==", userUid).get().then(snapshot => {
+          let users = snapshot.docs;
+          users.forEach(user => {
+            console.log(user.data());
+          })
+        })
+      } else {
+        //still need these to work, even with a null current user
+        console.log("no current user");
+        setCurrentUser(user);
+        setLoading(false)
+      }
+    })
     return unsubscribe;
   }, []);
 
@@ -39,12 +55,22 @@ export function AuthProvider({ children }) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
+  function resetPassword(email) {
+    return auth.sendPasswordResetEmail(email);
+  }
+
+  function signOut() {
+    return auth.signOut();
+  }
+
   const myValues = {
     currentUser,
     signIn,
     signUp,
     updateProfileName,
-    signInWithAuth
+    signInWithAuth,
+    resetPassword,
+    signOut
   };
   return (
     <AuthContext.Provider value={myValues}>
