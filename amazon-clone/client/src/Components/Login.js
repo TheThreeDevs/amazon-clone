@@ -1,5 +1,5 @@
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -9,9 +9,21 @@ function Login() {
   const [emailValid, setEmailValid] = useState(false);
   const [email, setEmail] = useState("");
   const passwordRef = useRef();
-  const { signIn } = useAuth();
+  const history = useHistory();
+  const { signIn, signOut } = useAuth();
   const emailRegex = /\S+@\S+\.\S+/;
 
+  async function handleSignOut(e) {
+    e.preventDefault();
+    try {
+      await signOut()
+      .then(() => {
+        setError("Successfully signed out!")
+      })
+    } catch (err) {
+      setError(err.message)
+    }
+  }
   function emailChange(e) {
     setEmail(e.target.value);
   }
@@ -34,8 +46,10 @@ function Login() {
       await signIn(email, passwordRef.current.value)
       .then(() => {
         setError("");
-        console.log("Sucessfully signedIn!");
-        //here jump to another page as homePage!!
+        console.log("Sucessfully signed-in!");
+        setDisabled(false);
+        //move to home page
+        history.push("/");
       })
     } catch (err) {
       setError(err.message);
@@ -47,7 +61,7 @@ function Login() {
     return (
       <div className="LoginContainer">
         <h1 className="mb-2 mt-1">Sign-In</h1>
-        {error && <p style={{fontSize: "10px", paddingLeft: "10px", paddingRight: "10px"}}>{error}</p>}
+        {error && <p style={{fontSize: "10px", paddingLeft: "6%", paddingRight: "6%"}}>{error}</p>}
         <form onSubmit={handleSubmitEmail}>
           <h5>Email or mobile phone number</h5>
           <input type="email" value={email} onChange={emailChange} />
@@ -56,7 +70,7 @@ function Login() {
             By continuing, you agree to Amazon's Conditions of Use and Privacy
             Notice.
           </p>
-          <p>Need Help?</p>
+            <p>Forgot <Link to="/forgot-password">Password?</Link></p>
         </form>
       </div>
     );
@@ -73,7 +87,6 @@ function Login() {
           <h5>Password</h5>
           <input type="password" ref={passwordRef} />
           <button disabled={disabled}>Submit</button>
-
           <p>
             Forgot <Link to="/forgot-password">password?</Link>
           </p>
@@ -98,6 +111,9 @@ function Login() {
         </Link></button>
         </div>
       )}
+      <div style={{alignSelf: "center"}}> 
+      <button className="mt-2" onClick={handleSignOut}>Log Out?</button>
+      </div>
     </div>
   );
 }
