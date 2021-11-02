@@ -13,8 +13,8 @@ app.use(express.json());
 app.use(express.urlencoded()); //To parse URL-encoded bodies!!
 
 app.get('/home', (req, res) => {
-  console.log('Got a get request to /home');
-  res.send('Hello from the express server!');
+ console.log("Refreshing home");
+  res.send('Express server');
 })
 
 
