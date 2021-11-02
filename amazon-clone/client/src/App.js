@@ -1,6 +1,8 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import BottomCarousel from './Components/BottomCarousel';
+import ProductsList from './Components/ProductsList';
 import ProductsHome from "./Components/ProductsHome";
 import ForgotPassword from "./Components/ForgotPassword";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -57,6 +59,9 @@ class App extends React.Component {
                 <NavBar />
                 <Basket />
               </Route>
+              <Route  path="/products">
+                <ProductsList data={this.state.data}/>
+              </Route>
               <Route path="/signup">
                 <SignUp />
               </Route>
@@ -70,6 +75,7 @@ class App extends React.Component {
               </Route>
             </Switch>
           </AuthProvider>
+
         </div>
       </Router>
     );

@@ -1,0 +1,68 @@
+.singleContainer {
+  width: 100;
+  height: 500px;
+  /* background-color: burlywood; */
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  border-bottom: solid 2px;
+}
+
+.containerImage {
+  width: 300px;
+  height: 300px;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.containerButtonOne {
+  background-color: #FFD700;
+  width: 150px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 5px;
+}
+
+.containerButtonTwo {
+  width: 150px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 5px;
+}
+
+.containerTitle {
+  margin-left: 20px;
+}
+
+.containerDescription {
+  margin-top: 10px;
+  margin-left: 35px;
+  width: 40%;
+}
+
+.containerRating {
+  margin-left: 35px;
+  margin-top: 10px;
+}
+
+.containerPrice {
+  margin-left: 35px;
+  margin-top: 10px;
+}
+
+.containerButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 35px;
+  margin-top: 10px;
+}
+
+.containsImgDes {
+  display: flex;
+  flex-direction: row;
+  margin-left: 35px;
+}

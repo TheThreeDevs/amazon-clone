@@ -1,6 +1,8 @@
 import './ProductsHome.css';
+import { Link } from 'react-router-dom';
 
 function ProductsHome () {
+    //when they click on the tags it should change the state to send them to productsList with the correct products
   return (
     <div className='productsHome'>
       <div className='productsContainer'>
@@ -10,22 +12,23 @@ function ProductsHome () {
           {/* image */}
           <div className='productsImg' />
           {/* link to see products */}
-          <a href='amazon.com'>Take a look</a>
+          {/* <Link to="/products" state={{message: 'this is the message that was passed'}}>Take a look</Link> */}
+          <Link to={{pathname: '/products', state: {category: `men's clothing`}}}>Take a look</Link>
         </div>
         <div className='productsCard'>
-          <h2>Jewelry</h2>
+          <h2>Jewelery</h2>
           <div className='productsImgTwo'/>
-          <a href='amazon.com'>Take a look</a>
+          <Link to={{pathname: '/products', state: {category: 'jewelery'}}}>Take a look</Link>
         </div>
         <div className='productsCard'>
           <h2>Electronics</h2>
           <div className='productsImgThree'/>
-          <a href='amazon.com'>Shop now</a>
+          <Link to={{pathname: '/products', state: {category: 'electronics'}}}>Take a look</Link>
         </div>
         <div className='productsCard'>
           <h2>Women's Clothing</h2>
           <div className='productsImgFour'/>
-          <a href='amazon.com'>Shop now</a>
+          <Link to={{pathname: '/products', state: {category: `women's clothing`}}}>Take a look</Link>
         </div>
       </div>
     </div>
