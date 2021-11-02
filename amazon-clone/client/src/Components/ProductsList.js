@@ -1,6 +1,7 @@
-import './ProductsHome.css';
+import './ProductsList.css';
 import { useLocation } from 'react-router-dom';
-import SingleProduct from './SingleProduct'
+import SingleProduct from './SingleProduct';
+import NavBar from './NavBar';
 // import {useState} from 'react';
 
 function ProductsList ({data}) {
@@ -15,13 +16,17 @@ function ProductsList ({data}) {
   var products = data.filter(product => product.category === category);
   console.log(products);
 
-  console.log(products);
-
   return (
     <div>
-      {products.map((product, i) => {
-        return <SingleProduct  key={i} image={product.image} title={product.title} rating={product.rating} price={product.price} description={product.description} />
-      })}
+      <NavBar />
+      <div className='productsList'>
+        <h1 className='productsHeader'> {category} </h1>
+        {products.map((product, i) => {
+          return <SingleProduct  key={i} image={product.image} title={product.title} rating={product.rating} price={product.price} description={product.description} />
+        })}
+
+      </div>
+
     </div>
   )
 }
