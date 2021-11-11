@@ -18,8 +18,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: "",
+      basket: []
     };
     this.getInfo = this.getInfo.bind(this);
+    this.getProductInfo = this.getProductInfo.bind(this);
   }
 
   componentDidMount() {
@@ -46,6 +48,13 @@ class App extends React.Component {
       });
   }
 
+  //function to get the product's info from SingleProduct.js
+  getProductInfo(product) {
+    this.setState({basket: [...this.state.basket , product]});
+  }
+
+
+
   render() {
     return (
       <Router>
@@ -60,7 +69,7 @@ class App extends React.Component {
                 <Basket />
               </Route>
               <Route  path="/products">
-                <ProductsList data={this.state.data}/>
+                <ProductsList data={this.state.data} getProductInfo={this.getProductInfo}/>
               </Route>
               <Route path="/signup">
                 <SignUp />
@@ -72,6 +81,7 @@ class App extends React.Component {
                 <NavBar />
                 <Carousel />
                 <ProductsHome />
+                <BottomCarousel />
               </Route>
             </Switch>
           </AuthProvider>

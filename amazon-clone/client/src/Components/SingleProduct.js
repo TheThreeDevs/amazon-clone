@@ -2,7 +2,7 @@ import './SingleProduct.css';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 
-function SingleProduct ({image, title, rating, price, description}) {
+function SingleProduct ({image, title, rating, price, description, getProductInfo}) {
   return (
     <div className='singleContainer'>
       {/* title */}
@@ -24,7 +24,9 @@ function SingleProduct ({image, title, rating, price, description}) {
       {/* price */}
       <div className='containerPrice'> Price: ${price}</div>
       <div className='containerButtons'>
-        <button className='containerButtonOne'>Add to Cart</button>
+        {/* Add a onClick event to this button to send back the product info to App.js */}
+        {/* Get all the product information we need and put it inside an object */}
+        <button className='containerButtonOne' onClick={() => {getProductInfo(title)}}>Add to Cart</button>
         <button className='containerButtonTwo'>Buy Now</button>
        </div>
 
