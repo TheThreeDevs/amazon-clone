@@ -26,7 +26,7 @@ function SingleProduct ({image, title, rating, price, description, getProductInf
       <div className='containerButtons'>
         {/* Add a onClick event to this button to send back the product info to App.js */}
         {/* Get all the product information we need and put it inside an object */}
-        <button className='containerButtonOne' onClick={() => {getProductInfo(title)}}>Add to Cart</button>
+        <button className='containerButtonOne' onClick={() => {getProductInfo({title: title, image: image, price: price})}}>Add to Cart</button>
         <button className='containerButtonTwo'>Buy Now</button>
        </div>
 
