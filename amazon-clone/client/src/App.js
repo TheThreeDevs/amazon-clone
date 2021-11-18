@@ -66,7 +66,7 @@ class App extends React.Component {
               </Route>
               <Route path="/basket">
                 <NavBar productAmount={this.state.basket.length}/>
-                <Basket />
+                <Basket productAmount={this.state.basket.length} basket={this.state.basket}/>
               </Route>
               <Route  path="/products">
                 <ProductsList data={this.state.data} getProductInfo={this.getProductInfo}/>
