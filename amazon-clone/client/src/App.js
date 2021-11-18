@@ -65,7 +65,7 @@ class App extends React.Component {
                 <Login />
               </Route>
               <Route path="/basket">
-                <NavBar />
+                <NavBar productAmount={this.state.basket.length}/>
                 <Basket />
               </Route>
               <Route  path="/products">
@@ -78,7 +78,7 @@ class App extends React.Component {
                 <ForgotPassword />
               </Route>
               <Route path="/">
-                <NavBar />
+                <NavBar productAmount={this.state.basket.length}/>
                 <Carousel />
                 <ProductsHome />
                 <BottomCarousel />
