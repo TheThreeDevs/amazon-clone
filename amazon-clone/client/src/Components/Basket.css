@@ -30,23 +30,24 @@
 
 .ButtonOne {
   background-color: #ffd500;
-  height: 35px;
+  height: 40px;
   width: 160px;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
   border: 2px solid #e7e7e7;
+  padding: 2px;
 }
 
 .ButtonTwo {
   background-color: white;
-  height: 35px;
+  height: 40px;
   width: 100px;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
   border: 2px solid #e7e7e7;
-
+  padding: 2px;
 }
 
 .BasketP > p {
@@ -55,4 +56,48 @@
   flex-wrap: wrap;
   margin-right: 450px;
   margin-left: 20px;
+}
+
+.Basket2 > h2 {
+  margin: 10px;
+}
+
+.BasketContainer2 {
+  /* background-color: lightskyblue; */
+  width: 80%;
+  margin: 20px;
+}
+
+.Basket2 {
+  /* background-color: lime; */
+  /* border-bottom: solid 2px; */
+}
+
+.MapContainer {
+  display: flex;
+  /* background-color: lightgreen; */
+  margin-top: 10px;
+  border-bottom: solid 2px;
+}
+
+.MapTitle {
+
+}
+
+.MapImageContainer {
+  width: 180px;
+  height: 180px;
+  /* background-color: maroon; */
+}
+
+.MapImage {
+  height: 180px;
+  width: 180px;
+  object-fit: contain;
+}
+
+.MapPrice {
+  display: flex;
+  justify-content: flex-end;
+  width: 350px;
 }

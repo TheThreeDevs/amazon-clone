@@ -1,6 +1,6 @@
 import './Basket.css';
 
-function Basket ({productAmount, basket}) {
+function Basket ({productAmount, basket, removeProduct}) {
 
   //Will have to apply conditional rendering to this component
     let display;
@@ -17,14 +17,16 @@ function Basket ({productAmount, basket}) {
     </div>;
     } else {
       //display the products that we have in the basket
-      display = <div className="BasketContainer">
-      <div className="Basket">
+      display = <div className="BasketContainer2">
+      <div className="Basket2">
+        <h2>Shopping Cart</h2>
         {basket.map(function(product, index){
-          return <div className='MapContainer'>
-            <div className='MapTitle'>{product.title}</div>
-            <img src={product.image} alt='product'/>
-            <div className='MapPrice'>{product.price}</div>
-            <button>remove</button>
+          return <div className='MapContainer' key={index}>
+            <div className='MapImageContainer'>
+              <img src={product.image} alt='product' className='MapImage'/>
+            </div>
+            <div className='MapTitle'>{product.title} <button onClick={() => {removeProduct(product.title)}}>Delete</button></div>
+            <div className='MapPrice'>Price: ${product.price}</div>
           </div>
         })}
       </div>

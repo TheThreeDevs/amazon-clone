@@ -22,6 +22,7 @@ class App extends React.Component {
     };
     this.getInfo = this.getInfo.bind(this);
     this.getProductInfo = this.getProductInfo.bind(this);
+    this.removeProduct = this.removeProduct.bind(this);
   }
 
   componentDidMount() {
@@ -53,6 +54,20 @@ class App extends React.Component {
     this.setState({basket: [...this.state.basket , product]});
   }
 
+  //fumction to remove the items from the shopping cart
+  removeProduct (productTitle) {
+
+    var array  = this.state.basket;
+
+    let index = array.findIndex(i => i.title === productTitle);
+
+    if (index > -1) {
+      array.splice(index, 1);
+      this.setState({basket: array});
+    }
+
+  };
+
 
 
   render() {
@@ -66,7 +81,7 @@ class App extends React.Component {
               </Route>
               <Route path="/basket">
                 <NavBar productAmount={this.state.basket.length}/>
-                <Basket productAmount={this.state.basket.length} basket={this.state.basket}/>
+                <Basket productAmount={this.state.basket.length} basket={this.state.basket} removeProduct={this.removeProduct}/>
               </Route>
               <Route  path="/products">
                 <ProductsList data={this.state.data} getProductInfo={this.getProductInfo}/>
