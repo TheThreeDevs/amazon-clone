@@ -7,7 +7,7 @@ import Popover from "react-bootstrap/Popover";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import ListGroup from "react-bootstrap/ListGroup";
 
-function NavBar() {
+function NavBar({productAmount}) {
   const popover = (
     <Popover id="popover-basic">
       <Popover.Title as="h6">Your Account</Popover.Title>
@@ -61,7 +61,7 @@ function NavBar() {
         <Link to="/basket" className="NavBarLink">
           <div className="NavBarOptionBasket">
             <ShoppingBasketIcon />
-            <span className="NavBarOptionTwo NavBarBasketCount">0</span>
+            <span className="NavBarOptionTwo NavBarBasketCount">{productAmount}</span>
           </div>
         </Link>
       </div>

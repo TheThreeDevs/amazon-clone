@@ -18,8 +18,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: "",
+      basket: []
     };
     this.getInfo = this.getInfo.bind(this);
+    this.getProductInfo = this.getProductInfo.bind(this);
+    this.removeProduct = this.removeProduct.bind(this);
   }
 
   componentDidMount() {
@@ -46,6 +49,27 @@ class App extends React.Component {
       });
   }
 
+  //function to get the product's info from SingleProduct.js
+  getProductInfo(product) {
+    this.setState({basket: [...this.state.basket , product]});
+  }
+
+  //fumction to remove the items from the shopping cart
+  removeProduct (productTitle) {
+
+    var array  = this.state.basket;
+
+    let index = array.findIndex(i => i.title === productTitle);
+
+    if (index > -1) {
+      array.splice(index, 1);
+      this.setState({basket: array});
+    }
+
+  };
+
+
+
   render() {
     return (
       <Router>
@@ -56,11 +80,11 @@ class App extends React.Component {
                 <Login />
               </Route>
               <Route path="/basket">
-                <NavBar />
-                <Basket />
+                <NavBar productAmount={this.state.basket.length}/>
+                <Basket productAmount={this.state.basket.length} basket={this.state.basket} removeProduct={this.removeProduct}/>
               </Route>
               <Route  path="/products">
-                <ProductsList data={this.state.data}/>
+                <ProductsList data={this.state.data} getProductInfo={this.getProductInfo}/>
               </Route>
               <Route path="/signup">
                 <SignUp />
@@ -69,9 +93,10 @@ class App extends React.Component {
                 <ForgotPassword />
               </Route>
               <Route path="/">
-                <NavBar />
+                <NavBar productAmount={this.state.basket.length}/>
                 <Carousel />
                 <ProductsHome />
+                <BottomCarousel />
               </Route>
             </Switch>
           </AuthProvider>

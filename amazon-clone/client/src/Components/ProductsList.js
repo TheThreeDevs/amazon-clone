@@ -4,7 +4,7 @@ import SingleProduct from './SingleProduct';
 import NavBar from './NavBar';
 // import {useState} from 'react';
 
-function ProductsList ({data}) {
+function ProductsList ({data, getProductInfo}) {
 
   //to get the state from the Link
   const location = useLocation();
@@ -22,7 +22,7 @@ function ProductsList ({data}) {
       <div className='productsList'>
         <h1 className='productsHeader'> {category} </h1>
         {products.map((product, i) => {
-          return <SingleProduct  key={i} image={product.image} title={product.title} rating={product.rating} price={product.price} description={product.description} />
+          return <SingleProduct  key={i} image={product.image} title={product.title} rating={product.rating} price={product.price} description={product.description} getProductInfo={getProductInfo}/>
         })}
 
       </div>
