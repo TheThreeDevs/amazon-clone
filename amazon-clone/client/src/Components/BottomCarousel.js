@@ -37,7 +37,7 @@ function BottomCarousel () {
     </div>
   </div>
   } else {
-    var products =  <div className='center'>
+    products =  <div className='center'>
     <div className='center_container'>
       <img src={BeautyGifts} alt='computer' className='carousel_image'/>
     </div>
