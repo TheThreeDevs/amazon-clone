@@ -6,8 +6,12 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import Popover from "react-bootstrap/Popover";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import ListGroup from "react-bootstrap/ListGroup";
+import { useAuth } from "../contexts/AuthContext";
 
-function NavBar({productAmount}) {
+function NavBar({ productAmount }) {
+  const { currentUser, signOut } = useAuth();
+  //If logged in, Nav Bar will have an extra button that says
+  //Hello, "name" Account & lists etc
   const popover = (
     <Popover id="popover-basic">
       <Popover.Title as="h6">Your Account</Popover.Title>
@@ -19,11 +23,35 @@ function NavBar({productAmount}) {
           <ListGroup.Item>Prime Membership</ListGroup.Item>
           <ListGroup.Item>Start a Selling Account</ListGroup.Item>
           <ListGroup.Item>Register for a Business Account</ListGroup.Item>
-          <ListGroup.Item>Log Out</ListGroup.Item>
+          <ListGroup.Item onClick={() => signOut()}>Log Out</ListGroup.Item>
         </ListGroup>
       </Popover.Content>
     </Popover>
   );
+
+  const defineUserExperience = () => {
+    if (currentUser) {
+      return (
+        <OverlayTrigger placement="bottom" overlay={popover} trigger="click">
+        <div className="NavBarOption">
+          <span className="NavBarOptionOne">Hello,</span>
+          <span className="NavBarOptionTwo">{currentUser.displayName}</span>
+        </div>
+      </OverlayTrigger>
+      )
+    } else {
+      return (
+        <Link to="/login" className="NavBarLink">
+          <OverlayTrigger placement="bottom" overlay={popover} trigger="click">
+            <div className="NavBarOption">
+              <span className="NavBarOptionOne">Hello,</span>
+                <span className="NavBarOptionTwo">Sign In</span>
+            </div>
+          </OverlayTrigger>
+        </Link>
+      )
+    }
+  }
 
   return (
     <nav className="NavBar">
@@ -43,14 +71,7 @@ function NavBar({productAmount}) {
 
       {/* Div Container containing two links and the basket , STILL HAVE TO WRAP THESE INTO LINKS */}
       <div className="NavBarHeader">
-        <Link to="/login" className="NavBarLink">
-          <OverlayTrigger placement="bottom" overlay={popover}>
-            <div className="NavBarOption">
-              <span className="NavBarOptionOne">Hello,</span>
-              <span className="NavBarOptionTwo">Sign In</span>
-            </div>
-          </OverlayTrigger>
-        </Link>
+        {defineUserExperience()}
 
         <div className="NavBarOption">
           <span className="NavBarOptionOne">Returns</span>
@@ -61,7 +82,9 @@ function NavBar({productAmount}) {
         <Link to="/basket" className="NavBarLink">
           <div className="NavBarOptionBasket">
             <ShoppingBasketIcon />
-            <span className="NavBarOptionTwo NavBarBasketCount">{productAmount}</span>
+            <span className="NavBarOptionTwo NavBarBasketCount">
+              {productAmount}
+            </span>
           </div>
         </Link>
       </div>

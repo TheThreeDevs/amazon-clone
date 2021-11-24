@@ -3,6 +3,7 @@ import { Card, Form, Container, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "../firebase";
+import { database } from "../firebase";
 
 function SignUp(props) {
   const [disabled, setDisabled] = useState(false);
@@ -39,6 +40,8 @@ function SignUp(props) {
           auth.onAuthStateChanged((user) => {
             if (user) {
               updateProfileName(user, nameRef.current.value);
+              //create a document in userd with userUID and set name property
+              database.collection("users").doc(user.uid).set({name: nameRef.current.value, basket: []});
             }
           });
         })

@@ -1,5 +1,5 @@
 import './Carousel.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import FirstImg from './Images/amazonImg.jpg';
 import SecondImg from './Images/amazonImg2.jpg';
@@ -11,19 +11,18 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 function Carousel () {
 
   var images = [FirstImg, SecondImg, ThirdImg];
-
   const [currImg, setCurrImg] = useState(0);
 
-  //have setCurrImg set to an interval where it increases the position
-  //Need to clean logic up so that state is not changed after changing components
-  //clearInterval(); 
-  setInterval(() => {
-    if(currImg < 2) {
-      setCurrImg(currImg + 1);
-    } else {
-      setCurrImg(0)
-    }
-  }, 40000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if(currImg < 2) {
+        setCurrImg(currImg + 1);
+      } else {
+        setCurrImg(0)
+      }
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [currImg]);
 
   return (
     <div className='carousel'>
