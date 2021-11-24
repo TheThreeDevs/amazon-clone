@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "../firebase";
 import { updateProfile, signInWithEmailAndPassword } from "firebase/auth";
-import { database } from "../firebase";
+// import { database } from "../firebase";
 //create a context "state"
 const AuthContext = React.createContext();
 //function that returns the context
@@ -22,13 +22,12 @@ export function AuthProvider({ children }) {
         setCurrentUser(user);
         setLoading(false);
         console.log("Firestore connecting...");
-        let userUid = user.uid;
-        database.collection("users").where("uid", "==", userUid).get().then(snapshot => {
-          let users = snapshot.docs;
-          users.forEach(user => {
-            console.log(user.data());
-          })
-        })
+        // database.collection("users").where("uid", "==", user.uid).get().then(snapshot => {
+        //   let users = snapshot.docs;
+        //   users.forEach(user => {
+        //     console.log(user.data());
+        //   })
+        // })
       } else {
         //still need these to work, even with a null current user
         console.log("no current user");

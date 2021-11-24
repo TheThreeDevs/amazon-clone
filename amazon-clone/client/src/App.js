@@ -1,4 +1,3 @@
-import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BottomCarousel from './Components/BottomCarousel';
@@ -69,7 +68,7 @@ class App extends React.Component {
   };
 
 
-
+  //A logged in user component: <PrivateRoute exact path="/" component={Dashboard}/>
   render() {
     return (
       <Router>
