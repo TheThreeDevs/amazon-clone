@@ -18,7 +18,7 @@ function ProductsList ({data, getProductInfo}) {
 
   return (
     <div>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className='productsList'>
         <h1 className='productsHeader'> {category} </h1>
         {products.map((product, i) => {
