@@ -80,8 +80,10 @@
   border-bottom: solid 2px;
 }
 
-.MapTitle {
-
+.BasketSubtotal {
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .MapImageContainer {

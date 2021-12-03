@@ -17,11 +17,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: "",
-      basket: []
+      basket: [],
+      subtotal: 0
     };
     this.getInfo = this.getInfo.bind(this);
     this.getProductInfo = this.getProductInfo.bind(this);
     this.removeProduct = this.removeProduct.bind(this);
+    this.subtotalSum = this.subtotalSum.bind(this);
   }
 
   componentDidMount() {
@@ -50,7 +52,10 @@ class App extends React.Component {
 
   //function to get the product's info from SingleProduct.js
   getProductInfo(product) {
-    this.setState({basket: [...this.state.basket , product]});
+    this.setState({basket: [...this.state.basket , product]}, () => {
+      this.subtotalSum();
+    });
+
   }
 
   //fumction to remove the items from the shopping cart
@@ -62,9 +67,27 @@ class App extends React.Component {
 
     if (index > -1) {
       array.splice(index, 1);
-      this.setState({basket: array});
+      this.setState({basket: array}, () => {
+        this.subtotalSum();
+      });
     }
 
+
+  };
+
+  //function to get the subtotal of the basket items
+  //figure out when to call this function and also make it work in the basket and also will be used basketSubtotal.js
+
+  subtotalSum () {
+    var subtotal = 0;
+
+    for (var i = 0; i < this.state.basket.length; i++) {
+      subtotal += this.state.basket[i].price;
+    }
+
+    this.setState({subtotal: subtotal});
+
+    return subtotal;
   };
 
 
@@ -80,7 +103,7 @@ class App extends React.Component {
               </Route>
               <Route path="/basket">
                 <NavBar productAmount={this.state.basket.length}/>
-                <Basket productAmount={this.state.basket.length} basket={this.state.basket} removeProduct={this.removeProduct}/>
+                <Basket productAmount={this.state.basket.length} basket={this.state.basket} subtotal={this.state.subtotal} removeProduct={this.removeProduct}/>
               </Route>
               <Route  path="/products">
                 <NavBar productAmount={this.state.basket.length}/>
