@@ -1,7 +1,6 @@
 import './ProductsList.css';
 import { useLocation } from 'react-router-dom';
 import SingleProduct from './SingleProduct';
-import NavBar from './NavBar';
 // import {useState} from 'react';
 
 function ProductsList ({data, getProductInfo}) {
@@ -14,11 +13,9 @@ function ProductsList ({data, getProductInfo}) {
   // const [products, setProducts] = useState([]);
 
   var products = data.filter(product => product.category === category);
-  console.log(products);
 
   return (
     <div>
-      {/* <NavBar /> */}
       <div className='productsList'>
         <h1 className='productsHeader'> {category} </h1>
         {products.map((product, i) => {
