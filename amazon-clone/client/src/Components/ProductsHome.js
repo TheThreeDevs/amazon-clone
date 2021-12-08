@@ -9,26 +9,34 @@ function ProductsHome () {
         <div className='productsCard'>
           {/* title */}
           <h2>Men's Clothing</h2>
-          {/* image */}
-          <div className='productsImg' />
-          {/* link to see products */}
-          {/* <Link to="/products" state={{message: 'this is the message that was passed'}}>Take a look</Link> */}
-          <Link to={{pathname: '/products', state: {category: `men's clothing`}}}>Take a look</Link>
+          <Link to={{pathname: '/products', state: {category: `men's clothing`}}}>
+            {/* image */}
+            <div className='productsImg' />
+            {/* link to see products */}
+            {/* <Link to="/products" state={{message: 'this is the message that was passed'}}>Take a look</Link> */}
+            <Link to={{pathname: '/products', state: {category: `men's clothing`}}}>Take a look</Link>
+        </Link>
         </div>
         <div className='productsCard'>
           <h2>Jewelery</h2>
-          <div className='productsImgTwo'/>
-          <Link to={{pathname: '/products', state: {category: 'jewelery'}}}>Take a look</Link>
+          <Link to={{pathname: '/products', state: {category: 'jewelery'}}}>
+            <div className='productsImgTwo'/>
+            <Link to={{pathname: '/products', state: {category: 'jewelery'}}}>Take a look</Link>
+          </Link>
         </div>
         <div className='productsCard'>
           <h2>Electronics</h2>
-          <div className='productsImgThree'/>
-          <Link to={{pathname: '/products', state: {category: 'electronics'}}}>Take a look</Link>
+          <Link to={{pathname: '/products', state: {category: 'electronics'}}}>
+            <div className='productsImgThree'/>
+            <Link to={{pathname: '/products', state: {category: 'electronics'}}}>Take a look</Link>
+          </Link>
         </div>
         <div className='productsCard'>
           <h2>Women's Clothing</h2>
-          <div className='productsImgFour'/>
-          <Link to={{pathname: '/products', state: {category: `women's clothing`}}}>Take a look</Link>
+          <Link to={{pathname: '/products', state: {category: `women's clothing`}}}>
+            <div className='productsImgFour'/>
+            <Link to={{pathname: '/products', state: {category: `women's clothing`}}}>Take a look</Link>
+          </Link>
         </div>
       </div>
     </div>

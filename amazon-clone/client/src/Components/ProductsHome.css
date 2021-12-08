@@ -40,6 +40,7 @@
   display: flex;
   justify-content: center;
   font-size: 20px;
+  margin-bottom: -10px;
 }
 /* .productsCard div {
   display: flex;
