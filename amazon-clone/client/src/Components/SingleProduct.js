@@ -1,6 +1,7 @@
 import './SingleProduct.css';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
+import { Link } from "react-router-dom";
 
 function SingleProduct ({image, title, rating, price, description, getProductInfo}) {
   return (
@@ -27,7 +28,9 @@ function SingleProduct ({image, title, rating, price, description, getProductInf
         {/* Add a onClick event to this button to send back the product info to App.js */}
         {/* Get all the product information we need and put it inside an object */}
         <button className='containerButtonOne' onClick={() => {getProductInfo({title: title, image: image, price: price})}}>Add to Cart</button>
-        <button className='containerButtonTwo'>Buy Now</button>
+        <Link to='/basket'>
+          <button className='containerButtonTwo' onClick={() => {getProductInfo({title: title, image: image, price: price})}}>Buy Now</button>
+        </Link>
        </div>
 
     </div>
