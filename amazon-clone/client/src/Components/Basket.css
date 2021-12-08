@@ -80,8 +80,20 @@
   border-bottom: solid 2px;
 }
 
-.MapTitle {
+.BasketSubtotal {
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-end;
+}
 
+.BasketProceedButton {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.BasketProceedButton > button {
+  background-color: #ffd500;
 }
 
 .MapImageContainer {
