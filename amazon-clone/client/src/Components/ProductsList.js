@@ -17,7 +17,7 @@ function ProductsList ({data, getProductInfo}) {
   return (
     <div>
       <div className='productsList'>
-        <h1 className='productsHeader'> {category} </h1>
+        <h1 className='productsHeader'> {category.toUpperCase()} </h1>
         {products.map((product, i) => {
           return <SingleProduct  key={i} image={product.image} title={product.title} rating={product.rating} price={product.price} description={product.description} getProductInfo={getProductInfo}/>
         })}
