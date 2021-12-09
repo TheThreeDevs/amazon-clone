@@ -11,6 +11,9 @@ function ProductsList ({data, getProductInfo}) {
 
   //here is the products for the specific category
   // const [products, setProducts] = useState([]);
+  if (!data) {
+    return null;
+  }
 
   let products = data.filter(product => product.category === category);
 
