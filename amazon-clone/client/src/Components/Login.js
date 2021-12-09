@@ -41,7 +41,6 @@ function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     setDisabled(true);
-    console.log(email, passwordRef.current.value);
     try {
       await signIn(email, passwordRef.current.value)
       .then(() => {

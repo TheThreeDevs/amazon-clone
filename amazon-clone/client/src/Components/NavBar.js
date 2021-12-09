@@ -33,25 +33,32 @@ function NavBar({ productAmount }) {
     if (currentUser) {
       return (
         <OverlayTrigger placement="bottom" overlay={popover} trigger="click">
-        <div className="NavBarOption">
-          <span className="NavBarOptionOne">Hello,</span>
-          <span className="NavBarOptionTwo">{currentUser.displayName}</span>
-        </div>
-      </OverlayTrigger>
-      )
+          {currentUser.displayName ? (
+            <div className="NavBarOption">
+              <span className="NavBarOptionOne">Hello,</span>
+              <span className="NavBarOptionTwo">{currentUser.displayName}</span>
+            </div>
+          ) : (
+            <div className="NavBarOption">
+              <span className="NavBarOptionOne">Hello,</span>
+              <span className="NavBarOptionTwo">New User!</span>
+            </div>
+          )}
+        </OverlayTrigger>
+      );
     } else {
       return (
         <Link to="/login" className="NavBarLink">
           <OverlayTrigger placement="bottom" overlay={popover} trigger="click">
             <div className="NavBarOption">
               <span className="NavBarOptionOne">Hello,</span>
-                <span className="NavBarOptionTwo">Sign In</span>
+              <span className="NavBarOptionTwo">Sign In</span>
             </div>
           </OverlayTrigger>
         </Link>
-      )
+      );
     }
-  }
+  };
 
   return (
     <nav className="NavBar">
