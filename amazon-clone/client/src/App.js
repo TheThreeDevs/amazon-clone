@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { AuthProvider } from "./contexts/AuthContext";
+// import { AuthProvider } from "./contexts/AuthContext";
+import { AuthContext } from './contexts/AuthContext';
 import BottomCarousel from "./Components/BottomCarousel";
 import ProductsList from "./Components/ProductsList";
 import ProductsHome from "./Components/ProductsHome";
@@ -13,9 +14,11 @@ import SignUp from "./Components/SignUp";
 import axios from "axios";
 
 class App extends React.Component {
+  static contextType = AuthContext;
   constructor(props) {
     super(props);
     this.state = {
+      user: "",
       data: "",
       basket: [],
       subtotal: 0
@@ -24,15 +27,17 @@ class App extends React.Component {
     this.getProductInfo = this.getProductInfo.bind(this);
     this.removeProduct = this.removeProduct.bind(this);
     this.subtotalSum = this.subtotalSum.bind(this);
+    this.updateCurrentUser = this.updateCurrentUser.bind(this);
   }
 
   componentDidMount() {
     this.getInfo();
+    console.log("Current user in context", this.context.currentUser.uid);
   }
 
   getInfo() {
-
-    axios
+    if (!this.state.data) {
+      axios
       .get("https://fakestoreapi.com/products")
       .then((res) => {
         // this.setState({ data: res.data });
@@ -42,8 +47,7 @@ class App extends React.Component {
       .catch((err) => {
         console.log("This is the error that occurred", err);
       });
-
-    axios
+      axios
       .get("/home")
       .then((res) => {
         console.log("Front end + back end", res.data);
@@ -51,6 +55,7 @@ class App extends React.Component {
       .catch((err) => {
         console.log("Found this error: ", err);
       });
+    }
   }
 
   //function to get the product's info from SingleProduct.js
@@ -62,10 +67,8 @@ class App extends React.Component {
 
   //fumction to remove the items from the shopping cart
   removeProduct (productTitle) {
-
     var array  = this.state.basket;
     let index = array.findIndex(i => i.title === productTitle);
-
     if (index > -1) {
       array.splice(index, 1);
       this.setState({basket: array}, () => {
@@ -82,17 +85,20 @@ class App extends React.Component {
     for (var i = 0; i < this.state.basket.length; i++) {
       subtotal += this.state.basket[i].price;
     }
-
     this.setState({subtotal: subtotal});
     return subtotal;
   };
+
+  updateCurrentUser(user) {
+    this.setState({user: user});
+  }
 
   //A logged in user component: <PrivateRoute exact path="/" component={Dashboard}/>
   render() {
     return (
       <Router>
         <div className="App">
-          <AuthProvider>
+
             <Switch>
               <Route path="/login">
                 <Login />
@@ -118,7 +124,6 @@ class App extends React.Component {
                 <BottomCarousel />
               </Route>
             </Switch>
-          </AuthProvider>
         </div>
       </Router>
     );
