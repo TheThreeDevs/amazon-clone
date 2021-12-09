@@ -31,7 +31,6 @@ class App extends React.Component {
   }
 
   getInfo() {
-
     axios
       .get("https://fakestoreapi.com/products")
       .then((res) => {
@@ -62,7 +61,6 @@ class App extends React.Component {
 
   //fumction to remove the items from the shopping cart
   removeProduct (productTitle) {
-
     var array  = this.state.basket;
     let index = array.findIndex(i => i.title === productTitle);
 

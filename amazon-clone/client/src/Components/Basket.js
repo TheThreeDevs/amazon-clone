@@ -1,6 +1,9 @@
 import './Basket.css';
+import { useHistory } from 'react-router-dom'
 
 function Basket ({productAmount, basket, subtotal, removeProduct}) {
+
+  const history = useHistory();
 
   //Will have to apply conditional rendering to this component
     let display;
@@ -11,8 +14,8 @@ function Basket ({productAmount, basket, subtotal, removeProduct}) {
         Your Amazon Cart is empty
       </div>
       <div className="BasketButtons">
-        <button className="ButtonOne">Sign in to your account</button>
-        <button className="ButtonTwo">Sign up now</button>
+        <button className="ButtonOne" onClick={() => history.push(`/login`)}>Sign in to your account</button>
+        <button className="ButtonTwo" onClick={() => history.push(`/signup`)}>Sign up now</button>
       </div>
     </div>;
     } else {
