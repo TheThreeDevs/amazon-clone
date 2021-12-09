@@ -81,8 +81,8 @@ class App extends React.Component {
       subtotal += this.state.basket[i].price;
     }
 
-    this.setState({subtotal: subtotal});
-    return subtotal;
+    this.setState({subtotal: subtotal.toFixed(2)});
+    return subtotal.toFixed(2);
   };
 
   //A logged in user component: <PrivateRoute exact path="/" component={Dashboard}/>
