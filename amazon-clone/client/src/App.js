@@ -47,6 +47,7 @@ function App() {
   //function to get the product's info from SingleProduct.js
   function getProductInfo(product) {
     setBasket([...basket, product]);
+    subtotalSum();
   }
 
   //fumction to remove the items from the shopping cart
