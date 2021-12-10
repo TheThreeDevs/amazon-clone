@@ -11,13 +11,16 @@ function ProductsList ({data, getProductInfo}) {
 
   //here is the products for the specific category
   // const [products, setProducts] = useState([]);
+  if (!data) {
+    return null;
+  }
 
   let products = data.filter(product => product.category === category);
 
   return (
     <div>
       <div className='productsList'>
-        <h1 className='productsHeader'> {category} </h1>
+        <h1 className='productsHeader'> {category.toUpperCase()} </h1>
         {products.map((product, i) => {
           return <SingleProduct  key={i} image={product.image} title={product.title} rating={product.rating} price={product.price} description={product.description} getProductInfo={getProductInfo}/>
         })}
