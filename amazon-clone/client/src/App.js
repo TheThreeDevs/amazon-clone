@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { AuthProvider } from "./contexts/AuthContext";
+import { AuthContext } from "./contexts/AuthContext";
 import BottomCarousel from "./Components/BottomCarousel";
 import ProductsList from "./Components/ProductsList";
 import ProductsHome from "./Components/ProductsHome";
@@ -10,113 +10,155 @@ import Login from "./Components/Login";
 import Basket from "./Components/Basket";
 import Carousel from "./Components/Carousel";
 import SignUp from "./Components/SignUp";
+import { database } from "./firebase";
 import axios from "axios";
 
 class App extends React.Component {
+  static contextType = AuthContext;
   constructor(props) {
     super(props);
     this.state = {
+      name: "",
       data: "",
       basket: [],
-      subtotal: 0
+      subtotal: 0,
     };
     this.getInfo = this.getInfo.bind(this);
     this.getProductInfo = this.getProductInfo.bind(this);
     this.removeProduct = this.removeProduct.bind(this);
     this.subtotalSum = this.subtotalSum.bind(this);
+    this.setLocalState = this.setLocalState.bind(this);
   }
 
   componentDidMount() {
     this.getInfo();
+    if (this.context.currentUser) {
+      console.log("Setting user");
+      this.setLocalState();
+    }
   }
 
   getInfo() {
-    axios
-      .get("https://fakestoreapi.com/products")
-      .then((res) => {
-        // this.setState({ data: res.data });
-        this.setState({ data: res.data });
-        console.log(this.data);
-      })
-      .catch((err) => {
-        console.log("This is the error that occurred", err);
-      });
-
-    axios
-      .get("/home")
-      .then((res) => {
-        console.log("Front end + back end", res.data);
-      })
-      .catch((err) => {
-        console.log("Found this error: ", err);
-      });
+    if (!this.state.data) {
+      axios
+        .get("https://fakestoreapi.com/products")
+        .then((res) => {
+          this.setState({ data: res.data });
+          console.log("Recieving products data..");
+        })
+        .catch((err) => {
+          console.log("This is the error that occurred", err);
+        });
+      axios
+        .get("/home")
+        .then((res) => {
+          console.log("Backend live", res.data);
+        })
+        .catch((err) => {
+          console.log("Found this error: ", err);
+        });
+    }
   }
 
   //function to get the product's info from SingleProduct.js
   getProductInfo(product) {
-    this.setState({basket: [...this.state.basket , product]}, () => {
-      this.subtotalSum();
+    this.setState({ basket: [...this.state.basket, product] }, () => {
+      let basket = this.state.basket;
+      let total = this.subtotalSum(basket);
+      if (this.context.currentUser) {
+        this.updateDatabase(basket, total);
+      }
     });
   }
 
   //fumction to remove the items from the shopping cart
-  removeProduct (productTitle) {
-    var array  = this.state.basket;
-    let index = array.findIndex(i => i.title === productTitle);
-
+  removeProduct(productTitle) {
+    var array = this.state.basket;
+    let index = array.findIndex((i) => i.title === productTitle);
     if (index > -1) {
       array.splice(index, 1);
-      this.setState({basket: array}, () => {
-        this.subtotalSum();
+      this.setState({ basket: array }, () => {
+        let basket = this.state.basket;
+        let total = this.subtotalSum(basket);
+        if (this.context.currentUser) {
+          this.updateDatabase(basket, total);
+        }
       });
     }
-  };
+  }
 
   //function to get the subtotal of the basket items
   //figure out when to call this function and also make it work in the basket and also will be used basketSubtotal.js
 
-  subtotalSum () {
+  subtotalSum(basket) {
     var subtotal = 0;
-    for (var i = 0; i < this.state.basket.length; i++) {
-      subtotal += this.state.basket[i].price;
+    for (var i = 0; i < basket.length; i++) {
+      subtotal += basket[i].price;
     }
+    this.setState({ subtotal: subtotal });
+    return subtotal;
+  }
 
-    this.setState({subtotal: subtotal.toFixed(2)});
-    return subtotal.toFixed(2);
-  };
+  async setLocalState() {
+    try {
+      const db = database.collection("users").doc(this.context.currentUser.uid);
+      const doc = await db.get();
+      if (doc) {
+        let {basket, subtotal, name} = doc.data();
+        this.setState({basket, subtotal, name});
+      }
+    } catch (err) {
+      console.log("Err", JSON.stringify(err));
+    }
+  }
+
+  async updateDatabase(basket, total) {
+    try {
+      let db = database.collection("users").doc(this.context.currentUser.uid);
+      await db.update({ basket: basket, subtotal: total });
+    } catch (err) {
+      console.log("Err updating db...", JSON.stringify(err));
+    }
+  }
 
   //A logged in user component: <PrivateRoute exact path="/" component={Dashboard}/>
   render() {
     return (
       <Router>
         <div className="App">
-          <AuthProvider>
-            <Switch>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route path="/basket">
-                <NavBar productAmount={this.state.basket.length}/>
-                <Basket productAmount={this.state.basket.length} basket={this.state.basket} subtotal={this.state.subtotal} removeProduct={this.removeProduct}/>
-              </Route>
-              <Route  path="/products">
-                <NavBar productAmount={this.state.basket.length}/>
-                <ProductsList data={this.state.data} getProductInfo={this.getProductInfo}/>
-              </Route>
-              <Route path="/signup">
-                <SignUp />
-              </Route>
-              <Route path="/forgot-password">
-                <ForgotPassword />
-              </Route>
-              <Route path="/">
-                <NavBar productAmount={this.state.basket.length}/>
-                <Carousel />
-                <ProductsHome />
-                <BottomCarousel />
-              </Route>
-            </Switch>
-          </AuthProvider>
+          <Switch>
+            <Route path="/login">
+              <Login setLocalState={this.setLocalState}/>
+            </Route>
+            <Route path="/basket">
+              <NavBar productAmount={this.state.basket.length} />
+              <Basket
+                productAmount={this.state.basket.length}
+                basket={this.state.basket}
+                subtotal={this.state.subtotal}
+                removeProduct={this.removeProduct}
+              />
+            </Route>
+            <Route path="/products">
+              <NavBar productAmount={this.state.basket.length} />
+              <ProductsList
+                data={this.state.data}
+                getProductInfo={this.getProductInfo}
+              />
+            </Route>
+            <Route path="/signup">
+              <SignUp />
+            </Route>
+            <Route path="/forgot-password">
+              <ForgotPassword />
+            </Route>
+            <Route path="/">
+              <NavBar productAmount={this.state.basket.length} />
+              <Carousel />
+              <ProductsHome />
+              <BottomCarousel />
+            </Route>
+          </Switch>
         </div>
       </Router>
     );

@@ -41,7 +41,15 @@ function SignUp(props) {
             if (user) {
               updateProfileName(user, nameRef.current.value);
               //create a document in userd with userUID and set name property
-              database.collection("users").doc(user.uid).set({name: nameRef.current.value, basket: []});
+              database
+                .collection("users")
+                .doc(user.uid)
+                .set({
+                  name: nameRef.current.value,
+                  basket: [],
+                  subtotal: 0,
+                  address: "",
+                });
             }
           });
         })
