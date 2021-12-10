@@ -14,16 +14,16 @@ function NavBar({ productAmount }) {
   //Hello, "name" Account & lists etc
   const popover = (
     <Popover id="popover-basic">
-      <Popover.Title as="h6">Your Account</Popover.Title>
+      <Popover.Title as="h6" style={{backgroundColor: "white"}}>Your Account</Popover.Title>
       <Popover.Content>
         <ListGroup variant="flush">
-          <ListGroup.Item>Account</ListGroup.Item>
-          <ListGroup.Item>Orders</ListGroup.Item>
-          <ListGroup.Item>Recommendations</ListGroup.Item>
-          <ListGroup.Item>Prime Membership</ListGroup.Item>
-          <ListGroup.Item>Start a Selling Account</ListGroup.Item>
-          <ListGroup.Item>Register for a Business Account</ListGroup.Item>
-          <ListGroup.Item onClick={() => signOut()}>Log Out</ListGroup.Item>
+          <ListGroup.Item action>Account</ListGroup.Item>
+          <ListGroup.Item action>Orders</ListGroup.Item>
+          <ListGroup.Item action>Recommendations</ListGroup.Item>
+          <ListGroup.Item action>Prime Membership</ListGroup.Item>
+          <ListGroup.Item action>Start a Selling Account</ListGroup.Item>
+          <ListGroup.Item action>Register for a Business Account</ListGroup.Item>
+          <ListGroup.Item action onClick={() => signOut()}>Sign Out</ListGroup.Item>
         </ListGroup>
       </Popover.Content>
     </Popover>

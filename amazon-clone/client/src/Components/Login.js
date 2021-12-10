@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
-function Login() {
+function Login({setLocalState}) {
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState();
   const [emailValid, setEmailValid] = useState(false);
@@ -45,8 +45,9 @@ function Login() {
       await signIn(email, passwordRef.current.value)
       .then(() => {
         setError("");
-        console.log("Sucessfully signed-in!");
         setDisabled(false);
+        console.log("Sucessfully signed-in!");
+        setLocalState();
         //move to home page
         history.push("/");
       })
@@ -88,6 +89,9 @@ function Login() {
           <button disabled={disabled}>Submit</button>
           <p>
             Forgot <Link to="/forgot-password">password?</Link>
+          </p>
+          <p>
+            Create an <Link to="/signup">account?</Link>
           </p>
         </form>
       </div>
