@@ -6,6 +6,7 @@ import ProductsList from "./Components/ProductsList";
 import ProductsHome from "./Components/ProductsHome";
 import ForgotPassword from "./Components/ForgotPassword";
 import NavBar from "./Components/NavBar";
+import Account from './Components/Account';
 import Login from "./Components/Login";
 import Basket from "./Components/Basket";
 import Carousel from "./Components/Carousel";
@@ -151,6 +152,10 @@ class App extends React.Component {
             </Route>
             <Route path="/forgot-password">
               <ForgotPassword />
+            </Route>
+            <Route path='/account'>
+              <NavBar productAmount={this.state.basket.length} />
+              <Account />
             </Route>
             <Route path="/">
               <NavBar productAmount={this.state.basket.length} />
