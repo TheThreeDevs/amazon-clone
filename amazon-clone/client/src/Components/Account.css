@@ -1,13 +1,25 @@
 .accountTitle {
   margin-top: 10px;
   margin-bottom: 10px;
-  margin-left: 180px;
+  margin-left: 200px;
 }
 
 .accountBox {
-  display: flex;
   background-color: cadetblue;
-  height: 600px;
-  width: 75%;
+  height: 530px;
+  width: 70%;
   margin-left: 180px;
+}
+
+.accountRow {
+  /* background-color: red; */
+  display: flex;
+}
+
+.accountCard {
+  width: 300px;
+  height: 100px;
+  margin: 15px;
+  background-color: salmon;
+  cursor: pointer;
 }
