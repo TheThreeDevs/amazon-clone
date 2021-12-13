@@ -159,6 +159,10 @@ class App extends React.Component {
               <NavBar productAmount={basket.length}/>
               <Searched data={data} getProductInfo={this.getProductInfo}/>
             </Route>
+            <Route path='/account'>
+              <NavBar productAmount={basket.length}/>
+              <Account />
+            </Route>
             <Route path="/">
               <NavBar productAmount={basket.length} />
               <Carousel />
