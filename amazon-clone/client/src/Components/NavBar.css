@@ -21,6 +21,10 @@
   flex: 1;
 }
 
+.NavBarAccount {
+  text-decoration: none;
+}
+
 .SearchInput {
   height: 12px;
   padding: 10px;
