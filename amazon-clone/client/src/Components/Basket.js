@@ -34,7 +34,7 @@ function Basket ({productAmount, basket, subtotal, removeProduct}) {
         })}
       </div>
       {/* displays the subtotal on the bottom of the cart */}
-      <div className='BasketSubtotal'>Subtotal ({basket.length} items): ${subtotal}</div>
+      <div className='BasketSubtotal'>Subtotal ({basket.length} items): ${subtotal.toFixed(2)}</div>
       <div className='BasketProceedButton'><button>Proceed to checkout</button></div>
     </div>
     }
