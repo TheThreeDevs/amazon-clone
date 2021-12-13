@@ -1,0 +1,50 @@
+.accountTitle {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 200px;
+}
+
+.accountBox {
+  height: 530px;
+  width: 70%;
+  margin-left: 180px;
+}
+
+.accountRow {
+  /* background-color: red; */
+  display: flex;
+}
+
+.accountCard {
+  display: flex;
+  width: 300px;
+  height: 100px;
+  margin: 15px;
+  cursor: pointer;
+  flex-direction: row;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.accountCard:hover {
+  background-color: #D8D8D8;
+}
+
+.cardColumn {
+  padding-top: 20px;
+}
+
+.cardImg {
+  width: 70px;
+  height: 70px;
+  margin: 10px;
+}
+
+.cardTitle {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.cardParagraph {
+  font-size: 12px;
+}

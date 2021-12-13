@@ -19,7 +19,9 @@ function NavBar({ productAmount }) {
       <Popover.Title as="h6" style={{backgroundColor: "white"}}>Your Account</Popover.Title>
       <Popover.Content>
         <ListGroup variant="flush">
-          <ListGroup.Item action>Account</ListGroup.Item>
+          <Link to='/account' className='NavBarAccount'>
+            <ListGroup.Item action>Account</ListGroup.Item>
+          </Link>
           <ListGroup.Item action>Orders</ListGroup.Item>
           <ListGroup.Item action>Recommendations</ListGroup.Item>
           <ListGroup.Item action>Prime Membership</ListGroup.Item>

@@ -7,6 +7,7 @@ import ProductsHome from "./Components/ProductsHome";
 import ForgotPassword from "./Components/ForgotPassword";
 import Searched from "./Components/Searched";
 import NavBar from "./Components/NavBar";
+import Account from './Components/Account';
 import Login from "./Components/Login";
 import Basket from "./Components/Basket";
 import Carousel from "./Components/Carousel";
