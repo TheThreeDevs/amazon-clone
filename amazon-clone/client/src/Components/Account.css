@@ -17,9 +17,30 @@
 }
 
 .accountCard {
+  display: flex;
   width: 300px;
   height: 100px;
   margin: 15px;
   background-color: salmon;
   cursor: pointer;
+  flex-direction: row;
+}
+
+.cardColumn {
+  padding-top: 20px;
+}
+
+.cardImg {
+  width: 70px;
+  height: 70px;
+  margin: 10px;
+}
+
+.cardTitle {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.cardParagraph {
+  font-size: 12px;
 }
