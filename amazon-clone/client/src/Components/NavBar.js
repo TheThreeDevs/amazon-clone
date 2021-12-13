@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useRef } from "react";
+import { Link, useHistory } from "react-router-dom";
 import "./NavBar.css";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
@@ -10,6 +10,8 @@ import { useAuth } from "../contexts/AuthContext";
 
 function NavBar({ productAmount }) {
   const { currentUser, signOut } = useAuth();
+  const searchRef = useRef();
+  const history = useHistory();
   //If logged in, Nav Bar will have an extra button that says
   //Hello, "name" Account & lists etc
   const popover = (
@@ -60,6 +62,11 @@ function NavBar({ productAmount }) {
     }
   };
 
+  function handleSearch(e) {
+    e.preventDefault(); 
+    history.push(`/search/${searchRef.current.value}`);
+  }
+
   return (
     <nav className="NavBar">
       {/* Logo to the left */}
@@ -72,8 +79,10 @@ function NavBar({ productAmount }) {
       </Link>
       {/* Search Bar and button */}
       <div className="NavBarSearch">
-        <input type="text" className="SearchInput" />
-        <SearchIcon className="SearchIcon" />
+        <form className="NavBarSearch" onSubmit={handleSearch}>
+        <input type="text" className="SearchInput" ref={searchRef}/>
+        <SearchIcon className="SearchIcon ml-2" onClick={handleSearch}/>
+        </form>
       </div>
 
       {/* Div Container containing two links and the basket , STILL HAVE TO WRAP THESE INTO LINKS */}

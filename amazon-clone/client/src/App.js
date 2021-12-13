@@ -5,6 +5,7 @@ import BottomCarousel from "./Components/BottomCarousel";
 import ProductsList from "./Components/ProductsList";
 import ProductsHome from "./Components/ProductsHome";
 import ForgotPassword from "./Components/ForgotPassword";
+import Searched from "./Components/Searched";
 import NavBar from "./Components/NavBar";
 import Login from "./Components/Login";
 import Basket from "./Components/Basket";
@@ -123,6 +124,7 @@ class App extends React.Component {
 
   //A logged in user component: <PrivateRoute exact path="/" component={Dashboard}/>
   render() {
+    const { data, basket, subtotal } = this.state;
     return (
       <Router>
         <div className="App">
@@ -131,18 +133,18 @@ class App extends React.Component {
               <Login setLocalState={this.setLocalState}/>
             </Route>
             <Route path="/basket">
-              <NavBar productAmount={this.state.basket.length} />
+              <NavBar productAmount={basket.length} />
               <Basket
-                productAmount={this.state.basket.length}
-                basket={this.state.basket}
-                subtotal={this.state.subtotal}
+                productAmount={basket.length}
+                basket={basket}
+                subtotal={subtotal}
                 removeProduct={this.removeProduct}
               />
             </Route>
             <Route path="/products">
-              <NavBar productAmount={this.state.basket.length} />
+              <NavBar productAmount={basket.length} />
               <ProductsList
-                data={this.state.data}
+                data={data}
                 getProductInfo={this.getProductInfo}
               />
             </Route>
@@ -152,8 +154,12 @@ class App extends React.Component {
             <Route path="/forgot-password">
               <ForgotPassword />
             </Route>
+            <Route path="/search/:search">
+              <NavBar productAmount={basket.length}/>
+              <Searched data={data} getProductInfo={this.getProductInfo}/>
+            </Route>
             <Route path="/">
-              <NavBar productAmount={this.state.basket.length} />
+              <NavBar productAmount={basket.length} />
               <Carousel />
               <ProductsHome />
               <BottomCarousel />
