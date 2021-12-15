@@ -12,6 +12,7 @@ import Login from "./Components/Login";
 import Basket from "./Components/Basket";
 import Carousel from "./Components/Carousel";
 import SignUp from "./Components/SignUp";
+import UserInfoChange from './Components/UserInfoChange';
 import { database } from "./firebase";
 import axios from "axios";
 
@@ -162,6 +163,10 @@ class App extends React.Component {
             <Route path='/account'>
               <NavBar productAmount={basket.length}/>
               <Account />
+            </Route>
+            <Route path='/userInfo'>
+              <NavBar productAmount={basket.length} />
+              <UserInfoChange />
             </Route>
             <Route path="/">
               <NavBar productAmount={basket.length} />
