@@ -1,0 +1,56 @@
+.loginTitle {
+  margin-left: 390px;
+  margin-top: 50px;
+  margin-bottom: 15px;
+}
+
+.updateInfoContainer {
+  width: 630px;
+  height: 540px;
+  /* background-color: bisque; */
+  margin-left: 390px;
+  border: 1px #ddd solid;
+  font-size: 13px;
+
+}
+
+.insideContainer {
+  width: 630px;
+  height: 90px;
+  /* background-color: chocolate; */
+  border: solid grey 1px;
+  display: flex;
+  flex-direction: row;
+  border: 1px #ddd solid;
+}
+
+.insideCategory {
+  padding: 20px;
+  /* background-color: darkcyan; */
+  width: 80%;
+  font-size: 12px;
+}
+
+.insideButton {
+  display: flex;
+  /* background-color: darkkhaki; */
+  width: 20%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.editButton {
+  width: 70px;
+  height: 30px;
+  font-size: 14px;
+  border: 1px #ada6a5 solid;
+  border-radius: 4px;
+}
+
+.doneButton {
+  margin-left: 400px;
+  margin-top: 20px;
+  background-color: #f0c14b;
+  border-radius: 4px;
+}
