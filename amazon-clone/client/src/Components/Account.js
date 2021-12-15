@@ -60,7 +60,7 @@ function Account () {
               <img src={ProfilesPic} alt='orders' className='cardImg'/>
             <div className='cardColumn'>
               <div className='cardTitle'> Your Profiles </div>
-              <div className='cardParagraph'>Manage, add, or remove user profiles for personalized experiences</div>
+              <div className='cardParagraph'>Manage, add, or remove user profiles</div>
             </div>
           </div>
         </div>
