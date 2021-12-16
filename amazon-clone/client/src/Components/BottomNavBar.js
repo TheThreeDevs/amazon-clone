@@ -5,7 +5,7 @@ import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
 function BottomNavBar(props) {
   return (
     <div className="mainDiv">
-      <div className="left">
+      <div className="leftNavBar">
       <FormatListBulletedIcon/>
         <span className="leftChild">All</span>
       </div>
@@ -41,7 +41,7 @@ function BottomNavBar(props) {
           Coupons
         </a>
       </div>
-      <div className="right">
+      <div className="rightNavBar">
         <span className="rightChild">Shop Holiday Gifts Now</span>
       </div>
     </div>

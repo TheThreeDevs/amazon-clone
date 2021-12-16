@@ -22,7 +22,7 @@
   cursor: pointer;
 }
 
-.left {
+.leftNavBar {
   color: white;
   display: flex;
   position: static;
@@ -48,8 +48,8 @@
   flex-wrap: row wrap;
 }
 
-.right {
-  color: white;
+.rightNavBar {
+  color: black;
   display: flex;
   position: static;
   float: none;
