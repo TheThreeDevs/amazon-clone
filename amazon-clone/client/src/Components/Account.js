@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import './Account.css';
 import OrdersPic from './Images/Orders.png';
 import SecurityPic from './Images/Security.png';
@@ -26,13 +27,15 @@ function Account () {
               <div className='cardParagraph'>Track, return, or buy things again</div>
             </div>
           </div>
-          <div className='accountCard'>
-              <img src={SecurityPic} alt='orders' className='cardImg'/>
-            <div className='cardColumn'>
-              <div className='cardTitle'> Login & security </div>
-              <div className='cardParagraph'>Edit login, name, and mobile number</div>
+          <Link to='/userInfo' className='loginSecurity'>
+            <div className='accountCard'>
+                <img src={SecurityPic} alt='orders' className='cardImg'/>
+              <div className='cardColumn'>
+                <div className='cardTitle'> Login & security </div>
+                <div className='cardParagraph'>Edit login, name, and mobile number</div>
+              </div>
             </div>
-          </div>
+          </Link>
           <div className='accountCard'>
               <img src={PrimePic} alt='orders' className='cardImg'/>
             <div className='cardColumn'>
