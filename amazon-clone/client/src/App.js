@@ -12,6 +12,7 @@ import Login from "./Components/Login";
 import Basket from "./Components/Basket";
 import Carousel from "./Components/Carousel";
 import SignUp from "./Components/SignUp";
+import BottomNavBar from "./Components/BottomNavBar";
 import { database } from "./firebase";
 import axios from "axios";
 
@@ -135,6 +136,7 @@ class App extends React.Component {
             </Route>
             <Route path="/basket">
               <NavBar productAmount={basket.length} />
+              <BottomNavBar/>
               <Basket
                 productAmount={basket.length}
                 basket={basket}
@@ -144,6 +146,7 @@ class App extends React.Component {
             </Route>
             <Route path="/products">
               <NavBar productAmount={basket.length} />
+              <BottomNavBar/>
               <ProductsList
                 data={data}
                 getProductInfo={this.getProductInfo}
@@ -157,14 +160,17 @@ class App extends React.Component {
             </Route>
             <Route path="/search/:search">
               <NavBar productAmount={basket.length}/>
+              <BottomNavBar/>
               <Searched data={data} getProductInfo={this.getProductInfo}/>
             </Route>
             <Route path='/account'>
               <NavBar productAmount={basket.length}/>
+              <BottomNavBar/>
               <Account />
             </Route>
             <Route path="/">
               <NavBar productAmount={basket.length} />
+              <BottomNavBar/>
               <Carousel />
               <ProductsHome />
               <BottomCarousel />

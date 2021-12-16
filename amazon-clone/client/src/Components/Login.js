@@ -10,20 +10,9 @@ function Login({setLocalState}) {
   const [email, setEmail] = useState("");
   const passwordRef = useRef();
   const history = useHistory();
-  const { signIn, signOut } = useAuth();
+  const { signIn } = useAuth();
   const emailRegex = /\S+@\S+\.\S+/;
 
-  async function handleSignOut(e) {
-    e.preventDefault();
-    try {
-      await signOut()
-      .then(() => {
-        setError("Successfully signed out!")
-      })
-    } catch (err) {
-      setError(err.message)
-    }
-  }
   function emailChange(e) {
     setEmail(e.target.value);
   }
@@ -114,9 +103,6 @@ function Login({setLocalState}) {
         </Link></button>
         </div>
       )}
-      <div style={{alignSelf: "center"}}> 
-      <button className="mt-2" onClick={handleSignOut}>Log Out?</button>
-      </div>
     </div>
   );
 }
