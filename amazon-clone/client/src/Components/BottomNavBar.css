@@ -1,0 +1,64 @@
+.mainDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #0f1111;
+  position: static;
+  flex-flow: nowrap;
+  float: none;
+  max-height: 39px;
+  line-height: 1em;
+  font-size: 12px;
+  min-height: 25px;
+}
+.link {
+  color: white;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #00a0c6;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.left {
+  color: white;
+  display: flex;
+  position: static;
+  float: none;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 2%;
+}
+
+.leftChild {
+  padding-left: 5%;
+  font-weight: bold;
+}
+
+.middle {
+  color: white;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 85%;
+  position: static;
+  display: flex;
+  float: none;
+  flex-wrap: row wrap;
+}
+
+.right {
+  color: white;
+  display: flex;
+  position: static;
+  float: none;
+  width: 12%;
+  align-items: center;
+  padding-right: 1%;
+}
+
+.rightChild {
+  color: white;
+  font-weight: bold;
+}

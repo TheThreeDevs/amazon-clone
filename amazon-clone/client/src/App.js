@@ -7,14 +7,16 @@ import ProductsHome from "./Components/ProductsHome";
 import ForgotPassword from "./Components/ForgotPassword";
 import Searched from "./Components/Searched";
 import NavBar from "./Components/NavBar";
-import Account from './Components/Account';
 import Login from "./Components/Login";
 import Basket from "./Components/Basket";
 import Carousel from "./Components/Carousel";
 import SignUp from "./Components/SignUp";
-import UserInfoChange from './Components/UserInfoChange';
+import BottomNavBar from "./Components/BottomNavBar";
+import PrivateRoute from "./Components/PrivateRoute";
+import PrivateAccount from "./Components/PrivateAccount";
 import { database } from "./firebase";
 import axios from "axios";
+import PrivateUserInfo from "./Components/PrivateUserInfo";
 
 class App extends React.Component {
   static contextType = AuthContext;
@@ -107,8 +109,8 @@ class App extends React.Component {
       const db = database.collection("users").doc(this.context.currentUser.uid);
       const doc = await db.get();
       if (doc) {
-        let {basket, subtotal, name} = doc.data();
-        this.setState({basket, subtotal, name});
+        let { basket, subtotal, name } = doc.data();
+        this.setState({ basket, subtotal, name });
       }
     } catch (err) {
       console.log("Err", JSON.stringify(err));
@@ -132,10 +134,11 @@ class App extends React.Component {
         <div className="App">
           <Switch>
             <Route path="/login">
-              <Login setLocalState={this.setLocalState}/>
+              <Login setLocalState={this.setLocalState} />
             </Route>
             <Route path="/basket">
               <NavBar productAmount={basket.length} />
+              <BottomNavBar />
               <Basket
                 productAmount={basket.length}
                 basket={basket}
@@ -145,10 +148,8 @@ class App extends React.Component {
             </Route>
             <Route path="/products">
               <NavBar productAmount={basket.length} />
-              <ProductsList
-                data={data}
-                getProductInfo={this.getProductInfo}
-              />
+              <BottomNavBar />
+              <ProductsList data={data} getProductInfo={this.getProductInfo} />
             </Route>
             <Route path="/signup">
               <SignUp />
@@ -157,19 +158,25 @@ class App extends React.Component {
               <ForgotPassword />
             </Route>
             <Route path="/search/:search">
-              <NavBar productAmount={basket.length}/>
-              <Searched data={data} getProductInfo={this.getProductInfo}/>
-            </Route>
-            <Route path='/account'>
-              <NavBar productAmount={basket.length}/>
-              <Account />
-            </Route>
-            <Route path='/userInfo'>
               <NavBar productAmount={basket.length} />
-              <UserInfoChange />
+              <BottomNavBar />
+              <Searched data={data} getProductInfo={this.getProductInfo} />
+            </Route>
+            <Route path="/account">
+              <PrivateRoute
+                component={PrivateAccount}
+                productAmount={basket.length}
+              />
+            </Route>
+            <Route path="/userInfo">
+              <PrivateRoute
+                component={PrivateUserInfo}
+                productAmount={basket.length}
+              />
             </Route>
             <Route path="/">
               <NavBar productAmount={basket.length} />
+              <BottomNavBar />
               <Carousel />
               <ProductsHome />
               <BottomCarousel />

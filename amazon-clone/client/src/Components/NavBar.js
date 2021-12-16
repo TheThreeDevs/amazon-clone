@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./NavBar.css";
 import SearchIcon from "@material-ui/icons/Search";
@@ -10,7 +10,7 @@ import { useAuth } from "../contexts/AuthContext";
 
 function NavBar({ productAmount }) {
   const { currentUser, signOut } = useAuth();
-  const searchRef = useRef();
+  const [search, setSearch] = useState("");
   const history = useHistory();
   //If logged in, Nav Bar will have an extra button that says
   //Hello, "name" Account & lists etc
@@ -65,14 +65,14 @@ function NavBar({ productAmount }) {
   };
 
   function handleSearch(e) {
-    e.preventDefault();
-    history.push(`/search/${searchRef.current.value}`);
+    e.preventDefault(); 
+    history.push(`/search/${search}`);
   }
 
   return (
     <nav className="NavBar">
       {/* Logo to the left */}
-      <Link to="/">
+      <Link to="/" onClick={() => setSearch("")}>
         <img
           className="NavBar_Logo"
           src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
@@ -82,7 +82,7 @@ function NavBar({ productAmount }) {
       {/* Search Bar and button */}
       <div className="NavBarSearch">
         <form className="NavBarSearch" onSubmit={handleSearch}>
-        <input type="text" className="SearchInput" ref={searchRef}/>
+        <input type="text" className="SearchInput" value={search} onChange={e => setSearch(e.target.value)}/>
         <SearchIcon className="SearchIcon ml-2" onClick={handleSearch}/>
         </form>
       </div>
