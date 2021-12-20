@@ -14,25 +14,13 @@ function BottomNavBar(props) {
           Customer Service
         </a>
         <a href="https://www.amazon.com" className="link">
-          Beauty & Personal Care
-        </a>
-        <a href="https://www.amazon.com" className="link">
           Prime
         </a>
         <a href="https://www.amazon.com" className="link">
           Shopper Toolkit
         </a>
         <a href="https://www.amazon.com" className="link">
-          Outdoor Recreation
-        </a>
-        <a href="https://www.amazon.com" className="link">
-          Pet Supplies
-        </a>
-        <a href="https://www.amazon.com" className="link">
           Gift Cards
-        </a>
-        <a href="https://www.amazon.com" className="link">
-          Health & Household
         </a>
         <a href="https://www.amazon.com" className="link">
           Sports & Fitness
