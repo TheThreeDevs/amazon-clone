@@ -1,7 +1,14 @@
 import React from 'react';
 import './UserInfoChange.css';
+// import { useAuth } from "../contexts/AuthContext";
 
 function UserInfoChange () {
+  // const { resetPassword } = useAuth();
+  //change display name
+  //change email
+  //change password
+  //delete account
+
   return (
     <div>
       <h3 className='loginTitle'> Login & security</h3>

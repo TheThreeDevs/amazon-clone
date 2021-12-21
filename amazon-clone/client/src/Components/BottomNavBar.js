@@ -30,7 +30,7 @@ function BottomNavBar(props) {
         </a>
       </div>
       <div className="rightNavBar">
-        <span className="rightChild">Shop Holiday Gifts Now</span>
+        <span className="rightChild">Shop Holiday Gifts</span>
       </div>
     </div>
   );
