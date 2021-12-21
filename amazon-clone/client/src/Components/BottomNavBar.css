@@ -7,7 +7,7 @@
   flex-flow: nowrap;
   float: none;
   max-height: 39px;
-  line-height: 1em;
+  line-height: 2em;
   font-size: 12px;
   min-height: 25px;
 }
@@ -30,6 +30,11 @@
   align-items: center;
   justify-content: flex-start;
   padding-left: 2%;
+}
+.leftNavBar:hover {
+  color: #00a0c6;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .leftChild {
@@ -61,4 +66,9 @@
 .rightChild {
   color: white;
   font-weight: bold;
+}
+.rightChild:hover {
+  color: #00a0c6;
+  text-decoration: none;
+  cursor: pointer;
 }

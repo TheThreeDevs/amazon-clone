@@ -12,7 +12,7 @@ function SignUp(props) {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { signUp, signInWithAuth, updateProfileName } = useAuth();
+  const { signUp, updateProfileName } = useAuth();
   const regexPassword = new RegExp("(?=.*[0-9a-zA-Z]).{6,}");
   const history = useHistory();
 
@@ -29,13 +29,6 @@ function SignUp(props) {
     try {
       setDisabled(true);
       await signUp(emailRef.current.value, passwordRef.current.value)
-        .then(() => {
-          return signInWithAuth(
-            auth,
-            emailRef.current.value,
-            passwordRef.current.value
-          );
-        })
         .then(() => {
           auth.onAuthStateChanged((user) => {
             if (user) {
