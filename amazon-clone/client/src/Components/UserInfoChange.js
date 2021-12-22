@@ -118,8 +118,8 @@ function UserInfoChange() {
       </Link>
 
       {/* Modal for when the use{r clicks to modify information */}
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header>
           <Modal.Title></Modal.Title>
         </Modal.Header>
 
