@@ -1,4 +1,4 @@
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 function NameForm () {
   return  (
@@ -7,7 +7,6 @@ function NameForm () {
         <Form.Label>Update Name</Form.Label>
         <Form.Control type='name' placeholder='Enter name'></Form.Control>
       </Form.Group>
-      <Button variant='primary' type='submit'>Submit</Button>
     </Form>
   )
 }
