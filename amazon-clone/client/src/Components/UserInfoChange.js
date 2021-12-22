@@ -1,5 +1,6 @@
 import React from 'react';
 import './UserInfoChange.css';
+import { Link } from "react-router-dom";
 // import { useAuth } from "../contexts/AuthContext";
 
 function UserInfoChange () {
@@ -70,7 +71,9 @@ function UserInfoChange () {
           </div>
         </div>
       </div>
-      <button className='doneButton'>Done</button>
+      <Link to='/account'>
+        <button className='doneButton'>Done</button>
+      </Link>
     </div>
   )
 }
