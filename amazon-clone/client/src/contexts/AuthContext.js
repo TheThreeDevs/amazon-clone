@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "../firebase";
-import { updateProfile, signInWithEmailAndPassword } from "firebase/auth";
+import { updateProfile, updateEmail, updatePassword, deleteUser } from "firebase/auth";
 // import { database } from "../firebase";
 //create a context "state"
 export const AuthContext = React.createContext();
@@ -44,10 +44,6 @@ export function AuthProvider({ children }) {
     return updateProfile(auth, { "displayName": name, "photoURL" : photoUrl });
   }
 
-  function signInWithAuth(auth, email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
-  }
-
   function resetPassword(email) {
     return auth.sendPasswordResetEmail(email);
   }
@@ -56,14 +52,33 @@ export function AuthProvider({ children }) {
     return auth.signOut();
   }
 
+  function updateTheEmail(newEmail) {
+    return updateEmail(currentUser, newEmail);
+  }
+
+  function updateThePassword(newPassword) {
+    return updatePassword(currentUser, newPassword);
+  }
+
+  function updateTheProfile(newName) {
+    return updateProfile(currentUser, {"displayName": newName});
+  }
+
+  function deleteTheUser() {
+    return deleteUser(currentUser);
+  }
+
   const myValues = {
     currentUser,
     signIn,
     signUp,
     updateProfileName,
-    signInWithAuth,
     resetPassword,
-    signOut
+    signOut,
+    updateTheEmail,
+    updateThePassword,
+    updateTheProfile,
+    deleteTheUser
   };
   return (
     <AuthContext.Provider value={myValues}>
