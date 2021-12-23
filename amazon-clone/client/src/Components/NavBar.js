@@ -65,7 +65,7 @@ function NavBar({ productAmount }) {
   };
 
   function handleSearch(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     history.push(`/search/${search}`);
   }
 

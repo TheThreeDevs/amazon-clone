@@ -3,6 +3,7 @@ import { Modal, Button } from 'react-bootstrap';
 import NameForm from './NameForm';
 import EmailForm from './EmailForm';
 import PasswordForm from './PasswordForm';
+import CloseIcon from '@mui/icons-material/Close';
 import './UserInfoChange.css';
 import { Link } from "react-router-dom";
 // import { useAuth } from "../contexts/AuthContext";
@@ -118,9 +119,10 @@ function UserInfoChange() {
       </Link>
 
       {/* Modal for when the use{r clicks to modify information */}
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header>
           <Modal.Title></Modal.Title>
+          <CloseIcon onClick={handleClose}/>
         </Modal.Header>
 
         {/* Here goes the appropriate form needed, depending on the state */}
