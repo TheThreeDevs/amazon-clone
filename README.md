@@ -29,6 +29,9 @@ Shopping Cart
 Login-In
 ![Login-In](https://user-images.githubusercontent.com/68443503/148453546-2d261ed0-1d15-4a47-9976-a1b26e051d5f.png)
 
+Create Account
+![Create Account](https://user-images.githubusercontent.com/68443503/148453558-9b3cd611-4bd3-4c4a-b16e-86ffa2bc0165.png)
+
 ## Technology used
 
 1. React
