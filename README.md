@@ -23,6 +23,9 @@ Home Page
 Products Page
 ![Products page](https://user-images.githubusercontent.com/68443503/148453507-c92f00b3-657c-4171-8cf0-a9f5089f529a.png)
 
+Shopping Cart
+![Shopping Cart](https://user-images.githubusercontent.com/68443503/148453539-32c22e50-ac4f-422c-88f0-8bce56b93e60.png)
+
 ## Technology used
 
 1. React
