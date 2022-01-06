@@ -32,6 +32,12 @@ Login-In
 Create Account
 ![Create Account](https://user-images.githubusercontent.com/68443503/148453558-9b3cd611-4bd3-4c4a-b16e-86ffa2bc0165.png)
 
+Account Page
+![Account Page](https://user-images.githubusercontent.com/68443503/148453728-7dbdb231-0d4e-4463-9d13-6aa25696422d.png)
+
+Edit Account
+![Edit Account]()
+
 ## Technology used
 
 1. React
