@@ -14,6 +14,10 @@ Emmanuel and I created an Amazon clone were a user has the same experience as th
    - The Navbar has a couple features: login/logout, shopping cart, and also a search bar where the user can search for a particular product to add to their cart.
 5. Account Page / change sign-in info
    - The user can change their personal login information like their email, password, and name.
+   
+## Screenshots
+
+![home page](https://user-images.githubusercontent.com/68443503/148444074-9e7ad8f9-0bc1-4a89-b395-9c9dbb4fb3ac.png)
 
 ## Technology used
 
