@@ -17,7 +17,11 @@ Emmanuel and I created an Amazon clone were a user has the same experience as th
    
 ## Screenshots
 
-![home page](https://user-images.githubusercontent.com/68443503/148444074-9e7ad8f9-0bc1-4a89-b395-9c9dbb4fb3ac.png)
+Home Page
+![Home page](https://user-images.githubusercontent.com/68443503/148444074-9e7ad8f9-0bc1-4a89-b395-9c9dbb4fb3ac.png)
+
+Products Page
+![Products page](https://user-images.githubusercontent.com/68443503/148453507-c92f00b3-657c-4171-8cf0-a9f5089f529a.png)
 
 ## Technology used
 
