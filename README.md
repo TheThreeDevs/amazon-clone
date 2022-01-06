@@ -36,7 +36,7 @@ Account Page
 ![Account Page](https://user-images.githubusercontent.com/68443503/148453728-7dbdb231-0d4e-4463-9d13-6aa25696422d.png)
 
 Edit Account
-![Edit Account]()
+![Edit Account](https://user-images.githubusercontent.com/68443503/148453737-8d8c05e3-11ba-46c4-a224-82b855633547.png)
 
 ## Technology used
 
