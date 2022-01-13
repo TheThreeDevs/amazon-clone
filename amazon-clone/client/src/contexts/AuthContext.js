@@ -1,6 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "../firebase";
-import { updateProfile, updateEmail, updatePassword, deleteUser } from "firebase/auth";
+import {
+  updateProfile,
+  updateEmail,
+  updatePassword,
+  deleteUser,
+  reauthenticateWithCredential,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 // import { database } from "../firebase";
 //create a context "state"
 export const AuthContext = React.createContext();
@@ -26,9 +33,9 @@ export function AuthProvider({ children }) {
         //still need these to work, even with a null current user
         console.log("no current user");
         setCurrentUser(user);
-        setLoading(false)
+        setLoading(false);
       }
-    })
+    });
     return unsubscribe;
   }, []);
 
@@ -41,7 +48,7 @@ export function AuthProvider({ children }) {
   }
 
   function updateProfileName(auth, name, photoUrl = "") {
-    return updateProfile(auth, { "displayName": name, "photoURL" : photoUrl });
+    return updateProfile(auth, { displayName: name, photoURL: photoUrl });
   }
 
   function resetPassword(email) {
@@ -61,11 +68,24 @@ export function AuthProvider({ children }) {
   }
 
   function updateTheProfile(newName) {
-    return updateProfile(currentUser, {"displayName": newName});
+    return updateProfile(currentUser, { "displayName": newName });
   }
 
   function deleteTheUser() {
     return deleteUser(currentUser);
+  }
+
+  function signInAuth(password) {
+    let email = currentUser.email;
+    let auth = currentUser;
+    console.log("Sign in auth: ", currentUser, email, password);
+    return signInWithEmailAndPassword(auth, email, password);
+  }
+
+  function reauthenticate(auth, password) {
+    let email = currentUser.email;
+    console.log("Reathenticating with these credentials", email, password);
+    return reauthenticateWithCredential(auth, { email, password });
   }
 
   const myValues = {
@@ -78,7 +98,9 @@ export function AuthProvider({ children }) {
     updateTheEmail,
     updateThePassword,
     updateTheProfile,
-    deleteTheUser
+    deleteTheUser,
+    signInAuth,
+    reauthenticate,
   };
   return (
     <AuthContext.Provider value={myValues}>

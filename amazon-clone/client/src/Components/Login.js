@@ -41,8 +41,13 @@ function Login({setLocalState}) {
         history.push("/");
       })
     } catch (err) {
-      setError(err.message);
-      setDisabled(false);
+      if (err.message === 'auth/wrong-password') {
+        setError('Wrong password.');
+        setDisabled(false);
+      } else {
+        setError(err.message);
+        setDisabled(false);
+      }
     }
   }
 
