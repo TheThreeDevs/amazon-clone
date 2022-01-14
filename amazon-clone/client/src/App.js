@@ -27,14 +27,12 @@ class App extends React.Component {
       data: "",
       basket: [],
       subtotal: 0,
-      message: ""
     };
     this.getInfo = this.getInfo.bind(this);
     this.getProductInfo = this.getProductInfo.bind(this);
     this.removeProduct = this.removeProduct.bind(this);
     this.subtotalSum = this.subtotalSum.bind(this);
     this.setLocalState = this.setLocalState.bind(this);
-    this.changeMessage = this.changeMessage.bind(this);
   }
 
   componentDidMount() {
@@ -128,19 +126,15 @@ class App extends React.Component {
     }
   }
 
-  changeMessage(message = "") {
-    this.setState({message})
-  }
-
   //A logged in user component: <PrivateRoute exact path="/" component={Dashboard}/>
   render() {
-    const { data, basket, subtotal, message } = this.state;
+    const { data, basket, subtotal } = this.state;
     return (
       <Router>
         <div className="App">
           <Switch>
             <Route path="/login">
-              <Login setLocalState={this.setLocalState} message={message}/>
+              <Login setLocalState={this.setLocalState}/>
             </Route>
             <Route path="/basket">
               <NavBar productAmount={basket.length} />
@@ -178,7 +172,6 @@ class App extends React.Component {
               <PrivateRoute
                 component={PrivateUserInfo}
                 productAmount={basket.length}
-                changeMessage={this.changeMessage}
               />
             </Route>
             <Route path="/">

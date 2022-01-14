@@ -4,11 +4,9 @@ import "./UserInfoChange.css";
 import { useHistory, Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
-function UserInfoChange(props) {
-  console.log("whats changeMessage?", props);
-  const { currentUser, updateProfileName, updateTheEmail, updateThePassword, deleteTheUser } = useAuth();
+function UserInfoChange() {
+  const { currentUser, updateProfileName, updateTheEmail, updateThePassword } = useAuth();
   const [input, setInput] = useState("");
-  // const [message, setMessage] = useState("");
   const [show, setShow] = useState(false);
   const [form, setForm] = useState(null);
   const history = useHistory();
@@ -18,29 +16,25 @@ function UserInfoChange(props) {
     setForm(form);
     setShow(true);
   }
-  // async function handleSecuritySensitive() {}
   
   async function handleSubmit(e, action) {
     e.preventDefault();
-    console.log("handlesubmit called", action);
     const functionToCall = {
       "name" : updateProfileName,
       "email" : updateTheEmail,
       "password" : updateThePassword
     };
-    //try//catch//sucess//or failure
     try {
       let theFunction = functionToCall[action];
       await theFunction(input)
       .then(() => {
-        console.log("Sucess")
+        console.log("Sucess account info changed.")
         handleClose();
       })
     } catch (err) {
-      console.log("the error", err.code);
+      console.log("Error:", err.code);
       if (err.code === "auth/requires-recent-login") {
-        // changeMessage("auth/requires-recent-login")
-        history.push("/login");
+        history.push("/login/reauthentication")
       }
     }
   }
