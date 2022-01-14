@@ -16,13 +16,13 @@ function NavBar({ productAmount }) {
   //Hello, "name" Account & lists etc
   const popover = (
     <Popover id="popover-basic">
-      <Popover.Title as="h6" style={{backgroundColor: "white"}}>Your Account</Popover.Title>
+      <Popover.Title as="h6" style={{ backgroundColor: "white" }}>Your Account</Popover.Title>
       <Popover.Content>
         <ListGroup variant="flush" style={{ textDecoration: 'none' }}>
           <Link to='/account' className='NavBarAccount'>
-            <ListGroup.Item action>Account</ListGroup.Item>
+            <ListGroup.Item action style={{border: 'none' , borderBottom: 'solid lightgrey 1px'}}>Account</ListGroup.Item>
           </Link>
-          <ListGroup.Item action>Orders</ListGroup.Item>
+          <ListGroup.Item action >Orders</ListGroup.Item>
           <ListGroup.Item action>Recommendations</ListGroup.Item>
           <ListGroup.Item action>Prime Membership</ListGroup.Item>
           <ListGroup.Item action>Start a Selling Account</ListGroup.Item>
@@ -65,7 +65,7 @@ function NavBar({ productAmount }) {
   };
 
   function handleSearch(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     history.push(`/search/${search}`);
   }
 
