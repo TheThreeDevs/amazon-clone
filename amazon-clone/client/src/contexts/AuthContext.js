@@ -47,8 +47,8 @@ export function AuthProvider({ children }) {
     return auth.createUserWithEmailAndPassword(email, password);
   }
 
-  function updateProfileName(auth, name, photoUrl = "") {
-    return updateProfile(auth, { displayName: name, photoURL: photoUrl });
+  function updateProfileName( name, photoUrl = "") {
+    return updateProfile(currentUser, { displayName: name, photoURL: photoUrl });
   }
 
   function resetPassword(email) {
@@ -65,10 +65,6 @@ export function AuthProvider({ children }) {
 
   function updateThePassword(newPassword) {
     return updatePassword(currentUser, newPassword);
-  }
-
-  function updateTheProfile(newName) {
-    return updateProfile(currentUser, { "displayName": newName });
   }
 
   function deleteTheUser() {
@@ -97,7 +93,6 @@ export function AuthProvider({ children }) {
     signOut,
     updateTheEmail,
     updateThePassword,
-    updateTheProfile,
     deleteTheUser,
     signInAuth,
     reauthenticate,

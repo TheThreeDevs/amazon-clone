@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
-function Login({setLocalState}) {
+function Login({setLocalState, message}) {
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState();
   const [emailValid, setEmailValid] = useState(false);
@@ -90,6 +90,11 @@ function Login({setLocalState}) {
         </form>
       </div>
     );
+  }
+
+  if (message) {
+    console.log("Theres a reauthentication code!!");
+    setError(message);
   }
 
   return (

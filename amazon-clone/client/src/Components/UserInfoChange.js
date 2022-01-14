@@ -1,47 +1,65 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import "./UserInfoChange.css";
-import { Link } from "react-router-dom";
-// import { useAuth } from "../contexts/AuthContext";
+import { useHistory, Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
-function UserInfoChange() {
-  // const { updateTheProfile, updateTheEmail, updateThePassword, deleteTheUser } =
-  //   useAuth();
-  //change email, change password, delete account, these require reauthentication.
-  // async function handleSecuritySensitive() {
-  //try to do the change
-  //catch the error that requires reauthentication, require log in!
-  // }
-
+function UserInfoChange(props) {
+  console.log("whats changeMessage?", props);
+  const { currentUser, updateProfileName, updateTheEmail, updateThePassword, deleteTheUser } = useAuth();
+  const [input, setInput] = useState("");
+  // const [message, setMessage] = useState("");
   const [show, setShow] = useState(false);
   const [form, setForm] = useState(null);
-  const [input, setInput] = useState("");
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log("This is input: ", input);
+  const history = useHistory();
+  let theForm;
+  //change email, change password, delete account, these require reauthentication.  
+  function determineForm(form) {
+    setForm(form);
+    setShow(true);
   }
-
-  function handleExit() {
-    setInput("");
+  // async function handleSecuritySensitive() {}
+  
+  async function handleSubmit(e, action) {
+    e.preventDefault();
+    console.log("handlesubmit called", action);
+    const functionToCall = {
+      "name" : updateProfileName,
+      "email" : updateTheEmail,
+      "password" : updateThePassword
+    };
+    //try//catch//sucess//or failure
+    try {
+      let theFunction = functionToCall[action];
+      await theFunction(input)
+      .then(() => {
+        console.log("Sucess")
+        handleClose();
+      })
+    } catch (err) {
+      console.log("the error", err.code);
+      if (err.code === "auth/requires-recent-login") {
+        // changeMessage("auth/requires-recent-login")
+        history.push("/login");
+      }
+    }
   }
 
   const nameForm = (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={(e) => handleSubmit(e, "name")}>
       <Form.Group>
         <Form.Label>Update Name</Form.Label>
         <Form.Control
           type="name"
           placeholder="Enter name"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => setInput(e.target.value) }
         ></Form.Control>
       </Form.Group>
     </Form>
   );
 
   const emailForm = (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={(e) => handleSubmit(e, "email")}>
       <Form.Group>
         <Form.Label>Update Email</Form.Label>
         <Form.Control
@@ -55,7 +73,7 @@ function UserInfoChange() {
   );
 
   const passwordForm = (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={(e) => handleSubmit(e, "password")}>
       <Form.Group>
         <Form.Label>Update Password</Form.Label>
         <Form.Control
@@ -68,32 +86,19 @@ function UserInfoChange() {
     </Form>
   );
 
-  function handleOpenName() {
-    setShow(true);
-    setForm("name");
-  }
-
-  function handleOpenEmail() {
-    setShow(true);
-    setForm("email");
-  }
-
-  function handleOpenPassword() {
-    setShow(true);
-    setForm("password");
-  }
-
   function handleClose() {
+    console.log("resetting now...");
     setShow(false);
+    setInput("")
+    setForm(null);
   }
 
-  //pass the functions as props
   if (form === "name") {
-    var formCalled = nameForm;
+    theForm = nameForm;
   } else if (form === "email") {
-    formCalled = emailForm;
+    theForm = emailForm;
   } else if (form === "password") {
-    formCalled = passwordForm;
+    theForm = passwordForm;
   }
 
   return (
@@ -104,10 +109,10 @@ function UserInfoChange() {
         <div className="insideContainer">
           <div className="insideCategory">
             <b>Name:</b>
-            <div>Daniel</div>
+            <div>{currentUser.displayName}</div>
           </div>
           <div className="insideButton">
-            <button className="editButton" onClick={handleOpenName}>
+            <button className="editButton" onClick={() => determineForm("name")}>
               Edit
             </button>
           </div>
@@ -115,10 +120,10 @@ function UserInfoChange() {
         <div className="insideContainer">
           <div className="insideCategory">
             <b>Email:</b>
-            <div>Daniel</div>
+            <div>{currentUser.email}</div>
           </div>
           <div className="insideButton">
-            <button className="editButton" onClick={handleOpenEmail}>
+            <button className="editButton" onClick={() => determineForm("email")}>
               Edit
             </button>
           </div>
@@ -136,10 +141,10 @@ function UserInfoChange() {
         <div className="insideContainer">
           <div className="insideCategory">
             <b>Password:</b>
-            <div>Daniel</div>
+            <div>secured & hidden</div>
           </div>
           <div className="insideButton">
-            <button className="editButton" onClick={handleOpenPassword}>
+            <button className="editButton" onClick={() => determineForm("password")}>
               Edit
             </button>
           </div>
@@ -173,16 +178,16 @@ function UserInfoChange() {
       </Link>
 
       {/* Modal for when the use{r clicks to modify information */}
-      <Modal show={show} onHide={handleClose} onExit={handleExit}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title></Modal.Title>
         </Modal.Header>
 
         {/* Here goes the appropriate form needed, depending on the state */}
-        <Modal.Body>{formCalled}</Modal.Body>
+        <Modal.Body>{theForm}</Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" type="submit" onClick={handleClose}>
+          <Button variant="primary" type="submit" onClick={(e) => handleSubmit(e, form)}>
             Submit
           </Button>
         </Modal.Footer>
