@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import CloseIcon from '@mui/icons-material/Close';
 import "./UserInfoChange.css";
 import { useHistory, Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
@@ -174,9 +173,8 @@ function UserInfoChange() {
 
       {/* Modal for when the use{r clicks to modify information */}
       <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header>
-          <Modal.Title></Modal.Title>
-          <CloseIcon onClick={handleClose}/>
+      <Modal.Title></Modal.Title>
+        <Modal.Header closeButton>
         </Modal.Header>
 
         {/* Here goes the appropriate form needed, depending on the state */}
