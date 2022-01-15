@@ -1,74 +1,125 @@
-import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
-import NameForm from './NameForm';
-import EmailForm from './EmailForm';
-import PasswordForm from './PasswordForm';
-import CloseIcon from '@mui/icons-material/Close';
-import './UserInfoChange.css';
-import { Link } from "react-router-dom";
-// import { useAuth } from "../contexts/AuthContext";
+import React, { useState } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
+import "./UserInfoChange.css";
+import { useHistory, Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 function UserInfoChange() {
-  // const { updateTheProfile, updateTheEmail, updateThePassword, deleteTheUser } =
-  //   useAuth();
-  //change email, change password, delete account, these require reauthentication.
-  // async function handleSecuritySensitive() {
-    //try to do the change
-    //catch the error that requires reauthentication, require log in!
-  // }
-
+  const { currentUser, updateProfileName, updateTheEmail, updateThePassword } = useAuth();
+  const [input, setInput] = useState("");
   const [show, setShow] = useState(false);
   const [form, setForm] = useState(null);
-
-  function handleOpenName () {
+  const history = useHistory();
+  let theForm;
+  //change email, change password, delete account, these require reauthentication.  
+  function determineForm(form) {
+    setForm(form);
     setShow(true);
-    setForm('name');
+  }
+  
+  async function handleSubmit(e, action) {
+    e.preventDefault();
+    const functionToCall = {
+      "name" : updateProfileName,
+      "email" : updateTheEmail,
+      "password" : updateThePassword
+    };
+    try {
+      let theFunction = functionToCall[action];
+      await theFunction(input)
+      .then(() => {
+        console.log("Sucess account info changed.")
+        handleClose();
+      })
+    } catch (err) {
+      console.log("Error:", err.code);
+      if (err.code === "auth/requires-recent-login") {
+        history.push("/login/reauthentication")
+      }
+    }
   }
 
-  function handleOpenEmail () {
-    setShow(true);
-    setForm('email');
-  }
+  const nameForm = (
+    <Form onSubmit={(e) => handleSubmit(e, "name")}>
+      <Form.Group>
+        <Form.Label>Update Name</Form.Label>
+        <Form.Control
+          type="name"
+          placeholder="Enter name"
+          onChange={(e) => setInput(e.target.value) }
+        ></Form.Control>
+      </Form.Group>
+    </Form>
+  );
 
-  function handleOpenPassword () {
-    setShow(true);
-    setForm('password');
-  }
+  const emailForm = (
+    <Form onSubmit={(e) => handleSubmit(e, "email")}>
+      <Form.Group>
+        <Form.Label>Update Email</Form.Label>
+        <Form.Control
+          type="email"
+          placeholder="Enter Email"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        ></Form.Control>
+      </Form.Group>
+    </Form>
+  );
 
-  function handleClose () {
+  const passwordForm = (
+    <Form onSubmit={(e) => handleSubmit(e, "password")}>
+      <Form.Group>
+        <Form.Label>Update Password</Form.Label>
+        <Form.Control
+          type="password"
+          placeholder="Enter Password"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        ></Form.Control>
+      </Form.Group>
+    </Form>
+  );
+
+  function handleClose() {
+    console.log("resetting now...");
     setShow(false);
+    setInput("")
+    setForm(null);
   }
 
-  //pass the functions as props
-  if (form === 'name') {
-     var formCalled = <NameForm />
-  } else if (form === 'email') {
-    formCalled = <EmailForm />
-  } else if (form === 'password') {
-    formCalled = <PasswordForm />
-  };
+  if (form === "name") {
+    theForm = nameForm;
+  } else if (form === "email") {
+    theForm = emailForm;
+  } else if (form === "password") {
+    theForm = passwordForm;
+  }
 
   return (
     <>
-      <h3 className='loginTitle'> Login & security</h3>
-      <div className='updateInfoContainer'>
+      <h3 className="loginTitle"> Login & security</h3>
+      <div className="updateInfoContainer">
         {/* 6 divs for the specific change */}
         <div className="insideContainer">
           <div className="insideCategory">
             <b>Name:</b>
-            <div>Daniel</div>
+            <div>{currentUser.displayName}</div>
           </div>
-          <div className='insideButton'>
-            <button className='editButton' onClick={handleOpenName}>Edit</button>
+          <div className="insideButton">
+            <button className="editButton" onClick={() => determineForm("name")}>
+              Edit
+            </button>
           </div>
         </div>
         <div className="insideContainer">
           <div className="insideCategory">
             <b>Email:</b>
-            <div>Daniel</div>
+            <div>{currentUser.email}</div>
           </div>
-          <div className='insideButton'>
-            <button className='editButton' onClick={handleOpenEmail}>Edit</button>
+          <div className="insideButton">
+            <button className="editButton" onClick={() => determineForm("email")}>
+              Edit
+            </button>
           </div>
         </div>
         <div className="insideContainer">
@@ -84,10 +135,12 @@ function UserInfoChange() {
         <div className="insideContainer">
           <div className="insideCategory">
             <b>Password:</b>
-            <div>Daniel</div>
+            <div>secured & hidden</div>
           </div>
-          <div className='insideButton'>
-            <button className='editButton' onClick={handleOpenPassword}>Edit</button>
+          <div className="insideButton">
+            <button className="editButton" onClick={() => determineForm("password")}>
+              Edit
+            </button>
           </div>
         </div>
         <div className="insideContainer">
@@ -114,28 +167,27 @@ function UserInfoChange() {
           </div>
         </div>
       </div>
-      <Link to='/account'>
-        <button className='doneButton'>Done</button>
+      <Link to="/account">
+        <button className="doneButton">Done</button>
       </Link>
 
       {/* Modal for when the use{r clicks to modify information */}
       <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header>
-          <Modal.Title></Modal.Title>
-          <CloseIcon onClick={handleClose}/>
+      <Modal.Title></Modal.Title>
+        <Modal.Header closeButton>
         </Modal.Header>
 
         {/* Here goes the appropriate form needed, depending on the state */}
-        <Modal.Body>
-          {formCalled}
-        </Modal.Body>
+        <Modal.Body>{theForm}</Modal.Body>
 
         <Modal.Footer>
-          <Button variant='primary' type='submit' onClick={handleClose}>Submit</Button>
+          <Button variant="primary" type="submit" onClick={(e) => handleSubmit(e, form)}>
+            Submit
+          </Button>
         </Modal.Footer>
       </Modal>
     </>
-  )
+  );
 }
 
 export default UserInfoChange;

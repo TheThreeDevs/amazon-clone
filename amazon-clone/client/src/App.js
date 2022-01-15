@@ -134,7 +134,7 @@ class App extends React.Component {
         <div className="App">
           <Switch>
             <Route path="/login">
-              <Login setLocalState={this.setLocalState} />
+              <Login setLocalState={this.setLocalState}/>
             </Route>
             <Route path="/basket">
               <NavBar productAmount={basket.length} />

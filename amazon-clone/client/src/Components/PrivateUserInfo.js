@@ -5,11 +5,11 @@ import BottomNavBar from './BottomNavBar';
 
 function PrivateUserInfo({productAmount}) {
   return (
-    <>
+    <div>
       <NavBar productAmount={productAmount}/>
       <BottomNavBar/>
       <UserInfoChange/>
-    </>
+    </div>
   );
 }
 

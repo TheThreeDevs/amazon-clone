@@ -1,9 +1,9 @@
 import "./Login.css";
-import { Link, useHistory } from "react-router-dom";
-import React, { useRef, useState } from "react";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import React, { useRef, useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
-function Login({setLocalState}) {
+function Login(props) {
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState();
   const [emailValid, setEmailValid] = useState(false);
@@ -12,6 +12,15 @@ function Login({setLocalState}) {
   const history = useHistory();
   const { signIn } = useAuth();
   const emailRegex = /\S+@\S+\.\S+/;
+  const location = useLocation();
+  let reauthentication = location.pathname.split("/")[2] === "reauthentication";
+  let errorColor = reauthentication ? "#3399ff" : "#ff0000";
+
+  useEffect(() => {
+    if (reauthentication) {
+      setError("Requires recent-login to change sensitive information.");
+    }
+  }, [reauthentication]);
 
   function emailChange(e) {
     setEmail(e.target.value);
@@ -31,18 +40,26 @@ function Login({setLocalState}) {
     e.preventDefault();
     setDisabled(true);
     try {
-      await signIn(email, passwordRef.current.value)
-      .then(() => {
+      await signIn(email, passwordRef.current.value).then(() => {
         setError("");
         setDisabled(false);
         console.log("Sucessfully signed-in!");
-        setLocalState();
+        props.setLocalState();
         //move to home page
-        history.push("/");
-      })
+        if (reauthentication) {
+          history.push("/userinfo");
+        } else {
+          history.push("/");
+        }
+      });
     } catch (err) {
-      setError(err.message);
-      setDisabled(false);
+      if (err.message === "auth/wrong-password") {
+        setError("Wrong password.");
+        setDisabled(false);
+      } else {
+        setError(err.message);
+        setDisabled(false);
+      }
     }
   }
 
@@ -50,7 +67,18 @@ function Login({setLocalState}) {
     return (
       <div className="LoginContainer">
         <h1 className="mb-2 mt-1">Sign-In</h1>
-        {error && <p style={{fontSize: "10px", paddingLeft: "6%", paddingRight: "6%"}}>{error}</p>}
+        {error && (
+          <p
+            style={{
+              fontSize: "13px",
+              paddingLeft: "6%",
+              paddingRight: "6%",
+              color: errorColor,
+            }}
+          >
+            {error}
+          </p>
+        )}
         <form onSubmit={handleSubmitEmail}>
           <h5>Email or mobile phone number</h5>
           <input type="email" value={email} onChange={emailChange} />
@@ -59,7 +87,9 @@ function Login({setLocalState}) {
             By continuing, you agree to Amazon's Conditions of Use and Privacy
             Notice.
           </p>
-            <p>Forgot <Link to="/forgot-password">Password?</Link></p>
+          <p>
+            Forgot <Link to="/forgot-password">Password?</Link>
+          </p>
         </form>
       </div>
     );
@@ -69,7 +99,18 @@ function Login({setLocalState}) {
     return (
       <div className="LoginContainer">
         <h1 className="mb-2 mt-1">Sign-In</h1>
-        {error && <p style={{fontSize: "10px", paddingLeft: "10px", paddingRight: "10px"}}>{error}</p>}
+        {error && (
+          <p
+            style={{
+              fontSize: "13px",
+              paddingLeft: "6%",
+              paddingRight: "6%",
+              color: errorColor
+            }}
+          >
+            {error}
+          </p>
+        )}
 
         <form onSubmit={handleSubmit}>
           <input type="email" value={email} onChange={emailChange} />
@@ -99,8 +140,18 @@ function Login({setLocalState}) {
       {!emailValid ? beforeValidEmail() : afterValidEmail()}
       {emailValid ? null : (
         <div className="LoginButton">
-          <button><Link to="/signup" style={{ textDecoration: "none", color: "black", alignSelf: "center"}}>Create Your Amazon Account
-        </Link></button>
+          <button>
+            <Link
+              to="/signup"
+              style={{
+                textDecoration: "none",
+                color: "black",
+                alignSelf: "center",
+              }}
+            >
+              Create Your Amazon Account
+            </Link>
+          </button>
         </div>
       )}
     </div>
