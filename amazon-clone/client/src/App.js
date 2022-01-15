@@ -162,18 +162,19 @@ class App extends React.Component {
               <BottomNavBar />
               <Searched data={data} getProductInfo={this.getProductInfo} />
             </Route>
-            <Route path="/account">
-              <PrivateRoute
-                component={PrivateAccount}
-                productAmount={basket.length}
-              />
-            </Route>
-            <Route path="/userInfo">
-              <PrivateRoute
-                component={PrivateUserInfo}
-                productAmount={basket.length}
-              />
-            </Route>
+            <PrivateRoute
+              path="/account"
+              component={PrivateAccount}
+              productAmount={basket.length}
+            />
+            <PrivateRoute
+              path="/userInfo"
+              component={PrivateUserInfo}
+              productAmount={basket.length}
+            />
+            <PrivateRoute path="/delete-account" exact component={PrivateAccount}
+            productAmount={basket.length} deleteAccount={true}
+            />
             <Route path="/">
               <NavBar productAmount={basket.length} />
               <BottomNavBar />
