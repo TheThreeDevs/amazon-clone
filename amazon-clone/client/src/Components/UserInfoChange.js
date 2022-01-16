@@ -177,6 +177,7 @@ function UserInfoChange() {
           <div className="insideButton">
             <button
               className="editButton"
+              style={{ backgroundColor: '#f44336' }}
               onClick={() => history.push('/delete-account')}
             >
               Delete
@@ -202,8 +203,9 @@ function UserInfoChange() {
 
       {/* Modal for when the use{r clicks to modify information */}
       <Modal show={show} onHide={handleClose} centered>
-        <Modal.Title></Modal.Title>
-        <Modal.Header closeButton></Modal.Header>
+        <Modal.Header closeButton>
+          <Modal.Title>Update Information</Modal.Title>
+        </Modal.Header>
 
         {/* Here goes the appropriate form needed, depending on the state */}
         <Modal.Body>{theForm}</Modal.Body>
