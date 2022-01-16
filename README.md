@@ -50,5 +50,7 @@ Edit Account
 
 ## Installation
 
-1. npm install
-2. npm run dev
+1. cd amazon-clone
+2. npm install
+3. npm client-install
+4. npm run dev
