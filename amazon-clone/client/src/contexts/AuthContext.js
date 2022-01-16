@@ -47,8 +47,8 @@ export function AuthProvider({ children }) {
     return auth.createUserWithEmailAndPassword(email, password);
   }
 
-  function updateProfileName( name, photoUrl = "") {
-    return updateProfile(currentUser, { displayName: name, photoURL: photoUrl });
+  function updateProfileName(auth, name, photoUrl = "") {
+    return updateProfile(auth, { displayName: name, photoURL: photoUrl });
   }
 
   function resetPassword(email) {

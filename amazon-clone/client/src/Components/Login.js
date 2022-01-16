@@ -14,13 +14,16 @@ function Login(props) {
   const emailRegex = /\S+@\S+\.\S+/
   const location = useLocation()
   let reauthentication = location.pathname.split('/')[2] === 'reauthentication'
-  let errorColor = reauthentication ? '#3399ff' : '#ff0000'
+  let deleteAccount = location.pathname.split('/')[2] === 'deleteaccount'
+  let errorColor = reauthentication || deleteAccount ? '#3399ff' : '#ff0000'
 
   useEffect(() => {
-    if (reauthentication) {
+    if (reauthentication && !deleteAccount) {
       setError('Requires recent-login to change sensitive information.')
+    } else if (deleteAccount) {
+      setError('Requires recent-login to delete account.')
     }
-  }, [reauthentication])
+  }, [reauthentication, deleteAccount])
 
   function emailChange(e) {
     setEmail(e.target.value)
@@ -48,6 +51,8 @@ function Login(props) {
         //move to home page
         if (reauthentication) {
           history.push('/userinfo')
+        } else if (deleteAccount) {
+          history.push('/delete-account')
         } else {
           history.push('/')
         }

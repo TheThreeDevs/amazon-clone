@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Modal, Button, Form } from 'react-bootstrap'
+import { Modal, Button, Form, Alert } from 'react-bootstrap'
 import './UserInfoChange.css'
 import { useHistory, Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
@@ -14,6 +14,7 @@ function UserInfoChange() {
   const [input, setInput] = useState('')
   const [show, setShow] = useState(false)
   const [form, setForm] = useState(null)
+  const [message, setMessage] = useState('')
   const history = useHistory()
   let theForm
   //change email, change password, delete account, these require reauthentication.
@@ -24,6 +25,9 @@ function UserInfoChange() {
 
   async function handleSubmit(e, action) {
     e.preventDefault()
+    if (action === 'password' && input.length < 6) {
+      return
+    }
     const functionToCall = {
       name: updateProfileName,
       email: updateTheEmail,
@@ -32,7 +36,7 @@ function UserInfoChange() {
     try {
       let theFunction = functionToCall[action]
       await theFunction(input).then(() => {
-        console.log('Sucess account info changed.')
+        setMessage('Success account info changed.')
         handleClose()
       })
     } catch (err) {
@@ -76,17 +80,16 @@ function UserInfoChange() {
         <Form.Label>Update Password</Form.Label>
         <Form.Control
           type="password"
-          placeholder="Enter Password"
+          placeholder="Enter new Password"
           value={input}
           onChange={(e) => setInput(e.target.value)}
         ></Form.Control>
-        <Form.Label size="sm">Minimum length is 6 characters</Form.Label>
+        <Form.Text>Password must be minimum 6 characters long.</Form.Text>
       </Form.Group>
     </Form>
   )
 
   function handleClose() {
-    console.log('resetting now...')
     setShow(false)
     setInput('')
     setForm(null)
@@ -101,9 +104,18 @@ function UserInfoChange() {
   }
 
   return (
-    <>
-      <h3 className="loginTitle"> Login & security</h3>
-      <div className="updateInfoContainer">
+    <div className="d-flex flex-column justify-content-center">
+      <div className="align-self-center">
+        <h3 className="mt-5"> Login & security</h3>
+        {message ? (
+          <Alert
+            variant="success"
+            style={{ width: '630px' }}
+            className="flex align-self-center text-center"
+          >
+            <p>{message}</p>
+          </Alert>
+        ) : null}
         {/* 6 divs for the specific change */}
         <div className="insideContainer">
           <div className="insideCategory">
@@ -146,7 +158,7 @@ function UserInfoChange() {
         <div className="insideContainer">
           <div className="insideCategory">
             <b>Password:</b>
-            <div>secured & hidden</div>
+            <div>Secured & Hidden</div>
           </div>
           <div className="insideButton">
             <button
@@ -159,13 +171,16 @@ function UserInfoChange() {
         </div>
         <div className="insideContainer">
           <div className="insideCategory">
-            <b>Two-Step Verification:</b>
-            <div>
-              For extra security, require a one-time password at sign-in
-            </div>
+            <b>Delete Account Permanently:</b>
+            <div>You will be asked to reauthenticate to proceed.</div>
           </div>
           <div className="insideButton">
-            <button className="editButton">Edit</button>
+            <button
+              className="editButton"
+              onClick={() => history.push('/delete-account')}
+            >
+              Delete
+            </button>
           </div>
         </div>
         <div className="insideContainer">
@@ -180,10 +195,10 @@ function UserInfoChange() {
             <button className="editButton">Edit</button>
           </div>
         </div>
+        <Link to="/account" className="align-self-start">
+          <button className="mb-2 mt-2 doneButton">Done</button>
+        </Link>
       </div>
-      <Link to="/account">
-        <button className="doneButton">Done</button>
-      </Link>
 
       {/* Modal for when the use{r clicks to modify information */}
       <Modal show={show} onHide={handleClose} centered>
@@ -205,7 +220,7 @@ function UserInfoChange() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   )
 }
 
