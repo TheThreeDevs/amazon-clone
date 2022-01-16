@@ -177,6 +177,7 @@ function UserInfoChange() {
           <div className="insideButton">
             <button
               className="editButton"
+              style={{ backgroundColor: '#f44336' }}
               onClick={() => history.push('/delete-account')}
             >
               Delete
@@ -210,14 +211,24 @@ function UserInfoChange() {
         <Modal.Body>{theForm}</Modal.Body>
 
         <Modal.Footer>
-          {/* if the form equals password and the input field is less than 6, disabled the button */}
-          <Button
-            variant="primary"
-            type="submit"
-            onClick={(e) => handleSubmit(e, form)}
-          >
-            Submit
-          </Button>
+          {form === 'password' && input.length <= 5 ? (
+            <Button
+              variant="primary"
+              disabled
+              type="submit"
+              onClick={(e) => handleSubmit(e, form)}
+            >
+              Submit
+            </Button>
+          ) : (
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={(e) => handleSubmit(e, form)}
+            >
+              Submit
+            </Button>
+          )}
         </Modal.Footer>
       </Modal>
     </div>
