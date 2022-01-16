@@ -1,50 +1,54 @@
-import React, { useState } from "react";
-import { Modal, Button, Form, Alert } from "react-bootstrap";
-import "./UserInfoChange.css";
-import { useHistory, Link } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import React, { useState } from 'react'
+import { Modal, Button, Form, Alert } from 'react-bootstrap'
+import './UserInfoChange.css'
+import { useHistory, Link } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
 
 function UserInfoChange() {
-  const { currentUser, updateProfileName, updateTheEmail, updateThePassword } =
-    useAuth();
-  const [input, setInput] = useState("");
-  const [show, setShow] = useState(false);
-  const [form, setForm] = useState(null);
-  const [message, setMessage] = useState("");
-  const history = useHistory();
-  let theForm;
+  const {
+    currentUser,
+    updateProfileName,
+    updateTheEmail,
+    updateThePassword,
+  } = useAuth()
+  const [input, setInput] = useState('')
+  const [show, setShow] = useState(false)
+  const [form, setForm] = useState(null)
+  const [message, setMessage] = useState('')
+  const history = useHistory()
+  let theForm
   //change email, change password, delete account, these require reauthentication.
   function determineForm(form) {
-    setForm(form);
-    setShow(true);
+    setForm(form)
+    setShow(true)
   }
 
   async function handleSubmit(e, action) {
-    e.preventDefault();
-    if (action === "password" && input.length < 6) {
-      return;
+    e.preventDefault()
+    if (action === 'password' && input.length < 6) {
+      return
     }
     const functionToCall = {
       name: updateProfileName,
       email: updateTheEmail,
       password: updateThePassword,
-    };
+    }
     try {
-      let theFunction = functionToCall[action];
+      let theFunction = functionToCall[action]
       await theFunction(input).then(() => {
-        setMessage("Success account info changed.");
-        handleClose();
-      });
+        setMessage('Success account info changed.')
+        handleClose()
+      })
     } catch (err) {
-      console.log("Error:", err.code);
-      if (err.code === "auth/requires-recent-login") {
-        history.push("/login/reauthentication");
+      console.log('Error:', err.code)
+      if (err.code === 'auth/requires-recent-login') {
+        history.push('/login/reauthentication')
       }
     }
   }
 
   const nameForm = (
-    <Form onSubmit={(e) => handleSubmit(e, "name")}>
+    <Form onSubmit={(e) => handleSubmit(e, 'name')}>
       <Form.Group>
         <Form.Label>Update Name</Form.Label>
         <Form.Control
@@ -54,10 +58,10 @@ function UserInfoChange() {
         ></Form.Control>
       </Form.Group>
     </Form>
-  );
+  )
 
   const emailForm = (
-    <Form onSubmit={(e) => handleSubmit(e, "email")}>
+    <Form onSubmit={(e) => handleSubmit(e, 'email')}>
       <Form.Group>
         <Form.Label>Update Email</Form.Label>
         <Form.Control
@@ -68,10 +72,10 @@ function UserInfoChange() {
         ></Form.Control>
       </Form.Group>
     </Form>
-  );
+  )
 
   const passwordForm = (
-    <Form onSubmit={(e) => handleSubmit(e, "password")}>
+    <Form onSubmit={(e) => handleSubmit(e, 'password')}>
       <Form.Group>
         <Form.Label>Update Password</Form.Label>
         <Form.Control
@@ -83,20 +87,20 @@ function UserInfoChange() {
         <Form.Text>Password must be minimum 6 characters long.</Form.Text>
       </Form.Group>
     </Form>
-  );
+  )
 
   function handleClose() {
-    setShow(false);
-    setInput("");
-    setForm(null);
+    setShow(false)
+    setInput('')
+    setForm(null)
   }
 
-  if (form === "name") {
-    theForm = nameForm;
-  } else if (form === "email") {
-    theForm = emailForm;
-  } else if (form === "password") {
-    theForm = passwordForm;
+  if (form === 'name') {
+    theForm = nameForm
+  } else if (form === 'email') {
+    theForm = emailForm
+  } else if (form === 'password') {
+    theForm = passwordForm
   }
 
   return (
@@ -106,7 +110,7 @@ function UserInfoChange() {
         {message ? (
           <Alert
             variant="success"
-            style={{ width: "630px" }}
+            style={{ width: '630px' }}
             className="flex align-self-center text-center"
           >
             <p>{message}</p>
@@ -121,7 +125,7 @@ function UserInfoChange() {
           <div className="insideButton">
             <button
               className="editButton"
-              onClick={() => determineForm("name")}
+              onClick={() => determineForm('name')}
             >
               Edit
             </button>
@@ -135,7 +139,7 @@ function UserInfoChange() {
           <div className="insideButton">
             <button
               className="editButton"
-              onClick={() => determineForm("email")}
+              onClick={() => determineForm('email')}
             >
               Edit
             </button>
@@ -159,7 +163,7 @@ function UserInfoChange() {
           <div className="insideButton">
             <button
               className="editButton"
-              onClick={() => determineForm("password")}
+              onClick={() => determineForm('password')}
             >
               Edit
             </button>
@@ -173,7 +177,7 @@ function UserInfoChange() {
           <div className="insideButton">
             <button
               className="editButton"
-              onClick={() => history.push("/delete-account")}
+              onClick={() => history.push('/delete-account')}
             >
               Delete
             </button>
@@ -198,13 +202,15 @@ function UserInfoChange() {
 
       {/* Modal for when the use{r clicks to modify information */}
       <Modal show={show} onHide={handleClose} centered>
-        <Modal.Title></Modal.Title>
-        <Modal.Header closeButton></Modal.Header>
+        <Modal.Header closeButton>
+          <Modal.Title>Update Information</Modal.Title>
+        </Modal.Header>
 
         {/* Here goes the appropriate form needed, depending on the state */}
         <Modal.Body>{theForm}</Modal.Body>
 
         <Modal.Footer>
+          {/* if the form equals password and the input field is less than 6, disabled the button */}
           <Button
             variant="primary"
             type="submit"
@@ -215,7 +221,7 @@ function UserInfoChange() {
         </Modal.Footer>
       </Modal>
     </div>
-  );
+  )
 }
 
-export default UserInfoChange;
+export default UserInfoChange
