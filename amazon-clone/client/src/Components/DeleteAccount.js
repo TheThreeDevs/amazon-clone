@@ -16,13 +16,11 @@ function DeleteAccount() {
     try {
       let userUid = currentUser.uid;
       await database.collection("users").doc(userUid).delete()
-      .then(() => {
-        deleteTheUser()
-        history.push("/");
-      })
+      await deleteTheUser()
+      history.push("/")
     } catch (err) {
-      console.log(err.message);
-      if (err.code === "auth/requires-recent-login") {
+      console.log("Error deleting account", err.code);
+      if (err.code === "auth/requires-recent-login" || err) {
         history.push("/login/deleteaccount");
       }
     }
