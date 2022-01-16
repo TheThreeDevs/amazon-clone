@@ -1,64 +1,64 @@
-import "./Login.css";
-import { Link, useHistory, useLocation } from "react-router-dom";
-import React, { useRef, useState, useEffect } from "react";
-import { useAuth } from "../contexts/AuthContext";
+import './Login.css'
+import { Link, useHistory, useLocation } from 'react-router-dom'
+import React, { useRef, useState, useEffect } from 'react'
+import { useAuth } from '../contexts/AuthContext'
 
 function Login(props) {
-  const [error, setError] = useState("");
-  const [disabled, setDisabled] = useState();
-  const [emailValid, setEmailValid] = useState(false);
-  const [email, setEmail] = useState("");
-  const passwordRef = useRef();
-  const history = useHistory();
-  const { signIn } = useAuth();
-  const emailRegex = /\S+@\S+\.\S+/;
-  const location = useLocation();
-  let reauthentication = location.pathname.split("/")[2] === "reauthentication";
-  let errorColor = reauthentication ? "#3399ff" : "#ff0000";
+  const [error, setError] = useState('')
+  const [disabled, setDisabled] = useState()
+  const [emailValid, setEmailValid] = useState(false)
+  const [email, setEmail] = useState('')
+  const passwordRef = useRef()
+  const history = useHistory()
+  const { signIn } = useAuth()
+  const emailRegex = /\S+@\S+\.\S+/
+  const location = useLocation()
+  let reauthentication = location.pathname.split('/')[2] === 'reauthentication'
+  let errorColor = reauthentication ? '#3399ff' : '#ff0000'
 
   useEffect(() => {
     if (reauthentication) {
-      setError("Requires recent-login to change sensitive information.");
+      setError('Requires recent-login to change sensitive information.')
     }
-  }, [reauthentication]);
+  }, [reauthentication])
 
   function emailChange(e) {
-    setEmail(e.target.value);
+    setEmail(e.target.value)
   }
 
   function handleSubmitEmail(e) {
-    e.preventDefault();
+    e.preventDefault()
     if (emailRegex.test(email)) {
-      setEmailValid(true);
-      return;
+      setEmailValid(true)
+      return
     } else {
-      setEmailValid(true);
+      setEmailValid(true)
     }
   }
 
   async function handleSubmit(e) {
-    e.preventDefault();
-    setDisabled(true);
+    e.preventDefault()
+    setDisabled(true)
     try {
       await signIn(email, passwordRef.current.value).then(() => {
-        setError("");
-        setDisabled(false);
-        console.log("Sucessfully signed-in!");
-        props.setLocalState();
+        setError('')
+        setDisabled(false)
+        console.log('Sucessfully signed-in!')
+        props.setLocalState()
         //move to home page
         if (reauthentication) {
-          history.push("/userinfo");
+          history.push('/userinfo')
         } else {
-          history.push("/");
+          history.push('/')
         }
-      });
+      })
     } catch (err) {
-      if (err.message === "auth/wrong-password") {
-        setError("Wrong password.");
-        setDisabled(false);
+      if (err.message === 'auth/wrong-password') {
+        setError('Wrong password.')
+        setDisabled(false)
       } else {
-        setError(err.message);
-        setDisabled(false);
+        setError(err.message)
+        setDisabled(false)
       }
     }
   }
@@ -70,10 +70,11 @@ function Login(props) {
         {error && (
           <p
             style={{
-              fontSize: "13px",
-              paddingLeft: "6%",
-              paddingRight: "6%",
+              fontSize: '13px',
+              paddingLeft: '6%',
+              paddingRight: '6%',
               color: errorColor,
+              marginBottom: '-5px',
             }}
           >
             {error}
@@ -92,7 +93,7 @@ function Login(props) {
           </p>
         </form>
       </div>
-    );
+    )
   }
 
   function afterValidEmail() {
@@ -102,10 +103,11 @@ function Login(props) {
         {error && (
           <p
             style={{
-              fontSize: "13px",
-              paddingLeft: "6%",
-              paddingRight: "6%",
-              color: errorColor
+              fontSize: '13px',
+              paddingLeft: '6%',
+              paddingRight: '6%',
+              color: errorColor,
+              marginBottom: '-5px',
             }}
           >
             {error}
@@ -125,7 +127,7 @@ function Login(props) {
           </p>
         </form>
       </div>
-    );
+    )
   }
 
   return (
@@ -144,9 +146,9 @@ function Login(props) {
             <Link
               to="/signup"
               style={{
-                textDecoration: "none",
-                color: "black",
-                alignSelf: "center",
+                textDecoration: 'none',
+                color: 'black',
+                alignSelf: 'center',
               }}
             >
               Create Your Amazon Account
@@ -155,9 +157,9 @@ function Login(props) {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default Login;
+export default Login
 
 // NEED TO FIGURE OUT HOW TO MAKE THE REST OF THE PAGE WHITE
