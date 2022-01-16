@@ -80,6 +80,7 @@ function UserInfoChange() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
         ></Form.Control>
+        <Form.Label size="sm">Minimum length is 6 characters</Form.Label>
       </Form.Group>
     </Form>
   )
@@ -194,6 +195,7 @@ function UserInfoChange() {
         <Modal.Body>{theForm}</Modal.Body>
 
         <Modal.Footer>
+          {/* if the form equals password and the input field is less than 6, disabled the button */}
           <Button
             variant="primary"
             type="submit"
