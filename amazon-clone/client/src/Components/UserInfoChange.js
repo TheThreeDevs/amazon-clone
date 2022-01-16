@@ -101,15 +101,17 @@ function UserInfoChange() {
 
   return (
     <div className="d-flex flex-column justify-content-center">
-    <div className="align-self-center">
-    <h3 className="mt-5"> Login & security</h3>
-    {message ? (
-        <Alert variant="success" style={{width: "630px"}}
-        className="flex align-self-center text-center"
-        >
-          <p>{message}</p>
-        </Alert>
-    ) : null}
+      <div className="align-self-center">
+        <h3 className="mt-5"> Login & security</h3>
+        {message ? (
+          <Alert
+            variant="success"
+            style={{ width: "630px" }}
+            className="flex align-self-center text-center"
+          >
+            <p>{message}</p>
+          </Alert>
+        ) : null}
         {/* 6 divs for the specific change */}
         <div className="insideContainer">
           <div className="insideCategory">

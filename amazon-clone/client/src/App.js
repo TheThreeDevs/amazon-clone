@@ -134,7 +134,7 @@ class App extends React.Component {
         <div className="App">
           <Switch>
             <Route path="/login">
-              <Login setLocalState={this.setLocalState}/>
+              <Login setLocalState={this.setLocalState} />
             </Route>
             <Route path="/basket">
               <NavBar productAmount={basket.length} />
@@ -172,8 +172,12 @@ class App extends React.Component {
               component={PrivateUserInfo}
               productAmount={basket.length}
             />
-            <PrivateRoute path="/delete-account" exact component={PrivateAccount}
-            productAmount={basket.length} deleteAccount={true}
+            <PrivateRoute
+              path="/delete-account"
+              exact
+              component={PrivateAccount}
+              productAmount={basket.length}
+              deleteAccount={true}
             />
             <Route path="/">
               <NavBar productAmount={basket.length} />

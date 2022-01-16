@@ -5,7 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import { auth } from "../firebase";
 import { database } from "../firebase";
 
-function SignUp(props) {
+function SignUp() {
   const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState("");
   const nameRef = useRef();
@@ -42,6 +42,7 @@ function SignUp(props) {
                   basket: [],
                   subtotal: 0,
                   address: "",
+                  phoneNumber: ""
                 });
             }
           });
@@ -59,10 +60,9 @@ function SignUp(props) {
 
   return (
     <Container
-      className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
+      className="d-flex column justify-content-center mt-5"
     >
-      <div className="w-80" style={{ minWidth: "280px", maxWidth: "350px" }}>
+      <div className="w-30" style={{maxWidth: "70%"}}>
         <Link to="/">
           <img
             className="LoginLogo"
@@ -70,7 +70,7 @@ function SignUp(props) {
             alt="logo"
           />
         </Link>
-        <Card className="d-flex " style={{ minWidth: "300px" }}>
+        <Card className="flex">
           <Card.Body>
             <h2>Create account</h2>
             {error && <Alert variant="danger">{error}</Alert>}
@@ -101,15 +101,15 @@ function SignUp(props) {
                   required
                 />
               </Form.Group>
-
+              <div className="text-center m-2">
               <Button
-                disabled={disabled}
-                style={{ backgroundColor: "#cd9042", color: "black" }}
-                className="w-100 mt-3"
-                type="submit"
+              disabled={disabled}
+              style={{ backgroundColor: "#cd9042", color: "black" }}
+              type="submit"
               >
-                Create Your Amazon Account
+              Create Your Amazon Account
               </Button>
+              </div>
               <p className="mt-1" style={{ fontSize: "10px" }}>
                 {" "}
                 By creating an account, you agree to Amazon's{" "}
