@@ -48,6 +48,9 @@ export function AuthProvider({ children }) {
   }
 
   function updateProfileName(auth, name, photoUrl = "") {
+    if (typeof auth === "string") {
+      return updateProfile(currentUser, {displayName: auth});
+    }
     return updateProfile(auth, { displayName: name, photoURL: photoUrl });
   }
 
