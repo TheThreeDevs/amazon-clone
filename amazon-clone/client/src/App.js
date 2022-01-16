@@ -131,7 +131,7 @@ class App extends React.Component {
     const { data, basket, subtotal } = this.state;
     return (
       <Router>
-        <div className="App">
+        <div className="d-flex row">
           <Switch>
             <Route path="/login">
               <Login setLocalState={this.setLocalState} />
