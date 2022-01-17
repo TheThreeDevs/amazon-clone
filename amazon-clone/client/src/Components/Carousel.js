@@ -1,6 +1,5 @@
 import './Carousel.css';
 import React, { useState, useEffect } from 'react';
-
 import FirstImg from './Images/amazonImg.jpg';
 import SecondImg from './Images/amazonImg2.jpg';
 import ThirdImg from './Images/amazonImg3.jpg';
@@ -25,8 +24,8 @@ function Carousel () {
   }, [currImg]);
 
   return (
-    <div className='carousel'>
-      <div className='carouselInner' style={{backgroundImage: `url(${images[currImg]})`}}>
+    <div className='d-flex carousel'>
+      <div className='d-flex carouselInner' style={{backgroundImage: `url(${images[currImg]})`}}>
         <div className='left'> <ArrowBackIosIcon className='carouselArrow' onClick={() => {currImg > 0 && setCurrImg(currImg - 1)}}/> </div>
         <div className='center'></div>
         <div className='right'> <ArrowForwardIosIcon className='carouselArrow' onClick={() => {currImg < images.length - 1 &&  setCurrImg(currImg + 1)}}/> </div>
