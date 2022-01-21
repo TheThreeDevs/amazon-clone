@@ -1,6 +1,6 @@
 # Amazon clone
 
-Emmanuel and I created an Amazon clone were a user has the same experience as the Amazon website.  
+This application mirrors the Amazon site user's experience.
 
 ## Features
 
@@ -43,7 +43,7 @@ Edit Account
 1. React
 2. React Router
 3. Axios
-4. Express
+4. PM2
 5. Material-UI
 6. React Bootstrap
 7. Firebase
