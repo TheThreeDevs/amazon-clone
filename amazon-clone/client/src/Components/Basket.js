@@ -1,8 +1,9 @@
 import './Basket.css';
 import { useHistory } from 'react-router-dom'
+import { useAuth } from "../contexts/AuthContext";
 
 function Basket ({productAmount, basket, subtotal, removeProduct}) {
-
+  const { currentUser } = useAuth();
   const history = useHistory();
 
   //Will have to apply conditional rendering to this component
@@ -13,10 +14,12 @@ function Basket ({productAmount, basket, subtotal, removeProduct}) {
       <div className="Basket">
         Your Amazon Cart is empty
       </div>
-      <div className="BasketButtons">
-        <button className="ButtonOne" onClick={() => history.push(`/login`)}>Sign in to your account</button>
-        <button className="ButtonTwo" onClick={() => history.push(`/signup`)}>Sign up now</button>
-      </div>
+      { currentUser ? null :
+        <div className="BasketButtons">
+        <button className="ButtonOne" onClick={() => history.push("/login")}>Sign in to your account</button>
+        <button className="ButtonTwo" onClick={() => history.push("/signup")}>Sign up now</button>
+        </div>
+      }
     </div>;
     } else {
       //display the products that we have in the basket
