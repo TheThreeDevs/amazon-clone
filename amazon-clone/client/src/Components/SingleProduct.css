@@ -66,3 +66,12 @@
   flex-direction: row;
   margin-left: 35px;
 }
+
+@media only screen and (max-width: 550px) {
+  .containerTitle {
+    font-size: .65rem;
+  }
+  .containerDescription {
+    font-size: .65rem;
+  }
+}
