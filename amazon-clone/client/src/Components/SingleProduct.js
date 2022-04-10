@@ -10,7 +10,14 @@ function SingleProduct({
   price,
   description,
   getProductInfo,
+  width
 }) {
+  // const breakpoint = 480;
+  // if (width < breakpoint) {
+  //   console.log("I am phone width.");
+  // } else {
+  //   console.log("Computer width");
+  // }
   return (
     <div className="singleContainer">
       {/* title */}

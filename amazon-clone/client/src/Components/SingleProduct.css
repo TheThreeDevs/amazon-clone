@@ -67,11 +67,36 @@
   margin-left: 35px;
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 660px) {
   .containerTitle {
     font-size: .65rem;
   }
   .containerDescription {
     font-size: .65rem;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .containerTitle {
+    font-size: .75rem;
+  }
+  .containerDescription {
+    font-size: .65rem;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .containerButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .containerButtons button {
+    font-size: .50rem;
+    width: 70%;
+    height: auto;
+  }
+  .containerPrice {
+    font-size: .50rem;
   }
 }

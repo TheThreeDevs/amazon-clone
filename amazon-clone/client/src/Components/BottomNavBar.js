@@ -10,7 +10,6 @@ function BottomNavBar(props) {
   useEffect(() => {
     const handleWindowResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleWindowResize);
-    console.log("New width: ", width);
     return () => window.removeEventListener("resize", handleWindowResize);
   }, []);
 
