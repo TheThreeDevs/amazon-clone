@@ -106,7 +106,7 @@ function UserInfoChange() {
   return (
     <div className="container">
       <div className="divContainer">
-        <h3 className="title"> Login & security</h3>
+        <h3 className="tileUserInfo"> Login & security</h3>
         {message ? (
           <Alert
             variant="success"
