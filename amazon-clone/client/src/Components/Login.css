@@ -16,7 +16,7 @@
 .loginFormContainer {
   display: flex;
   flex-direction: column;
-  max-width: 320px;
+  width: 320px;
   background-color: white;
   margin: auto;
   border-style: solid;

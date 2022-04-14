@@ -110,7 +110,7 @@ function UserInfoChange() {
         {message ? (
           <Alert
             variant="success"
-            style={{ width: '630px' }}
+            style={{ width: '100%' }}
             className="flex align-self-center text-center"
           >
             <p>{message}</p>
