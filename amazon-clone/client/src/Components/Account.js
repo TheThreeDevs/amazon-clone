@@ -15,12 +15,14 @@ import ListPic from "./Images/Lists.png";
 function Account() {
   return (
     <div className="accountContainer">
-      <h2 className="accountTitle">Your Account</h2>
+      <div className="titleBox">
+        <h2 className="accountTitle">Your Account</h2>
+      </div>
       <div className="accountBox">
         {/* Here I need to make four rows with three containers  */}
         {/* Need to create three cards in the row */}
         <div className="accountCard">
-        <img src={OrdersPic} alt="orders" className="cardImg" />
+          <img src={OrdersPic} alt="orders" className="cardImg" />
           <div className="cardColumn">
             <div className="cardTitle"> Your Orders </div>
             <div className="cardParagraph">
@@ -78,9 +80,7 @@ function Account() {
         <div className="accountCard">
           <img src={DigitalPic} alt="orders" className="cardImg" />
           <div className="cardColumn">
-            <div className="cardTitle">
-              Digital Issues
-            </div>
+            <div className="cardTitle">Digital Issues</div>
             <div className="cardParagraph">Troubleshoot device issues</div>
           </div>
         </div>

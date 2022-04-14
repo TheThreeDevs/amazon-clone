@@ -1,9 +1,10 @@
 import React, { useState, useRef } from "react";
-import { Card, Form, Container, Button, Alert } from "react-bootstrap";
+import { Card, Form, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "../firebase";
 import { database } from "../firebase";
+import "./SignUp.css";
 
 function SignUp() {
   const [disabled, setDisabled] = useState(false);
@@ -59,22 +60,22 @@ function SignUp() {
   }
 
   return (
-    <Container
-      className="d-flex column justify-content-center mt-5"
+    <div
+      className="signUpContainer"
     >
-      <div className="w-30" style={{maxWidth: "70%"}}>
+      <div className="createAccountContainer">
         <Link to="/">
           <img
-            className="LoginLogo"
+            className="amazonLogo"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9//Amazon_logo.svg/1024px-Amazon_logo.svg.png"
             alt="logo"
           />
         </Link>
-        <Card className="flex">
+        <Card>
           <Card.Body>
             <h2>Create account</h2>
             {error && <Alert variant="danger">{error}</Alert>}
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} className="signUpForm">
               <Form.Group id="name">
                 <Form.Label className="mb-0">Your name</Form.Label>
                 <Form.Control type="text" ref={nameRef} required />
@@ -113,8 +114,8 @@ function SignUp() {
               <p className="mt-1" style={{ fontSize: "10px" }}>
                 {" "}
                 By creating an account, you agree to Amazon's{" "}
-                <a href="/">Conditions of Use</a> and{" "}
-                <a href="/">Privacy Notice.</a>
+                <a href="/signup">Conditions of Use</a> and{" "}
+                <a href="/signup">Privacy Notice.</a>
               </p>
 
               <p className="mt-3">
@@ -127,7 +128,7 @@ function SignUp() {
           </Card.Body>
         </Card>
       </div>
-    </Container>
+    </div>
   );
 }
 

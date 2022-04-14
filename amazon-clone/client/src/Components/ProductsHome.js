@@ -14,7 +14,7 @@ function ProductsHome() {
               state: { category: `men's clothing` },
             }}
           >
-            <div className="productsImg" />
+            <div className="productsImg img" />
             <div className="takeLook">Take a look</div>
           </Link>
         </div>
@@ -24,7 +24,7 @@ function ProductsHome() {
             className="url"
             to={{ pathname: "/products", state: { category: "jewelery" } }}
           >
-            <div className="productsImgTwo" />
+            <div className="productsImgTwo img" />
             <div className="takeLook">Take a look</div>
           </Link>
         </div>
@@ -34,7 +34,7 @@ function ProductsHome() {
             className="url"
             to={{ pathname: "/products", state: { category: "electronics" } }}
           >
-            <div className="productsImgThree" />
+            <div className="productsImgThree img" />
             <div className="takeLook">Take a look</div>
           </Link>
         </div>
@@ -47,7 +47,7 @@ function ProductsHome() {
               state: { category: `women's clothing` },
             }}
           >
-            <div className="productsImgFour" />
+            <div className="productsImgFour img" />
             <div className="takeLook">Take a look</div>
           </Link>
         </div>
