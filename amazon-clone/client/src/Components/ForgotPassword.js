@@ -29,13 +29,13 @@ function ForgotPassword(props) {
 
   return (
     <Container
-      className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
+      className="d-flex align-items-center mt-5"
+      style={{ minHeight: "80vh" }}
     >
       <div className="w-80" style={{ minWidth: "280px", maxWidth: "350px" }}>
         <Link to="/">
           <img
-            className="LoginLogo"
+            className="amazonLogo"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9//Amazon_logo.svg/1024px-Amazon_logo.svg.png"
             alt="logo"
           />

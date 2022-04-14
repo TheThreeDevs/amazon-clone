@@ -53,7 +53,7 @@
 .cardColumn {
   grid-column: 2 / span 1;
   display: grid;
-  grid-template-rows: 45% 55%;
+  grid-template-rows: 40% 60%;
 }
 
 .cardImg {
@@ -94,7 +94,7 @@
     font-size: 0.80rem;
   }
   .cardParagraph {
-    font-size: .55rem;
+    font-size: .50rem;
   }
   .cardImg {
     grid-column: 1 / span 1;

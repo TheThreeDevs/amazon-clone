@@ -1,75 +1,84 @@
-.LoginLogo {
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.amazonLogo {
   width: 100px;
   margin: auto;
   object-fit: contain;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 2%;
+  margin-bottom: 2%;
   display: flex;
   justify-content: center;
 }
 
-.Login {
-  background-color: white;
+.loginFormContainer {
   display: flex;
   flex-direction: column;
-}
-
-.LoginContainer {
-  display: flex;
-  flex-direction: column;
-  width: 350px;
-  height: 310px;
+  max-width: 320px;
   background-color: white;
   margin: auto;
   border-style: solid;
   border-width: 1px;
   border-color: lightgrey;
-  border-radius: 5px;
-  margin-bottom: 50px;
+  border-radius: 3px;
+  /* margin-bottom: 50px; */
 }
 
-.LoginContainer > h1 {
-  justify-content: flex-start;
-  margin-left: 20px;
-  margin-bottom: -10px;
+.title {
+  display: flex;
+  margin-left: 4%;
   font-weight: normal;
+  font-size: 2rem;
 }
 
-.LoginContainer > form > h5 {
-  margin-left: 20px;
-  margin-bottom: 5px;
+.loginFormContainer > form > h5 {
+  margin-left: 4%;
+  font-weight: bold;
+  font-size: 0.75rem;
 }
-
-.LoginContainer > form > input {
-  margin-left: 20px;
-  margin-bottom: 10px;
-  width: 300px;
-  height: 25px;
-}
-
-.LoginContainer > form > button {
-  width: 310px;
-  height: 30px;
-  margin-bottom: 10px;
-  background-color: #cd9042;
-  margin-left: 20px;
-}
-
-.LoginContainer > form > p {
-  font-size: 12px;
-  margin-left: 20px;
-}
-
-.LoginButton > button {
-  margin: auto;
+.justDiv {
+  width: 100%;
   display: flex;
   justify-content: center;
-  width: 350px;
-  height: 30px;
-  text-align: center;
-  padding-top: 5px;
+  margin: 3% 0% 3% 0%;
+}
+.inputTop {
+  width: 90%;
+  border-radius: 4px;
 }
 
+.theContinueSubmit {
+  width: 90%;
+  height: 30px;
+  border-radius: 4px;
+  background-color: #cd9042;
+}
+
+.loginFormContainer > form > p {
+  font-size: .8rem;
+  margin-left: 4%;
+}
+
+.signUpButton {
+  margin-top: 3%;
+  display: flex;
+  align-self: center;
+  width: 320px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+
+@media only screen and (max-width: 800px) {
+  .loginFormContainer {
+    width: 280px;
+  }
+  .signUpButton {
+    width: 280px;
+  }
+}
 
 
 
