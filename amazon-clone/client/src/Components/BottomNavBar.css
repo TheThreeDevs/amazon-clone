@@ -1,9 +1,10 @@
 .mainDiv {
+  display: flex;
+  flex-wrap: nowrap;
   background-color: #23303f;
   position: static;
   line-height: 2.5em;
   font-size: 14px;
-  flex-wrap: nowrap;
 }
 .link {
   color: white;
@@ -39,7 +40,6 @@
 .middle {
   color: white;
   display: flex;
-  justify-content: space-evenly;
   width: 85%;
   white-space: pre-wrap;
   word-break: break-word;
@@ -51,7 +51,6 @@
   flex-wrap: nowrap;
   white-space: nowrap;
   width: 15%;
-  overflow: hidden;
 }
 
 .rightChild {
@@ -63,3 +62,9 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+/* @media only screen and (max-width: 480px) {
+  .middle {
+    justify-content: center;
+  }
+} */

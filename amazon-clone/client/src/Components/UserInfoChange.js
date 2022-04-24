@@ -36,7 +36,7 @@ function UserInfoChange() {
     try {
       let theFunction = functionToCall[action]
       await theFunction(input).then(() => {
-        setMessage('Success account info changed.')
+        setMessage('Success account info changed!')
         handleClose()
       })
     } catch (err) {
@@ -104,13 +104,13 @@ function UserInfoChange() {
   }
 
   return (
-    <div className="d-flex flex-column justify-content-center">
-      <div className="align-self-center">
-        <h3 className="mt-5"> Login & security</h3>
+    <div className="container">
+      <div className="divContainer">
+        <h3 className="tileUserInfo"> Login & security</h3>
         {message ? (
           <Alert
             variant="success"
-            style={{ width: '630px' }}
+            style={{ width: '100%' }}
             className="flex align-self-center text-center"
           >
             <p>{message}</p>
@@ -177,7 +177,6 @@ function UserInfoChange() {
           <div className="insideButton">
             <button
               className="editButton"
-              style={{ backgroundColor: '#f44336' }}
               onClick={() => history.push('/delete-account')}
             >
               Delete

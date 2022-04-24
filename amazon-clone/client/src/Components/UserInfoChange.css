@@ -1,23 +1,17 @@
-.loginTitle {
-  margin-left: 390px;
-  margin-top: 50px;
-  margin-bottom: 15px;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-.updateInfoContainer {
-  width: 630px;
-  height: 540px;
-  /* background-color: bisque; */
-  margin-left: 390px;
-  border: 1px #ddd solid;
-  font-size: 13px;
-
+.divContainer {
+  margin-top: 7%;
+  width: 80%;
+}
+.tileUserInfo {
+  margin-bottom: 2%;
 }
 
 .insideContainer {
-  width: 630px;
-  height: 90px;
-  /* background-color: chocolate; */
   border: solid grey 1px;
   display: flex;
   flex-direction: row;
@@ -26,24 +20,22 @@
 
 .insideCategory {
   padding: 20px;
-  /* background-color: darkcyan; */
   width: 80%;
-  font-size: 12px;
+  font-size: 1rem;
+  word-wrap: break-word;
 }
 
 .insideButton {
   display: flex;
-  /* background-color: darkkhaki; */
   width: 20%;
   justify-content: center;
   align-items: center;
-  border-radius: 4px;
 }
 
 .editButton {
   width: 70px;
   height: 30px;
-  font-size: 14px;
+  font-size: .9rem;
   border: 1px #ada6a5 solid;
   border-radius: 4px;
 }

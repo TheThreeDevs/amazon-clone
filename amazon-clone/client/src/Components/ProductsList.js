@@ -1,13 +1,18 @@
-import './ProductsList.css';
-import { useLocation } from 'react-router-dom';
-import SingleProduct from './SingleProduct';
-// import {useState} from 'react';
+import "./ProductsList.css";
+import { useLocation } from "react-router-dom";
+import SingleProduct from "./SingleProduct";
+// import { useState, useEffect } from "react";
 
-function ProductsList ({data, getProductInfo}) {
-
+function ProductsList({ data, getProductInfo }) {
   //to get the state from the Link
   const location = useLocation();
-  const {category} = location.state;
+  const { category } = location.state;
+  // const [width, setWidth] =  useState();
+  // useEffect(() => {
+  //   const handleWindowResize = () => setWidth(window.innerWidth);
+  //   window.addEventListener("resize", handleWindowResize);
+  //   return () => window.removeEventListener("resize", handleWindowResize);
+  // }, []);
 
   //here is the products for the specific category
   // const [products, setProducts] = useState([]);
@@ -15,21 +20,28 @@ function ProductsList ({data, getProductInfo}) {
     return null;
   }
 
-  let products = data.filter(product => product.category === category);
+  let products = data.filter((product) => product.category === category);
 
   return (
     <div>
-      <div className='productsList'>
-        <h1 className='productsHeader'> {category.toUpperCase()} </h1>
+      <div className="productsList">
+        <h1 className="productsHeader"> {category.toUpperCase()} </h1>
         {products.map((product, i) => {
-          return <SingleProduct  key={i} image={product.image} title={product.title} rating={product.rating} price={product.price} description={product.description} getProductInfo={getProductInfo}/>
+          return (
+            <SingleProduct
+              key={i}
+              image={product.image}
+              title={product.title}
+              rating={product.rating}
+              price={product.price}
+              description={product.description}
+              getProductInfo={getProductInfo}
+            />
+          );
         })}
-
       </div>
-
     </div>
-  )
+  );
 }
 
 export default ProductsList;
-

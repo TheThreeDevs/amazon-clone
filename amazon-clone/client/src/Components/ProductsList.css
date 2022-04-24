@@ -1,5 +1,7 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
 .productsList {
+  display: flex;
+  flex-direction: column;
   margin: 20px;
   padding-top: 5px;
   background-color: white;
@@ -9,4 +11,5 @@
   margin-left: 20px;
   margin-top: 40px;
   margin: 20px;
+  font-family: 'Lato', sans-serif;
 }

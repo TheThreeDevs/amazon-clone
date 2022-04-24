@@ -29,7 +29,7 @@
 
 .SearchInput {
   height: 12px;
-  padding: 10px;
+  padding: 11px;
   border: none;
   width: 100%;
   margin-right: 0.5%;
@@ -81,4 +81,11 @@
   text-decoration: none;
 }
 
-
+@media only screen and (max-width: 800px) {
+  .NavBarOptionOne {
+    font-size: .50rem;
+  }
+  .NavBarOptionTwo {
+    font-size: .50rem;
+  }
+}

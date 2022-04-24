@@ -70,31 +70,31 @@ function Login(props) {
 
   function beforeValidEmail() {
     return (
-      <div className="LoginContainer">
-        <h1 className="mb-2 mt-1">Sign-In</h1>
+      <div className="loginFormContainer">
+        <h1 className="title">Sign-In</h1>
         {error && (
           <p
             style={{
-              fontSize: '13px',
-              paddingLeft: '6%',
-              paddingRight: '6%',
               color: errorColor,
-              marginBottom: '-5px',
             }}
           >
             {error}
           </p>
         )}
-        <form onSubmit={handleSubmitEmail}>
+        <form className="theSignForm" onSubmit={handleSubmitEmail}>
           <h5>Email or mobile phone number</h5>
-          <input type="email" value={email} onChange={emailChange} />
-          <button>Continue</button>
+          <div className='justDiv'>
+           <input className="inputTop" type="email" value={email} onChange={emailChange} />
+          </div>
+          <div className='justDiv'>
+          <button className="theContinueSubmit">Continue</button>
+          </div>
           <p>
             By continuing, you agree to Amazon's Conditions of Use and Privacy
             Notice.
           </p>
           <p>
-            Forgot <Link to="/forgot-password">Password?</Link>
+            <Link to="/forgot-password">Forgot Password?</Link>
           </p>
         </form>
       </div>
@@ -103,27 +103,29 @@ function Login(props) {
 
   function afterValidEmail() {
     return (
-      <div className="LoginContainer">
-        <h1 className="mb-2 mt-1">Sign-In</h1>
+      <div className="loginFormContainer">
+        <h1 className="title">Sign-In</h1>
         {error && (
           <p
             style={{
-              fontSize: '13px',
-              paddingLeft: '6%',
-              paddingRight: '6%',
               color: errorColor,
-              marginBottom: '-5px',
             }}
           >
             {error}
           </p>
         )}
 
-        <form onSubmit={handleSubmit}>
-          <input type="email" value={email} onChange={emailChange} />
+        <form className="theSignForm" onSubmit={handleSubmit}>
+        <div className='justDiv'>
+          <input className="inputTop" type="email" value={email} onChange={emailChange} />
+        </div>
           <h5>Password</h5>
-          <input type="password" ref={passwordRef} />
-          <button disabled={disabled}>Submit</button>
+          <div className='justDiv'>
+            <input className="inputTop" type="password" ref={passwordRef} />
+          </div>
+          <div className='justDiv'>
+          <button className="theContinueSubmit" disabled={disabled}>Submit</button>
+          </div>
           <p>
             Forgot <Link to="/forgot-password">password?</Link>
           </p>
@@ -136,18 +138,17 @@ function Login(props) {
   }
 
   return (
-    <div className="Login">
+    <div className="login">
       <Link to="/">
         <img
-          className="LoginLogo"
+          className="amazonLogo"
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9//Amazon_logo.svg/1024px-Amazon_logo.svg.png"
           alt="logo"
         />
       </Link>
       {!emailValid ? beforeValidEmail() : afterValidEmail()}
       {emailValid ? null : (
-        <div className="LoginButton">
-          <button>
+          <button className="signUpButton">
             <Link
               to="/signup"
               style={{
@@ -159,7 +160,6 @@ function Login(props) {
               Create Your Amazon Account
             </Link>
           </button>
-        </div>
       )}
     </div>
   )
