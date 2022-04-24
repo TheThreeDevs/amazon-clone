@@ -80,6 +80,7 @@
   display: flex;
   margin-top: 10px;
   border-bottom: solid 2px;
+  width: 100%;
 }
 
 .BasketSubtotal {
@@ -99,7 +100,7 @@
 }
 
 .MapImageContainer {
-  width: 180px;
+  width: 20%;
   height: 180px;
   /* background-color: maroon; */
 }
@@ -112,6 +113,42 @@
 
 .MapPrice {
   display: flex;
+  height: 100%;
   justify-content: flex-end;
-  width: 350px;
+  width: 30%;
+}
+
+.MapTitle {
+  height: 100%;
+  width: 40%;
+}
+
+.MapDelete {
+  width: 10%;
+  height: 35px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .MapContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .MapImageContainer {
+    display: flex;
+    width: 100%;
+    /* align-items: center; */
+    justify-content: center;
+  }
+  .MapPrice {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .MapTitle {
+    width: 100%;
+    text-align: center;
+    margin: 2%;
+  }
+  .MapDelete {
+    width: 50%;
+  }
 }
