@@ -20,26 +20,26 @@ function BottomNavBar(props) {
         <span className="leftChild">All</span>
       </div>
       <div className="middle">
-        <a href="/" className="link">
+        <span className="link">
           Customer Service
-        </a>
-        <a href="/" className="link">
+        </span>
+        <span className="link">
           Prime
-        </a>
+        </span>
         {width > breakpoint ? (
           <Fragment>
-            <a href="/" className="link">
+            <span  className="link">
               Shopper Toolkit
-            </a>
-            <a href="/" className="link">
+            </span>
+            <span  className="link">
               Gift Cards
-            </a>
-            <a href="/" className="link">
+            </span>
+            <span  className="link">
               Sports & Fitness
-            </a>
-            <a href="/" className="link">
+            </span>
+            <span  className="link">
               Coupons
-            </a>
+            </span>
           </Fragment>
         ) : null}
       </div>
