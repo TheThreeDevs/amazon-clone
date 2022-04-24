@@ -1,28 +1,39 @@
-.accountTitle {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 200px;
-}
-
-.accountBox {
-  height: 530px;
-  width: 70%;
-  margin-left: 180px;
-}
-
-.accountRow {
+/* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap'); */
+.accountContainer {
+  height: 70vh;
+  padding-top: 25px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.accountBox {
+  width: 75%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-row-gap: 5%;
+  grid-column-gap: 2%;
+}
+.titleBox {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 3;
+  width: 100%;
+}
+.accountTitle {
+  display: flex;
+  padding-left: 12.5%;
 }
 
 .accountCard {
-  display: flex;
-  width: 300px;
-  height: 100px;
-  margin: 15px;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 35% 65%;
   cursor: pointer;
-  flex-direction: row;
   border: 1px solid grey;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .accountCard:hover {
@@ -40,20 +51,61 @@
 }
 
 .cardColumn {
-  padding-top: 20px;
+  grid-column: 2 / span 1;
+  display: grid;
+  grid-template-rows: 40% 60%;
 }
 
 .cardImg {
+  margin: auto;
+  grid-column: 1 / span 1;
   width: 70px;
   height: 70px;
-  margin: 10px;
+  border-radius: 50%;
 }
 
 .cardTitle {
-  margin-bottom: 5px;
+  /* margin-bottom: 2px; */
   font-weight: bold;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .cardParagraph {
-  font-size: 12px;
+  font-size: .75rem;
+  display: flex;
+  justify-self: flex-start;
+}
+@media only screen and (max-width: 880px) { 
+  .cardTitle {
+    font-size: 0.70rem;
+    text-align: center;
+  }
+  .cardParagraph {
+    font-size: .55rem;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  .cardTitle {
+    font-size: 0.80rem;
+  }
+  .cardParagraph {
+    font-size: .50rem;
+  }
+  .cardImg {
+    grid-column: 1 / span 1;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .accountBox {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-row-gap: 15px;
+    grid-column-gap: 15px;
+  } 
 }

@@ -10,7 +10,14 @@ function SingleProduct({
   price,
   description,
   getProductInfo,
+  width
 }) {
+  // const breakpoint = 480;
+  // if (width < breakpoint) {
+  //   console.log("I am phone width.");
+  // } else {
+  //   console.log("Computer width");
+  // }
   return (
     <div className="singleContainer">
       {/* title */}
@@ -21,20 +28,22 @@ function SingleProduct({
           <img src={image} alt="product" className="productImage" />
         </div>
         <div className="containerDescription">
-          {description.length > 500
-            ? `${description.substring(0, 450)}...`
-            : description}
+        <p>{description.length > 500
+          ? `${description.substring(0, 450)}...`
+          : description}</p>
         </div>
       </div>
       {/* rating */}
       {/* <div className='containerRating'>{rating.rate}</div> */}
+      <div className="pricerating">
       <div className="containerRating">
-        <Stack spacing={1}>
-          <Rating value={rating.rate} precision={0.5} readOnly />
-        </Stack>
+      <Stack spacing={1}>
+      <Rating value={rating.rate} precision={0.5} readOnly />
+      </Stack>
       </div>
       {/* price */}
       <div className="containerPrice"> Price: ${price}</div>
+      </div>
       <div className="containerButtons">
         {/* Add a onClick event to this button to send back the product info to App.js */}
         {/* Get all the product information we need and put it inside an object */}
