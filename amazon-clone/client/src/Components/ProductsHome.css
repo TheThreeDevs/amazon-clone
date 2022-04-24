@@ -75,11 +75,36 @@
 }
 
 @media only screen and (max-width: 700px) {
+  .productsHome {
+    grid-template-columns: 2% 1fr 1fr 2%;
+    grid-template-rows: 1fr 1fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 10px;
+    /* height: 400px; */
+    margin-top: 2% !important;
+    margin-bottom: 2% !important;
+  }
+  .one {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+  }
+  .two {
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 1;
+  }
+  .three {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+  }
+  .four {
+    grid-column: 3 / span 1;
+    grid-row: 2 / span 1;
+  }
   .productCard h2 {
     font-size: 0.55rem;
   }
   .takeLook {
-    font-size: .60rem;
+    display: none;
   }
   .img {
     height: 150px;
