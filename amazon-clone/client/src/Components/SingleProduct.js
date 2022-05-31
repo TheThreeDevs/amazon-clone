@@ -55,7 +55,7 @@ function SingleProduct({
         >
           Add to Cart
         </button>
-        <Link to="/basket">
+        <Link to="/basket" style={{all: "unset"}}>
           <button
             className="containerButtonTwo"
             onClick={() => {

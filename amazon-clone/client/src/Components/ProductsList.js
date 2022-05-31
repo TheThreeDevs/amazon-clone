@@ -1,11 +1,15 @@
 import "./ProductsList.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import SingleProduct from "./SingleProduct";
-// import { useState, useEffect } from "react";
 
 function ProductsList({ data, getProductInfo }) {
   //to get the state from the Link
+  const history = useHistory();
   const location = useLocation();
+  if (!location.state) {
+    history.replace("/");
+    return <div><h2>Loading...</h2></div>;
+  }
   const { category } = location.state;
   // const [width, setWidth] =  useState();
   // useEffect(() => {
