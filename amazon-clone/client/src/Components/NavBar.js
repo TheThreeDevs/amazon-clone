@@ -22,7 +22,7 @@ function NavBar({ productAmount }) {
           <Link to='/account' className='NavBarAccount'>
             <ListGroup.Item action style={{border: 'none' , borderBottom: 'solid lightgrey 1px'}}>Account</ListGroup.Item>
           </Link>
-          <ListGroup.Item action >Orders</ListGroup.Item>
+          <ListGroup.Item action>Orders</ListGroup.Item>
           <ListGroup.Item action>Recommendations</ListGroup.Item>
           <ListGroup.Item action>Prime Membership</ListGroup.Item>
           <ListGroup.Item action>Start a Selling Account</ListGroup.Item>
@@ -81,9 +81,9 @@ function NavBar({ productAmount }) {
       </Link>
       {/* Search Bar and button */}
       <div className="NavBarSearch">
-        <form className="NavBarSearch" onSubmit={handleSearch}>
+        <form className="NavBarSearchTwo" onSubmit={handleSearch}>
         <input type="text" className="SearchInput" value={search} onChange={e => setSearch(e.target.value)}/>
-        <SearchIcon className="SearchIcon ml-2" onClick={handleSearch}/>
+        <SearchIcon className="SearchIcon" onClick={handleSearch}/>
         </form>
       </div>
 

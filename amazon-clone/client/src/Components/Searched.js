@@ -11,7 +11,7 @@ function Searched({ data, getProductInfo }) {
   let filtered = filter(data, search);
   return (
     <React.Fragment>
-      <ProductsResult filtered={filtered} getProductInfo={getProductInfo}/>
+      <ProductsResult filtered={filtered} getProductInfo={getProductInfo} search={search}/>
     </React.Fragment>
   );
 }
