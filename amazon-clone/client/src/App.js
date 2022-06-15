@@ -17,6 +17,7 @@ import PrivateAccount from "./Components/PrivateAccount";
 import { database } from "./firebase";
 import axios from "axios";
 import PrivateUserInfo from "./Components/PrivateUserInfo";
+import Footer from "./Components/Footer";
 
 class App extends React.Component {
   static contextType = AuthContext;
@@ -123,7 +124,7 @@ class App extends React.Component {
     const { data, basket, subtotal } = this.state;
     return (
       <Router>
-        <div className="d-flex row">
+        <div className="appContainer">
           <Switch>
             <Route path="/login">
               <Login setLocalState={this.setLocalState} />
@@ -137,11 +138,13 @@ class App extends React.Component {
                 subtotal={subtotal}
                 removeProduct={this.removeProduct}
               />
+              <Footer/>
             </Route>
             <Route path="/products">
               <NavBar productAmount={basket.length} />
               <BottomNavBar />
               <ProductsList data={data} getProductInfo={this.getProductInfo} />
+              <Footer/>
             </Route>
             <Route path="/signup">
               <SignUp />
@@ -153,6 +156,7 @@ class App extends React.Component {
               <NavBar productAmount={basket.length} />
               <BottomNavBar />
               <Searched data={data} getProductInfo={this.getProductInfo} />
+              <Footer/>
             </Route>
             <PrivateRoute
               path="/account"
@@ -177,6 +181,7 @@ class App extends React.Component {
               <Carousel />
               <ProductsHome />
               <BottomCarousel />
+              <Footer/>
             </Route>
           </Switch>
         </div>

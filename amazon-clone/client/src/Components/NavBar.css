@@ -2,17 +2,21 @@
   background-color: #131921;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
   position: sticky;
   top: 0;
   z-index: 100;
   height: 6vh;
+  padding: 0 !important;
 }
 .NavBar_Logo {
+  display: flex;
   width: 100px;
+  height: auto;
   object-fit: contain;
-  margin-left: 20px;
+  margin-left: 25px;
   margin-right: 20px;
-  margin-top: 18px;
+  margin-top: 15px;
   cursor: pointer;
 }
 .NavBarSearch {
@@ -24,6 +28,7 @@
   display: flex;
   flex: 1;
   align-items: center;
+  justify-content: space-evenly;
 }
 .NavBarAccount {
   text-decoration: none !important;
@@ -34,29 +39,31 @@
   height: 30px;
   border: none;
   width: 95%;
-  margin-left: 0.75%;
-  margin-right: 0.2%;
   font-size: 16px;
-  padding: 5px;
   border-radius: 5px;
 }
 .SearchIcon {
   padding: 4px;
   border-radius: 5px;
   height: 30px !important;
-  width: 25px !important;
+  width: 30px !important;
   background-color: #cd9042;
   cursor: pointer;
 }
 .NavBarHeader {
   color: white;
   display: flex;
-  justify-content: space-evenly;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
   text-decoration: none;
+  width: 20vw;
 }
 .NavBarOption {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  height: 100%;
   margin-left: 10px;
   margin-right: 10px;
   cursor: pointer;
@@ -85,10 +92,19 @@
   .NavBar {
     height: 7vh;
   }
+  .NavBar_Logo {
+    width: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
   .NavBarOptionOne {
     font-size: .50rem;
   }
   .NavBarOptionTwo {
     font-size: .50rem;
+  }
+  .NavBarHeader {
+    width: min-content;
   }
 }

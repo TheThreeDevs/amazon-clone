@@ -9,9 +9,7 @@ function ProductsResult({search, filtered, getProductInfo}) {
         {filtered.map((product, i) => {
           return <SingleProduct  key={i} image={product.image} title={product.title} rating={product.rating} price={product.price} description={product.description} getProductInfo={getProductInfo}/>
         })}
-
       </div>
-
     </div>
   )
 }
