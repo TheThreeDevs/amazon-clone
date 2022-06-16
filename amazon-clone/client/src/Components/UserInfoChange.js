@@ -195,8 +195,10 @@ function UserInfoChange() {
             <button className="editButton">Edit</button>
           </div>
         </div>
-        <Link to="/account" className="align-self-start">
-          <button className="mb-2 mt-2 doneButton">Done</button>
+        <Link to="/account" style={{ textDecoration: "none"}}>
+          <div className="divDoneButton">
+          <button className="doneButton">Done</button>
+          </div>
         </Link>
       </div>
 

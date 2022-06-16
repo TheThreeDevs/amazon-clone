@@ -36,7 +36,16 @@
   border: 1px #ada6a5 solid;
   border-radius: 4px;
 }
+.divDoneButton {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  text-decoration: none;
+}
 .doneButton {
   background-color: #f0c14b;
   border-radius: 4px;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: black;
 }

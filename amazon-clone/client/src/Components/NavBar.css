@@ -8,6 +8,7 @@
   z-index: 100;
   height: 6vh;
   padding: 0 !important;
+  min-height: 8vh;
 }
 .NavBar_Logo {
   display: flex;
@@ -64,21 +65,29 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  margin-left: 10px;
-  margin-right: 10px;
   cursor: pointer;
+  padding: 1px 5px 1px 5px;
+}
+.NavBarOption:hover {
+  border: 1px solid white;
 }
 .NavBarOptionOne {
-  font-size: 10px;
+  font-size: .8rem;
 }
 .NavBarOptionTwo {
-  font-size: 13px;
+  font-size: .9rem;
   font-weight: 800;
 }
 .NavBarOptionBasket {
   display: flex;
   height: 100%;
   align-items: center;
+  padding: 0 0 0 5px;
+  height: 100%;
+}
+.NavBarOptionBasket:hover {
+  border: 1px solid white;
+  color: white;
 }
 .NavBarBasketCount {
   margin-left: 10px;
@@ -87,6 +96,16 @@
 .NavBarLink {
   color: white;
   text-decoration: none;
+  height: 100%;
+  padding-right: 1%;
+}
+@media only screen and (max-width: 1100px) {
+  .NavBarOptionOne { 
+    font-size: 0.7rem;
+  }
+  .NavBarOptionTwo{ 
+    font-size: 0.8rem;
+  }
 }
 @media only screen and (max-width: 800px) {
   .NavBar {
