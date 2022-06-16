@@ -2,36 +2,33 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
 }
 .divContainer {
-  margin-top: 7%;
+  margin-top: 3%;
   width: 80%;
 }
 .tileUserInfo {
   margin-bottom: 2%;
 }
-
 .insideContainer {
   border: solid grey 1px;
   display: flex;
   flex-direction: row;
   border: 1px #ddd solid;
 }
-
 .insideCategory {
   padding: 20px;
   width: 80%;
   font-size: 1rem;
   word-wrap: break-word;
 }
-
 .insideButton {
   display: flex;
   width: 20%;
   justify-content: center;
   align-items: center;
 }
-
 .editButton {
   width: 70px;
   height: 30px;
@@ -39,8 +36,16 @@
   border: 1px #ada6a5 solid;
   border-radius: 4px;
 }
-
+.divDoneButton {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  text-decoration: none;
+}
 .doneButton {
   background-color: #f0c14b;
   border-radius: 4px;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: black;
 }

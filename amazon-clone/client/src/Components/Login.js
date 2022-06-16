@@ -76,6 +76,7 @@ function Login(props) {
           <p
             style={{
               color: errorColor,
+              textAlign: "center"
             }}
           >
             {error}
@@ -109,6 +110,7 @@ function Login(props) {
           <p
             style={{
               color: errorColor,
+              textAlign: "center"
             }}
           >
             {error}
@@ -155,6 +157,7 @@ function Login(props) {
                 textDecoration: 'none',
                 color: 'black',
                 alignSelf: 'center',
+                textAlign: "center"
               }}
             >
               Create Your Amazon Account
@@ -166,5 +169,3 @@ function Login(props) {
 }
 
 export default Login
-
-// NEED TO FIGURE OUT HOW TO MAKE THE REST OF THE PAGE WHITE

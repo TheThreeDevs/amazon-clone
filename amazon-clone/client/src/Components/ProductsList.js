@@ -8,7 +8,15 @@ function ProductsList({ data, getProductInfo }) {
   const location = useLocation();
   if (!location.state) {
     history.replace("/");
-    return <div><h2>Loading...</h2></div>;
+    return (
+      <div className="productsListWaiter">
+        <div className="spinner">
+          <div></div>
+          <div></div>
+          <span>Loading..</span>
+        </div>
+      </div>
+    );
   }
   const { category } = location.state;
   // const [width, setWidth] =  useState();
@@ -21,29 +29,34 @@ function ProductsList({ data, getProductInfo }) {
   //here is the products for the specific category
   // const [products, setProducts] = useState([]);
   if (!data) {
-    return null;
+    return (
+      <div className="productsListWaiter">
+        <div className="spinner">
+          <div></div>
+          <div></div>
+          <span>Loading..</span>
+        </div>
+      </div>
+    );
   }
-
   let products = data.filter((product) => product.category === category);
 
   return (
-    <div>
-      <div className="productsList">
-        <h1 className="productsHeader"> {category.toUpperCase()} </h1>
-        {products.map((product, i) => {
-          return (
-            <SingleProduct
-              key={i}
-              image={product.image}
-              title={product.title}
-              rating={product.rating}
-              price={product.price}
-              description={product.description}
-              getProductInfo={getProductInfo}
-            />
-          );
-        })}
-      </div>
+    <div className="productsList">
+      <h1 className="productsHeader"> {category.toUpperCase()} </h1>
+      {products.map((product, i) => {
+        return (
+          <SingleProduct
+            key={i}
+            image={product.image}
+            title={product.title}
+            rating={product.rating}
+            price={product.price}
+            description={product.description}
+            getProductInfo={getProductInfo}
+          />
+        );
+      })}
     </div>
   );
 }

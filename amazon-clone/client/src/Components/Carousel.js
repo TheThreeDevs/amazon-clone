@@ -24,8 +24,8 @@ function Carousel () {
   }, [currImg]);
 
   return (
-    <div className='d-flex carousel'>
-      <div className='d-flex carouselInner' style={{backgroundImage: `url(${images[currImg]})`}}>
+    <div className='carouselOuter'>
+      <div className='carouselInner' style={{backgroundImage: `url(${images[currImg]})`}}>
         <div className='left'> <ArrowBackIosIcon className='carouselArrow' onClick={() => {currImg > 0 && setCurrImg(currImg - 1)}}/> </div>
         <div className='center'></div>
         <div className='right'> <ArrowForwardIosIcon className='carouselArrow' onClick={() => {currImg < images.length - 1 &&  setCurrImg(currImg + 1)}}/> </div>

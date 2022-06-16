@@ -7,27 +7,23 @@
   flex-direction: column;
   background-color: lightgray;
 }
-
 .Basket {
   display: flex;
   font-size: 25px;
   margin-top: 20px;
   margin-left: 20px;
 }
-
 .BasketButtons {
   display: flex;
   margin-top: 40px;
   margin-left: 20px;
   font-size: 0.80rem;
 }
-
 .BasketButtons > button {
   display: flex;
   margin-right: 10px;
   cursor: pointer;
 }
-
 .ButtonOne {
   background-color: #ffd500;
   height: 40px;
@@ -38,7 +34,6 @@
   border: 2px solid #e7e7e7;
   padding: 2px;
 }
-
 .ButtonTwo {
   background-color: white;
   height: 40px;
@@ -49,69 +44,58 @@
   border: 2px solid #e7e7e7;
   padding: 2px;
 }
-
 .BasketP > p {
   display: flex;
   font-size: 12px;
   flex-wrap: wrap;
   width: 75%;
 }
-
 .BasketP {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 70vh;
 }
-
 .Basket2 > h2 {
   margin: 10px;
 }
-
 .BasketContainer2 {
   width: 80%;
   margin: 20px;
 }
-
 .Basket2 {
   /* background-color: lime; */
   /* border-bottom: solid 2px; */
 }
-
 .MapContainer {
   display: flex;
   margin-top: 10px;
   border-bottom: solid 2px;
   width: 100%;
 }
-
 .BasketSubtotal {
   font-weight: bold;
   display: flex;
   justify-content: flex-end;
 }
-
 .BasketProceedButton {
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
 }
-
 .BasketProceedButton > button {
   background-color: #ffd500;
 }
-
 .MapImageContainer {
   width: 20%;
   height: 180px;
   /* background-color: maroon; */
 }
-
 .MapImage {
   height: 180px;
   width: 180px;
   object-fit: contain;
 }
-
 .MapPrice {
   display: flex;
   height: 100%;
@@ -128,7 +112,6 @@
   width: 10%;
   height: 35px;
 }
-
 @media only screen and (max-width: 1000px) {
   .MapContainer {
     flex-direction: column;
