@@ -7,6 +7,7 @@ import Popover from "react-bootstrap/Popover";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useAuth } from "../contexts/AuthContext";
+import amazonLogo from "./Images/amazonLogo.png";
 
 function NavBar({ productAmount }) {
   const { currentUser, signOut } = useAuth();
@@ -75,7 +76,7 @@ function NavBar({ productAmount }) {
       <Link to="/" onClick={() => setSearch("")}>
         <img
           className="NavBar_Logo"
-          src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+          src={amazonLogo}
           alt="logo"
         />
       </Link>

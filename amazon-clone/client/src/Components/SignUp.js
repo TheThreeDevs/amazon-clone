@@ -105,7 +105,7 @@ function SignUp() {
               <div className="text-center m-2">
               <Button
               disabled={disabled}
-              style={{ backgroundColor: "#cd9042", color: "black" }}
+              style={{ backgroundColor: "#cd9042", color: "black", borderColor: "black" }}
               type="submit"
               >
               Create Your Amazon Account

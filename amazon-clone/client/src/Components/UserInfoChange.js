@@ -1,81 +1,80 @@
-import React, { useState } from 'react'
-import { Modal, Button, Form, Alert } from 'react-bootstrap'
-import './UserInfoChange.css'
-import { useHistory, Link } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext'
+import React, { useState } from "react";
+import { Modal, Button, Form, Alert } from "react-bootstrap";
+import "./UserInfoChange.css";
+import { useHistory, Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 function UserInfoChange() {
-  const {
-    currentUser,
-    updateProfileName,
-    updateTheEmail,
-    updateThePassword,
-  } = useAuth()
-  const [input, setInput] = useState('')
-  const [show, setShow] = useState(false)
-  const [form, setForm] = useState(null)
-  const [message, setMessage] = useState('')
-  const history = useHistory()
-  let theForm
+  const { currentUser, updateProfileName, updateTheEmail, updateThePassword } =
+    useAuth();
+  const [input, setInput] = useState("");
+  const [show, setShow] = useState(false);
+  const [form, setForm] = useState(null);
+  const [message, setMessage] = useState("");
+  const history = useHistory();
+  let theForm;
   //change email, change password, delete account, these require reauthentication.
   function determineForm(form) {
-    setForm(form)
-    setShow(true)
+    setForm(form);
+    setShow(true);
   }
 
   async function handleSubmit(e, action) {
-    e.preventDefault()
-    if (action === 'password' && input.length < 6) {
-      return
+    e.preventDefault();
+    if (action === "password" && input.length < 6) {
+      return;
     }
     const functionToCall = {
       name: updateProfileName,
       email: updateTheEmail,
       password: updateThePassword,
-    }
+    };
     try {
-      let theFunction = functionToCall[action]
+      let theFunction = functionToCall[action];
       await theFunction(input).then(() => {
-        setMessage('Success account info changed!')
-        handleClose()
-      })
+        setMessage("Success account info changed!");
+        handleClose();
+      });
     } catch (err) {
-      console.log('Error:', err.code)
-      if (err.code === 'auth/requires-recent-login') {
-        history.push('/login/reauthentication')
+      console.log("Error:", err.code);
+      if (err.code === "auth/requires-recent-login") {
+        history.push("/login/reauthentication");
       }
     }
   }
 
   const nameForm = (
-    <Form onSubmit={(e) => handleSubmit(e, 'name')}>
+    <Form onSubmit={(e) => handleSubmit(e, "name")}>
       <Form.Group>
         <Form.Label>Update Name</Form.Label>
         <Form.Control
           type="name"
           placeholder="Enter name"
+          value={input}
           onChange={(e) => setInput(e.target.value)}
+          required
         ></Form.Control>
       </Form.Group>
     </Form>
-  )
+  );
 
   const emailForm = (
-    <Form onSubmit={(e) => handleSubmit(e, 'email')}>
+    <Form onSubmit={(e) => handleSubmit(e, "email")}>
       <Form.Group>
         <Form.Label>Update Email</Form.Label>
         <Form.Control
           type="email"
           placeholder="Enter Email"
           value={input}
+          required
           onChange={(e) => setInput(e.target.value)}
         ></Form.Control>
       </Form.Group>
     </Form>
-  )
+  );
 
   const passwordForm = (
-    <Form onSubmit={(e) => handleSubmit(e, 'password')}>
+    <Form onSubmit={(e) => handleSubmit(e, "password")}>
       <Form.Group>
         <Form.Label>Update Password</Form.Label>
         <Form.Control
@@ -83,24 +82,25 @@ function UserInfoChange() {
           placeholder="Enter new Password"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          required
         ></Form.Control>
         <Form.Text>Password must be minimum 6 characters long.</Form.Text>
       </Form.Group>
     </Form>
-  )
+  );
 
   function handleClose() {
-    setShow(false)
-    setInput('')
-    setForm(null)
+    setShow(false);
+    setInput("");
+    setForm(null);
   }
 
-  if (form === 'name') {
-    theForm = nameForm
-  } else if (form === 'email') {
-    theForm = emailForm
-  } else if (form === 'password') {
-    theForm = passwordForm
+  if (form === "name") {
+    theForm = nameForm;
+  } else if (form === "email") {
+    theForm = emailForm;
+  } else if (form === "password") {
+    theForm = passwordForm;
   }
 
   return (
@@ -110,7 +110,7 @@ function UserInfoChange() {
         {message ? (
           <Alert
             variant="success"
-            style={{ width: '100%' }}
+            style={{ width: "100%" }}
             className="flex align-self-center text-center"
           >
             <p>{message}</p>
@@ -125,7 +125,7 @@ function UserInfoChange() {
           <div className="insideButton">
             <button
               className="editButton"
-              onClick={() => determineForm('name')}
+              onClick={() => determineForm("name")}
             >
               Edit
             </button>
@@ -139,7 +139,7 @@ function UserInfoChange() {
           <div className="insideButton">
             <button
               className="editButton"
-              onClick={() => determineForm('email')}
+              onClick={() => determineForm("email")}
             >
               Edit
             </button>
@@ -163,7 +163,7 @@ function UserInfoChange() {
           <div className="insideButton">
             <button
               className="editButton"
-              onClick={() => determineForm('password')}
+              onClick={() => determineForm("password")}
             >
               Edit
             </button>
@@ -177,7 +177,7 @@ function UserInfoChange() {
           <div className="insideButton">
             <button
               className="editButton"
-              onClick={() => history.push('/delete-account')}
+              onClick={() => history.push("/delete-account")}
             >
               Delete
             </button>
@@ -195,24 +195,27 @@ function UserInfoChange() {
             <button className="editButton">Edit</button>
           </div>
         </div>
-        <Link to="/account" style={{ textDecoration: "none"}}>
+        <Link to="/account" style={{ textDecoration: "none" }}>
           <div className="divDoneButton">
-          <button className="doneButton">Done</button>
+            <Button variant="warning">Done</Button>
           </div>
         </Link>
       </div>
 
       {/* Modal for when the use{r clicks to modify information */}
       <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Update Information</Modal.Title>
         </Modal.Header>
 
         {/* Here goes the appropriate form needed, depending on the state */}
         <Modal.Body>{theForm}</Modal.Body>
 
-        <Modal.Footer>
-          {form === 'password' && input.length <= 5 ? (
+        <Modal.Footer className="modalFooter">
+          <Button variant="secondary" onClick={() => handleClose()}>
+            Close
+          </Button>
+          {form === "password" && input.length <= 5 ? (
             <Button
               variant="primary"
               disabled
@@ -233,7 +236,7 @@ function UserInfoChange() {
         </Modal.Footer>
       </Modal>
     </div>
-  )
+  );
 }
 
-export default UserInfoChange
+export default UserInfoChange;

@@ -43,7 +43,7 @@ function Basket({ productAmount, basket, subtotal, removeProduct }) {
                 <div className="MapImageContainer">
                   <img src={product.image} alt="product" className="MapImage" />
                 </div>
-                <div className="MapTitle">{product.title} </div>
+                <div className="MapTitle">{product.title}</div>
                 <button
                   className="MapDelete"
                   onClick={() => {

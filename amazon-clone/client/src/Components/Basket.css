@@ -63,15 +63,16 @@
   width: 80%;
   margin: 20px;
 }
-.Basket2 {
-  /* background-color: lime; */
-  /* border-bottom: solid 2px; */
-}
+/* .Basket2 {} */
 .MapContainer {
   display: flex;
   margin-top: 10px;
   border-bottom: solid 2px;
   width: 100%;
+}
+.MapContainer > button {
+  padding: 5px;
+  border-radius: 5px;
 }
 .BasketSubtotal {
   font-weight: bold;
@@ -84,7 +85,11 @@
   margin-top: 10px;
 }
 .BasketProceedButton > button {
-  background-color: #ffd500;
+  background-color: #FFD814;
+  border-radius: 5px;
+  padding: 6px 28px;
+  border-color: #FCD200;
+  border: 1px;
 }
 .MapImageContainer {
   width: 20%;
