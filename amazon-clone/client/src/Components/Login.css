@@ -2,6 +2,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 63vh;
+}
+.theSignForm {
+  width: 100%;
 }
 .amazonLogo {
   width: 100px;
@@ -12,7 +16,6 @@
   display: flex;
   justify-content: center;
 }
-
 .loginFormContainer {
   display: flex;
   flex-direction: column;
@@ -23,16 +26,14 @@
   border-width: 1px;
   border-color: lightgrey;
   border-radius: 3px;
-  /* margin-bottom: 50px; */
+  height: 260px;
 }
-
 .title {
   display: flex;
   margin-left: 4%;
   font-weight: normal;
   font-size: 2rem;
 }
-
 .loginFormContainer > form > h5 {
   margin-left: 4%;
   font-weight: bold;
@@ -48,29 +49,23 @@
   width: 90%;
   border-radius: 4px;
 }
-
 .theContinueSubmit {
   width: 90%;
   height: 30px;
   border-radius: 4px;
   background-color: #cd9042;
 }
-
 .loginFormContainer > form > p {
   font-size: .8rem;
   margin-left: 4%;
 }
-
 .signUpButton {
   margin-top: 3%;
   display: flex;
   align-self: center;
   width: 320px;
   border-radius: 4px;
-  text-align: center;
 }
-
-
 @media only screen and (max-width: 800px) {
   .loginFormContainer {
     width: 280px;
@@ -79,6 +74,3 @@
     width: 280px;
   }
 }
-
-
-

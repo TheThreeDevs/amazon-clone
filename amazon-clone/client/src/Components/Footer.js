@@ -19,7 +19,7 @@ function Footer() {
       </div>
       <div className="footerTerms">
         <div className="footerTermsDiv">
-          <h5>Terms and Conditions</h5>
+          <h5>© Terms and Conditions</h5>
         </div>
       </div>
     </div>

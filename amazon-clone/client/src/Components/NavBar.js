@@ -7,6 +7,7 @@ import Popover from "react-bootstrap/Popover";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useAuth } from "../contexts/AuthContext";
+import amazonLogo from "./Images/amazonLogo.png";
 
 function NavBar({ productAmount }) {
   const { currentUser, signOut } = useAuth();
@@ -20,14 +21,14 @@ function NavBar({ productAmount }) {
       <Popover.Content>
         <ListGroup variant="flush" style={{ textDecoration: 'none' }}>
           <Link to='/account' className='NavBarAccount'>
-            <ListGroup.Item action active style={{border: 'none' , borderBottom: 'solid lightgrey 1px'}}>Account</ListGroup.Item>
+            <ListGroup.Item action variant="secondary" style={{border: 'none' , borderBottom: 'solid lightgrey 1px'}}>Account</ListGroup.Item>
           </Link>
-          <ListGroup.Item action>Orders</ListGroup.Item>
-          <ListGroup.Item action>Recommendations</ListGroup.Item>
-          <ListGroup.Item action>Prime Membership</ListGroup.Item>
-          <ListGroup.Item action>Start a Selling Account</ListGroup.Item>
-          <ListGroup.Item action>Register for a Business Account</ListGroup.Item>
-          <ListGroup.Item action active onClick={() => signOut()}>Sign Out</ListGroup.Item>
+          <ListGroup.Item action disabled>Orders</ListGroup.Item>
+          <ListGroup.Item action disabled>Recommendations</ListGroup.Item>
+          <ListGroup.Item action disabled>Prime Membership</ListGroup.Item>
+          <ListGroup.Item action disabled>Start a Selling Account</ListGroup.Item>
+          <ListGroup.Item action disabled>Register for a Business Account</ListGroup.Item>
+          <ListGroup.Item action variant="warning" onClick={() => signOut()}>Sign Out</ListGroup.Item>
         </ListGroup>
       </Popover.Content>
     </Popover>
@@ -75,7 +76,7 @@ function NavBar({ productAmount }) {
       <Link to="/" onClick={() => setSearch("")}>
         <img
           className="NavBar_Logo"
-          src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+          src={amazonLogo}
           alt="logo"
         />
       </Link>
