@@ -39,17 +39,26 @@ function Carousel() {
   return (
     <div className="carouselOuter">
       <div
-        className="carouselInner"
-        style={{ backgroundImage: `url(${images[currImg]})` }}
-      >
+        style={{ backgroundImage: `url(${images[0]})` }}
+        className={currImg === 0 ? "imageActive" : "imageDisable"}
+      ></div>
+      <div
+        style={{ backgroundImage: `url(${images[1]})` }}
+        className={currImg === 1 ? "imageActive" : "imageDisable"}
+      ></div>
+      <div
+        style={{ backgroundImage: `url(${images[2]})` }}
+        className={currImg === 2 ? "imageActive" : "imageDisable"}
+      ></div>
+      <div className="carouselBox">
         <div className="left">
           {" "}
-          <ArrowBackIosIcon className="carouselArrow" onClick={prev} />{" "}
+          <ArrowBackIosIcon className="carouselArrowLeft" onClick={prev} />{" "}
         </div>
         <div className="center"></div>
         <div className="right">
           {" "}
-          <ArrowForwardIosIcon className="carouselArrow" onClick={next} />{" "}
+          <ArrowForwardIosIcon className="carouselArrowRight" onClick={next} />{" "}
         </div>
       </div>
     </div>
