@@ -65,12 +65,16 @@ function BottomCarousel() {
       <div className="container_inner">
         {/* {for the left arrow} */}
         <div className="left">
-          <ArrowBackIosIcon onClick={() => setOption(true)} />
+          <button disabled={option}>
+            <ArrowBackIosIcon onClick={() => setOption(true)} />
+          </button>
         </div>
         {/* for the images of the carousel */}
         {/* for the right arrow */}
-        <div className="right" aria-disabled={option}>
-          <ArrowForwardIosIcon onClick={() => setOption(false)}/>
+        <div className="right">
+          <button disabled={!option}>
+            <ArrowForwardIosIcon onClick={() => setOption(false)} />
+          </button>
         </div>
       </div>
     </div>

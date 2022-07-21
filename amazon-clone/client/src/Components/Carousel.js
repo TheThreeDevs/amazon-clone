@@ -39,15 +39,15 @@ function Carousel() {
   return (
     <div className="carouselOuter">
       <div
-        style={{ backgroundImage: `url(${images[0]})` }}
+        style={{ backgroundImage: `url(${images[0]})`, backgroundPosition: `left top`}}
         className={currImg === 0 ? "imageActive" : "imageDisable"}
       ></div>
       <div
-        style={{ backgroundImage: `url(${images[1]})` }}
+        style={{ backgroundImage: `url(${images[1]})`}}
         className={currImg === 1 ? "imageActive" : "imageDisable"}
       ></div>
       <div
-        style={{ backgroundImage: `url(${images[2]})` }}
+        style={{ backgroundImage: `url(${images[2]})`}}
         className={currImg === 2 ? "imageActive" : "imageDisable"}
       ></div>
       <div className="carouselBox">
