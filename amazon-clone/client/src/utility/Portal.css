@@ -11,11 +11,11 @@
   height: 100%;
   border-radius: 5px;
   display: flex;
-  flex-direction: column;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.cart img {
+  margin-left: 10px;
 }
 @media (max-width: 700px) {
   .myPortal {

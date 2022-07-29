@@ -6,8 +6,8 @@ function MyPortal() {
   return ReactDOM.createPortal(
     <div className="myPortal">
       <div className="cart">
-        <img src={correct} alt="added to cart" width="12" height="12" />
-        <span>Added to Cart!</span>
+      <span>Added to Cart!</span>
+      <img src={correct} alt="added to cart" width="18" height="18" />
       </div>
     </div>,
     document.getElementById("myPortal")
