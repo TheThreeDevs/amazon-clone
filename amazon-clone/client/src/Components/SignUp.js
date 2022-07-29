@@ -74,7 +74,7 @@ function SignUp() {
         <Card>
           <Card.Body>
             <h2>Create account</h2>
-            {error && <Alert variant="danger">{error}</Alert>}
+            {error && <Alert variant="danger" style={{textAlign: "center"}}>{error}</Alert>}
             <Form onSubmit={handleSubmit} className="signUpForm">
               <Form.Group id="name">
                 <Form.Label className="mb-0">Your name</Form.Label>
