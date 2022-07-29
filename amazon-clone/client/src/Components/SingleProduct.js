@@ -14,6 +14,12 @@ function SingleProduct({
   handleAddProduct
 }) {
 
+  function handler() {
+    if (handleAddProduct) {
+      handleAddProduct(); 
+    }
+  }
+
   return (
     <div className="singleContainer">
       {/* title */}
@@ -49,7 +55,7 @@ function SingleProduct({
           className="containerButtonOne"
           onClick={() => {
             getProductInfo({ title: title, image: image, price: price });
-            handleAddProduct();
+            handler();
           }}
         >
           Add to Cart

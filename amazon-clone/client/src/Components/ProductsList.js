@@ -2,20 +2,12 @@ import "./ProductsList.css";
 import { useLocation, useHistory } from "react-router-dom";
 import SingleProduct from "./SingleProduct";
 import { useAuth } from "../contexts/AuthContext";
-import { useRef, useEffect } from "react";
 
 function ProductsList({ data, getProductInfo }) {
   //to get the state from the Link
   const history = useHistory();
   const location = useLocation();
-  const { addToCart, showCart } = useAuth();
-  const cartRef = useRef();
-
-  useEffect(() => {
-    //do something every time addToCart is toggled!!
-    cartRef.current = showCart;
-    console.log("show cart changed");
-  }, [showCart]);
+  const { addToCart } = useAuth();
 
   if (!location.state) {
     history.replace("/");
@@ -37,7 +29,6 @@ function ProductsList({ data, getProductInfo }) {
   //   return () => window.removeEventListener("resize", handleWindowResize);
   // }, []);
   function handleAddProduct() {
-    console.log("Adding to product...");
     addToCart(true);
     setTimeout(() => {
       addToCart(false);
