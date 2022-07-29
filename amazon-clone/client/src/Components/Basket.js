@@ -1,47 +1,16 @@
 import "./Basket.css";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import filterMultiple from "../utility/Functions";
+import { filterMultiple } from "../utility/Functions";
 import Dropdown from "react-bootstrap/Dropdown";
 
 function Basket({ productAmount, basket, subtotal, removeProduct }) {
   const { currentUser } = useAuth();
   const history = useHistory();
-  if (productAmount > 2) {
-    filterMultiple(basket);
-  }
+  let filtered = filterMultiple(basket);
+  basket = filtered[1];
+  let quantity = filtered[0];
 
-  let drop = (
-    <Dropdown
-      className="w-75"
-      style={{ backgroundColor: "white" }}
-      onSelect={(e) => console.log(e)}
-    >
-      <Dropdown.Toggle style={{ backgroundColor: "white", color: "black" }}>
-        {"Choose Reason"}
-      </Dropdown.Toggle>
-      <Dropdown.Menu>
-        <Dropdown.Item eventKey="I am not using this account anymore">
-          I am not using this account anymore
-        </Dropdown.Item>
-        <Dropdown.Item eventKey="I have another account">
-          I have another account
-        </Dropdown.Item>
-        <Dropdown.Item eventKey="I want to create a new account">
-          I want to create a new account
-        </Dropdown.Item>
-        <Dropdown.Item eventKey="I have open issues with Amazon">
-          I have open issues with Amazon
-        </Dropdown.Item>
-        <Dropdown.Item eventKey="Privacy concerns">
-          Privacy concerns
-        </Dropdown.Item>
-        <Dropdown.Item eventKey="I don't want to provide a reason">
-          I don't want to provide a reason
-        </Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
-  );
   //Will have to apply conditional rendering to this component
   let display;
   if (productAmount === 0) {
@@ -79,16 +48,37 @@ function Basket({ productAmount, basket, subtotal, removeProduct }) {
                 <div className="MapImageContainer">
                   <img src={product.image} alt="product" className="MapImage" />
                 </div>
-                {drop}
                 <div className="MapTitle">{product.title}</div>
-                <button
-                  className="MapDelete"
-                  onClick={() => {
-                    removeProduct(product.title);
-                  }}
-                >
-                  Delete
-                </button>
+                <div className="Wrapper">
+                  <button
+                    className="MapDelete"
+                    onClick={() => {
+                      removeProduct(product.title);
+                    }}
+                  >
+                    Delete
+                  </button>
+                  {
+                    <Dropdown style={{ backgroundColor: "white" }}>
+                      <Dropdown.Toggle
+                        style={{ backgroundColor: "white", color: "black" }}
+                      >
+                        {`Qty: ${quantity[product["title"]]}`}
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        {new Array(quantity[product["title"]])
+                          .fill("x")
+                          .map((num, idx) => {
+                            return (
+                              <Dropdown.Item key={idx} eventKey={idx + 1}>
+                                {idx + 1}
+                              </Dropdown.Item>
+                            );
+                          })}
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  }
+                </div>
                 <div className="MapPrice">Price: ${product.price}</div>
               </div>
             );
