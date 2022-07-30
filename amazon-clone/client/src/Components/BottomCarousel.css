@@ -1,11 +1,12 @@
 .container {
   display: flex;
-  /* width: auto; */
   height: 250px;
   margin-bottom: 40px;
   margin-left: 15px;
   margin-right: 15px;
   position: relative;
+  justify-content: center;
+  width: 100%;
 }
 .container_inner {
   display: grid;
