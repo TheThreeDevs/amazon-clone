@@ -69,11 +69,9 @@
   margin-top: 10px;
   border-bottom: solid 2px;
   width: 100%;
+  justify-content: space-evenly;
 }
-.MapContainer > button {
-  padding: 5px;
-  border-radius: 5px;
-}
+
 .BasketSubtotal {
   font-weight: bold;
   display: flex;
@@ -114,8 +112,16 @@
 }
 
 .MapDelete {
-  width: 10%;
-  height: 35px;
+  height: 38px;
+  border-radius: 5px;
+  width: 80px;
+  background-color: white;
+  border-color: #0d6dfdb0;
+}
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 @media only screen and (max-width: 1000px) {
   .MapContainer {
@@ -125,7 +131,6 @@
   .MapImageContainer {
     display: flex;
     width: 100%;
-    /* align-items: center; */
     justify-content: center;
   }
   .MapPrice {
@@ -138,6 +143,7 @@
     margin: 2%;
   }
   .MapDelete {
-    width: 50%;
+    width: 100%;
+    margin: 0px;
   }
 }
