@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      console.log("current user", user);
+      console.log("current user: ", user ? user.displayName : "undefined");
       if (user) {
         setCurrentUser(user);
         setLoading(false);
@@ -49,7 +49,7 @@ export function AuthProvider({ children }) {
 
   function updateProfileName(auth, name, photoUrl = "") {
     if (typeof auth === "string") {
-      return updateProfile(currentUser, {displayName: auth});
+      return updateProfile(currentUser, { displayName: auth });
     }
     return updateProfile(auth, { displayName: name, photoURL: photoUrl });
   }
@@ -77,13 +77,11 @@ export function AuthProvider({ children }) {
   function signInAuth(password) {
     let email = currentUser.email;
     let auth = currentUser;
-    console.log("Sign in auth: ", currentUser, email, password);
     return signInWithEmailAndPassword(auth, email, password);
   }
 
   function reauthenticate(auth, password) {
     let email = currentUser.email;
-    console.log("Reathenticating with these credentials", email, password);
     return reauthenticateWithCredential(auth, { email, password });
   }
 
