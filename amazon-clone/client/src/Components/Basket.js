@@ -1,13 +1,18 @@
-import './Basket.css'
-import { useHistory } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext'
+import "./Basket.css";
+import { useHistory } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { filterMultiple } from "../utility/Functions";
+import Dropdown from "react-bootstrap/Dropdown";
 
 function Basket({ productAmount, basket, subtotal, removeProduct }) {
-  const { currentUser } = useAuth()
-  const history = useHistory()
+  const { currentUser } = useAuth();
+  const history = useHistory();
+  let filtered = filterMultiple(basket);
+  basket = filtered[1];
+  let quantity = filtered[0];
 
   //Will have to apply conditional rendering to this component
-  let display
+  let display;
   if (productAmount === 0) {
     //display the basket is empty message
     display = (
@@ -17,20 +22,20 @@ function Basket({ productAmount, basket, subtotal, removeProduct }) {
           <div className="BasketButtons">
             <button
               className="ButtonOne"
-              onClick={() => history.push('/login')}
+              onClick={() => history.push("/login")}
             >
               Sign in to your account
             </button>
             <button
               className="ButtonTwo"
-              onClick={() => history.push('/signup')}
+              onClick={() => history.push("/signup")}
             >
               Sign up now
             </button>
           </div>
         )}
       </div>
-    )
+    );
   } else {
     //display the products that we have in the basket
     display = (
@@ -44,17 +49,39 @@ function Basket({ productAmount, basket, subtotal, removeProduct }) {
                   <img src={product.image} alt="product" className="MapImage" />
                 </div>
                 <div className="MapTitle">{product.title}</div>
-                <button
-                  className="MapDelete"
-                  onClick={() => {
-                    removeProduct(product.title)
-                  }}
-                >
-                  Delete
-                </button>
+                <div className="Wrapper">
+                  <button
+                    className="MapDelete"
+                    onClick={() => {
+                      removeProduct(product.title);
+                    }}
+                  >
+                    Delete
+                  </button>
+                  {
+                    <Dropdown style={{ backgroundColor: "white" }}>
+                      <Dropdown.Toggle
+                        style={{ backgroundColor: "white", color: "black" }}
+                      >
+                        {`Qty: ${quantity[product["title"]]}`}
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        {new Array(quantity[product["title"]])
+                          .fill("x")
+                          .map((num, idx) => {
+                            return (
+                              <Dropdown.Item key={idx} eventKey={idx + 1}>
+                                {idx + 1}
+                              </Dropdown.Item>
+                            );
+                          })}
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  }
+                </div>
                 <div className="MapPrice">Price: ${product.price}</div>
               </div>
-            )
+            );
           })}
         </div>
         {/* displays the subtotal on the bottom of the cart */}
@@ -65,7 +92,7 @@ function Basket({ productAmount, basket, subtotal, removeProduct }) {
           <button>Proceed to checkout</button>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -80,7 +107,7 @@ function Basket({ productAmount, basket, subtotal, removeProduct }) {
         when it's time to pay.
       </p>
     </div>
-  )
+  );
 }
 
-export default Basket
+export default Basket;

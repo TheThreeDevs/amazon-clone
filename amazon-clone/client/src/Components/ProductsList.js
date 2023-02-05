@@ -1,11 +1,14 @@
 import "./ProductsList.css";
 import { useLocation, useHistory } from "react-router-dom";
 import SingleProduct from "./SingleProduct";
+import { useAuth } from "../contexts/AuthContext";
 
 function ProductsList({ data, getProductInfo }) {
   //to get the state from the Link
   const history = useHistory();
   const location = useLocation();
+  const { addToCart } = useAuth();
+
   if (!location.state) {
     history.replace("/");
     return (
@@ -25,7 +28,12 @@ function ProductsList({ data, getProductInfo }) {
   //   window.addEventListener("resize", handleWindowResize);
   //   return () => window.removeEventListener("resize", handleWindowResize);
   // }, []);
-
+  function handleAddProduct() {
+    addToCart(true);
+    setTimeout(() => {
+      addToCart(false);
+    }, 1000);
+  }
   //here is the products for the specific category
   // const [products, setProducts] = useState([]);
   if (!data) {
@@ -54,6 +62,7 @@ function ProductsList({ data, getProductInfo }) {
             price={product.price}
             description={product.description}
             getProductInfo={getProductInfo}
+            handleAddProduct={handleAddProduct}
           />
         );
       })}

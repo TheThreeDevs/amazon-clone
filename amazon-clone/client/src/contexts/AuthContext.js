@@ -21,6 +21,7 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   //this prevents from anything showing up until firebase is ready to go!
   const [loading, setLoading] = useState(true);
+  const [showCart, setShowCart] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -85,6 +86,9 @@ export function AuthProvider({ children }) {
     return reauthenticateWithCredential(auth, { email, password });
   }
 
+  function addToCart(status) {
+    return setShowCart(status);
+  }
   const myValues = {
     currentUser,
     signIn,
@@ -97,6 +101,8 @@ export function AuthProvider({ children }) {
     deleteTheUser,
     signInAuth,
     reauthenticate,
+    showCart,
+    addToCart
   };
   return (
     <AuthContext.Provider value={myValues}>

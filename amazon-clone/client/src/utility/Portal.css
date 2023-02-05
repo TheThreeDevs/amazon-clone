@@ -1,0 +1,29 @@
+.myPortal {
+  position: fixed;
+  height: 7vh;
+  top: 8vh;
+  width: 100%;
+  z-index: 150;
+}
+.cart {
+  background-color: rgb(255, 183, 0);
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cart img {
+  margin-left: 10px;
+}
+@media (max-width: 700px) {
+  .myPortal {
+    font-size: .75rem;
+  }
+}
+/* for notification in small screens */
+/* width: 40rem;
+left: calc(50% - 20rem);
+border-top-right-radius: 6px;
+border-top-left-radius: 6px; */
