@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
+  margin: 0 auto;
 }
 .divContainer {
   margin-top: 3%;
@@ -32,7 +33,7 @@
 .editButton {
   width: 70px;
   height: 30px;
-  font-size: .9rem;
+  font-size: 0.9rem;
   border: 1px #ada6a5 solid;
   border-radius: 5px;
   padding: 3px;
